@@ -1,0 +1,174 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.9/theme.json",
+	"version": 3,
+	"title": "Dark",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"color": "#236192",
+					"name": "Accent / Brand",
+					"slug": "accent-brand"
+				},
+				{
+					"color": "#00548b",
+					"name": "Accent / Hover",
+					"slug": "accent-hover"
+				},
+				{
+					"color": "#f2f6fa",
+					"name": "Contrast / Strongest",
+					"slug": "contrast-strongest"
+				},
+				{
+					"color": "#d5dee6",
+					"name": "Contrast / Strong",
+					"slug": "contrast-strong"
+				},
+				{
+					"color": "#c49340",
+					"name": "Contrast / Medium",
+					"slug": "contrast-medium"
+				},
+				{
+					"color": "#7a9da0",
+					"name": "Contrast / Subtle",
+					"slug": "contrast-subtle"
+				},
+				{
+					"color": "#0d1922",
+					"name": "Base / Background",
+					"slug": "base-background"
+				},
+				{
+					"color": "#1d2f44",
+					"name": "Base / Lighter",
+					"slug": "base-lighter"
+				},
+				{
+					"color": "#152231",
+					"name": "Base / Subtle",
+					"slug": "base-subtle"
+				},
+				{
+					"color": "#0d1922",
+					"name": "Theme / Background",
+					"slug": "theme-background"
+				},
+				{
+					"color": "#f2f6fa",
+					"name": "Theme / Text",
+					"slug": "theme-text"
+				},
+				{
+					"color": "rgba(122, 157, 160, 0.48)",
+					"name": "Theme / Border",
+					"slug": "theme-border"
+				},
+				{
+					"color": "#7a9da0",
+					"name": "Text Link / Text",
+					"slug": "text-link-text"
+				},
+				{
+					"color": "#63a5d9",
+					"name": "Text Link / Text Hover",
+					"slug": "text-link-text-hover"
+				},
+				{
+					"color": "#f2f6fa",
+					"name": "Logo / Ink",
+					"slug": "logo-ink"
+				},
+				{
+					"color": "#023b66",
+					"name": "Illustration / Milestone Deep",
+					"slug": "illustration-milestone-deep"
+				},
+				{
+					"color": "#1f5782",
+					"name": "Illustration / Milestone Blue",
+					"slug": "illustration-milestone-blue"
+				},
+				{
+					"color": "#63a5d9",
+					"name": "Illustration / Milestone Sky",
+					"slug": "illustration-milestone-sky"
+				},
+				{
+					"color": "#688f92",
+					"name": "Illustration / Quote Card",
+					"slug": "illustration-quote-card"
+				},
+				{
+					"color": "#caddc0",
+					"name": "Illustration / Soft Green",
+					"slug": "illustration-soft-green"
+				},
+				{
+					"color": "#0d1922",
+					"name": "Hero / Fade",
+					"slug": "hero-fade"
+				}
+			],
+			"gradients": [
+				{
+					"slug": "hero",
+					"name": "Hero",
+					"gradient": "linear-gradient(180deg, #1d2f44 0%, #0d1922 100%)"
+				},
+				{
+					"slug": "accent-brand-to-hover",
+					"name": "Accent / Brand to Hover",
+					"gradient": "linear-gradient(90deg, #236192 0%, #00548b 100%)"
+				},
+				{
+					"slug": "milestone",
+					"name": "Illustration / Milestone",
+					"gradient": "linear-gradient(90deg, #023b66 0%, #1f5782 50%, #63a5d9 100%)"
+				}
+			]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--base-background)",
+			"text": "var(--wp--preset--color--theme-text)"
+		},
+		"elements": {
+			"heading": {
+				"color": {
+					"text": "var(--wp--preset--color--contrast-strongest)"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var(--wp--preset--color--text-link-text)"
+				},
+				":hover": {
+					"color": {
+						"text": "var(--wp--preset--color--text-link-text-hover)"
+					}
+				}
+			},
+			"button": {
+				"color": {
+					"background": "var(--wp--preset--color--accent-hover)",
+					"text": "var(--wp--preset--color--contrast-strongest)"
+				},
+				"border": {
+					"color": "var(--wp--preset--color--accent-hover)"
+				},
+				":hover": {
+					"border": {
+						"color": "var(--wp--preset--color--contrast-strongest)"
+					},
+					"color": {
+						"background": "var(--wp--preset--color--base-background)",
+						"text": "var(--wp--preset--color--contrast-strongest)"
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,122 @@
+{
+  "title": "Client stories",
+  "stories": [
+    {
+      "id": "ben",
+      "name": "Ben G.",
+      "meta": "Corporate Engineer",
+      "quote": "Is it okay to leave my job now?",
+      "image": "layouts/photo-client-story-2.webp",
+      "href": "/client-stories/#ben",
+      "cta": "Read More",
+      "card": "quote-card",
+      "detail": {
+        "lede": "Retired after a 24-year corporate career",
+        "beats": [
+          {
+            "label": "Where he was",
+            "body": [
+              "For most of two decades, Ben did the boring things right. Same employer, steady 401k contributions year after year, and Financial Peace University for the whole family, including the teenage son he walked through it himself. By the time retirement came into view, the discipline had obviously worked. What he still didn’t have was the one answer that kept him up at night: when, exactly, could he walk away from a job he’d held for 24 years."
+            ]
+          },
+          {
+            "label": "What was in the way",
+            "body": [
+              "Ben and his wife Linda could feel they were close. But a feeling isn’t a date, and after 24 years at one company, neither of them was going to make a decision this size on a hunch. Also, Ben would be leaving before he was old enough for Medicare. The plan had to solve for health coverage in the gap years, not just land on a retirement number."
+            ]
+          },
+          {
+            "label": "How it went",
+            "body": [
+              "They found Kennedy through Ramsey’s SmartVestor program and knew fairly quickly it was a fit. Piece by piece, the team turned the feeling into a solid date he could leave, the monthly income he’d get, how Linda’s coverage would carry them until Medicare kicked in, and what the picture looked like if he waited a year versus going now.",
+              "Twice, the roadmap showed that hanging on a little longer put them in a meaningfully stronger spot, so they pushed the exit back on purpose. Not out of fear this time, but because they could finally see what the extra months bought them."
+            ]
+          }
+        ],
+        "life_now": "These days Ben and Linda set their own schedule. They know the income will last, and they’ve stopped checking the balance to reassure themselves. What comes up often, Linda says, is a version of the same sentence a few times a week: we’re sure glad we did this. Ben will tell you most people his age heading toward retirement have no real idea where they stand. He’s not guessing anymore. The time goes to trips, to family, and to the open schedule they spent 24 years earning.",
+        "cta_title": "On a journey similar to Ben and Linda’s?"
+      }
+    },
+    {
+      "id": "kerry",
+      "name": "Kerry K.",
+      "meta": "Outgrew generic planning",
+      "quote": "I needed someone my wife could trust if something happened to me tomorrow.",
+      "image": "layouts/photo-client-story-kerry.webp",
+      "href": "/client-stories/#kerry",
+      "cta": "Read More",
+      "card": "soft-green",
+      "detail": {
+        "lede": "A plan tailored to faith, gifting values and personal relationships",
+        "beats": [
+          {
+            "label": "Where he was",
+            "body": [
+              "Kerry wasn’t unhappy with his old advisor’s returns. However, when his wife Sandra came into a small inheritance and started asking basic, reasonable questions about how to handle it, the firm treated her like an interruption. That told Kerry everything he needed to know about what would happen to her if he weren’t in the room."
+            ]
+          },
+          {
+            "label": "What was in the way",
+            "body": [
+              "Underneath that was a second problem. The old approach was cookie-cutter, a little too conservative, and wouldn’t bend to fit their actual life. Kerry and Sandra cared about gifting as part of their values, including a gift to their church’s building program, and wisely preferred to do so in a tax-smart way. They wanted an advisor who would treat that as part of the plan rather than a distraction from it."
+            ]
+          },
+          {
+            "label": "How it went",
+            "body": [
+              "A Ramsey listener, Kerry ran his shortlist through the trusted-provider directory and filtered for someone who shared his faith and his values. He interviewed several. It took a while, but he finally found a fit in Kennedy FG.",
+              "They treated Kerry and Sandra as one team, and treated their giving and their tax picture as parts of the same plan instead of afterthoughts.",
+              "When a bonus came in, the plan put it to work in a tax-smart way instead of letting it get eaten up at tax time.",
+              "When they wanted to fund the church gift, they looked at giving appreciated stock rather than cash, so the gift went further and less went to the IRS along the way."
+            ]
+          }
+        ],
+        "life_now": "Years later, the plan feels like Kerry’s, built around his family and their values instead of pulled off a shelf. Sandra sits in every meeting as a full participant, not a spectator. And, if something happened to him tomorrow, Sandra already has someone she trusts to walk her through what comes next.",
+        "cta_title": "On a journey similar to Kerry and Sandra’s?"
+      }
+    },
+    {
+      "id": "jason",
+      "name": "Jason T.",
+      "meta": "Finding The Right Advisor",
+      "quote": "Are we behind where we should be?",
+      "image": "layouts/photo-case-study-portrait.webp",
+      "href": "/client-stories/#jason",
+      "cta": "Read More",
+      "card": "soft-brown",
+      "detail": {
+        "lede": "From a costly tax mistake to giving on his own terms",
+        "beats": [
+          {
+            "label": "Where he was",
+            "body": [
+              "Jason and Kathy are both engineers. Thirty years of good income, careful habits, no real trouble.",
+              "But they never quite hit the trajectory they’d pictured back when they got married, and by their sixties that gap had started to nag.",
+              "Retirement was close enough that the math mattered more than the discipline now, and Jason’s father had just passed at 98, leaving a small inheritance Jason was suddenly responsible for settling."
+            ]
+          },
+          {
+            "label": "What was in the way",
+            "body": [
+              "Years earlier, a full-service firm botched their taxes.",
+              "Jason’s takeaway was blunt: if he was going to pay someone to make mistakes, he could make those himself for free. So he went DIY for a long stretch, and it worked well enough. But the next phase had too many moving parts for that to hold.",
+              "Retirement planning, an inheritance to settle, questions about helping the kids, and a real risk of creating a tax problem down the road if he guessed wrong on any of it."
+            ]
+          },
+          {
+            "label": "How it went",
+            "body": [
+              "Jason and Kathy found Kennedy FG through the SmartVestor platform. Steven walked them through what was happening at every step, so it never felt like handing over the money and hoping.",
+              "The tax work was the part that won him over. Steven handled the inheritance and the rollovers so the IRS took no more than it had to. Then walked Jason and Kathy through how their taxes will actually change once the paychecks stop.",
+              "Steven laid out what those years look like and how to draw income in an order that keeps more of it.",
+              "When Jason called wanting to take a chunk of the inheritance and swing for the fences, Steven didn’t just go along with it. He said “let’s look at that after we’ve mapped out your retirement scenarios first.”",
+              "Jason appreciated the restraint. He felt he had a guide who would keep him on the roadmap, not a salesperson chasing a trade."
+            ]
+          }
+        ],
+        "life_now": "The inheritance is settled, the rollovers are done, including a lump-sum pension that took months to unwind, with the support team carrying the paperwork across the line. What Jason cares about most now is generational. His dad left something to his kids, and Jason plans to do the same, helping his own kids through the big moments like weddings and first homes, with enough left over to bless a few others along the way.",
+        "cta_title": "On a journey similar to Jason and Kathy’s?"
+      }
+    }
+  ]
+}

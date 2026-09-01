@@ -1,0 +1,115 @@
+/*
+Theme Name: Kennedy FG
+Theme URI: https://kennedyfg.com
+Author: Wilnau Design
+Description: Hybrid WordPress theme for Kennedy Financial Group. Design tokens from the Kennedy FG Figma file, with Light (default) and Dark style variations.
+Version: 0.1.0
+Requires at least: 6.1
+Tested up to: 6.8
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+Text Domain: kennedyfg
+GitHub Theme URI: wilnau-design/kennedyfg
+GitHub Branch: main
+*/
+
+:root {
+	--kennedy-site-gutter: var(--wp--custom--site--margin, 48px);
+	--kennedy-header-height: 80px;
+	/* Figma desktop artboard. Illustrated rows are percentage-laid-out against this. */
+	--kennedy-desktop-frame: 1440px;
+}
+
+@media (max-width: 1024px) {
+	:root {
+		--kennedy-site-gutter: var(--wp--custom--site--margin-mobile, 16px);
+		--kennedy-header-height: 72px;
+	}
+
+	/* Beat theme.json `body` custom properties for section padding. */
+	html body {
+		--wp--custom--section-space--main: var(--wp--custom--section-space--small);
+	}
+}
+
+@media (max-width: 767.98px) {
+	html body {
+		--wp--custom--section-space--main: var(--wp--custom--space--7);
+	}
+
+	[class*="layout-"] .alignwide {
+		max-width: min(460px, calc(100% - (2 * var(--kennedy-site-gutter))));
+		margin-inline: auto;
+	}
+}
+
+.site-main {
+	width: 100%;
+	max-width: none;
+}
+
+.alignfull {
+	width: 100%;
+	max-width: none;
+	margin-inline: 0;
+}
+
+.is-layout-constrained > .alignwide,
+.alignwide,
+.site-header-inner,
+.site-header-mobile-bar,
+.site-footer-main,
+.site-footer-legal-copy,
+.library-bar,
+.library-section-title,
+.library-note,
+.library-pair,
+.library-caption {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: min(var(--wp--style--global--wide-size, 1344px), calc(100% - (2 * var(--kennedy-site-gutter))));
+	margin-inline: auto;
+}
+
+body {
+	margin: 0;
+	overflow-x: clip;
+}
+
+.kennedyfg-library .site-main {
+	margin: 0;
+}
+
+.site-footer {
+	margin-block-start: 0;
+}
+
+.site-main > :first-child {
+	margin-block-start: 0;
+}
+
+.skip-link.screen-reader-text {
+	position: absolute;
+	left: -9999px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.skip-link.screen-reader-text:focus {
+	left: 6px;
+	top: 7px;
+	width: auto;
+	height: auto;
+	z-index: 100000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}

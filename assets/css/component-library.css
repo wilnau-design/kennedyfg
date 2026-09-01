@@ -1,0 +1,212 @@
+.kennedyfg-library {
+	max-width: 100%;
+	overflow-x: clip;
+	background: var(--wp--preset--color--base-background);
+	color: var(--wp--preset--color--theme-text);
+}
+
+.library-bar {
+	position: sticky;
+	top: 0;
+	z-index: 40;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	box-sizing: border-box;
+	width: 100%;
+	padding-block: var(--wp--custom--space--3);
+	padding-inline: 0;
+	border-bottom: var(--wp--custom--border-width--x-small) solid var(--wp--preset--color--theme-border);
+	background: var(--wp--preset--color--base-background);
+}
+
+.library-bar-title {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--heading-5);
+	font-weight: 400;
+}
+
+.library-bar-actions {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--custom--space--3);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.library-main {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 100%;
+}
+
+.library-section {
+	box-sizing: border-box;
+	max-width: 100%;
+	padding-block: var(--wp--custom--space--7);
+}
+
+.library-section-title,
+.library-note {
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0 auto var(--wp--custom--space--4);
+	padding-inline: 0;
+}
+
+.library-section-title {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--heading-4);
+	font-weight: 400;
+}
+
+.library-note {
+	color: var(--wp--preset--color--contrast-subtle);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.library-pair {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: var(--wp--custom--space--4);
+	box-sizing: border-box;
+	width: 100%;
+	margin-inline: auto;
+	padding-inline: 0;
+}
+
+.library-surface {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--custom--space--4);
+	align-items: flex-start;
+	box-sizing: border-box;
+	min-width: 0;
+	max-width: 100%;
+	padding: var(--wp--custom--space--4);
+	border-radius: var(--wp--custom--radius--main);
+	background: var(--wp--preset--color--base-lighter);
+}
+
+.library-surface > * {
+	min-width: 0;
+	max-width: 100%;
+}
+
+.library-surface .article-card {
+	width: min(360px, 100%);
+}
+
+.library-surface .article-card.is-featured {
+	width: min(576px, 100%);
+}
+
+.library-surface .layout-article-spotlight .article-card,
+.library-surface .layout-article-spotlight .article-card.is-featured {
+	width: 100%;
+	max-width: none;
+}
+
+.library-surface .team-card {
+	width: min(318px, 100%);
+}
+
+.library-surface .layout-team-grid-list .team-card {
+	width: 100%;
+	max-width: none;
+}
+
+.library-surface .team-card .team-card-media {
+	width: 100%;
+}
+
+.library-surface .side-cta {
+	width: min(359px, 100%);
+}
+
+.library-surface .form-field,
+.library-surface .contact-form {
+	align-self: stretch;
+	flex: none;
+	width: 100%;
+	max-width: 100%;
+}
+
+.library-surface .button-cta {
+	width: min(311px, 100%);
+	min-width: 0;
+}
+
+.library-surface .button-cta.is-short,
+.library-surface .button-cta.is-short-light {
+	width: min(182px, 100%);
+}
+
+.library-surface .site-footer .button-cta {
+	width: min(311px, 100%);
+}
+
+.library-surface:has(.site-footer) {
+	background: var(--wp--preset--color--base-lighter);
+	padding: 0;
+}
+
+.library-surface .site-footer.is-mobile .button-cta {
+	width: min(311px, 100%);
+}
+
+.library-surface.is-light {
+	background: var(--wp--preset--color--base-lighter);
+}
+
+.library-surface.is-dark {
+	background: var(--wp--preset--color--base-lighter);
+}
+
+.library-fullbleed {
+	width: 100%;
+	padding-inline: 0;
+}
+
+.library-fullbleed .library-section-title,
+.library-fullbleed .library-note {
+	padding-inline: 0;
+}
+
+.library-fullbleed .library-surface {
+	width: 100%;
+	padding: 0;
+	border-radius: 0;
+}
+
+.library-caption {
+	width: 100%;
+	padding: var(--wp--custom--space--3) 0 0;
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--contrast-subtle);
+}
+
+.library-stack {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: var(--wp--custom--space--3);
+}
+
+.library-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--custom--space--3);
+	align-items: flex-start;
+	max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+	.library-pair {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.library-bar {
+		padding-inline: 0;
+	}
+}

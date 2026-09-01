@@ -1,0 +1,140 @@
+/**
+ * Fluent Forms integration overrides.
+ *
+ * The Contact form and Guide Request form are rendered by Fluent Forms,
+ * but must keep the site's existing .contact-form / .powerlander-form /
+ * .form-field / .form-control / .button-cta visual design untouched.
+ * Fluent Forms wraps its fields in its own markup (fieldset > .ff-el-group
+ * > .ff-el-input--label / .ff-el-input--content), so this file only
+ * neutralises Fluent Forms' own default spacing/label styling and lets
+ * the theme's existing .form-field / .form-control rules (applied via
+ * matching class names on the rendered fields) do the rest.
+ *
+ * @package kennedyfg
+ */
+
+form.contact-form.fluentform,
+form.powerlander-form.fluentform {
+	display: block;
+}
+
+form.contact-form.fluentform fieldset,
+form.powerlander-form.fluentform fieldset {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+form.contact-form.fluentform fieldset {
+	gap: 20px;
+}
+
+form.powerlander-form.fluentform fieldset {
+	gap: var(--wp--custom--space--3);
+}
+
+form.contact-form.fluentform .ff-el-group,
+form.powerlander-form.fluentform .ff-el-group {
+	margin-bottom: 0 !important;
+}
+
+form.contact-form.fluentform .ff-el-input--label,
+form.powerlander-form.fluentform .ff-el-input--label {
+	display: block;
+	margin-bottom: 0;
+}
+
+form.contact-form.fluentform .ff-el-input--label label,
+form.powerlander-form.fluentform .ff-el-input--label label {
+	display: block;
+	color: var(--wp--preset--color--theme-text);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 400;
+	letter-spacing: 0.08em;
+	line-height: 1.6;
+	text-transform: uppercase;
+}
+
+[data-theme="dark"] form.contact-form.fluentform .ff-el-input--label label,
+[data-theme="dark"] form.powerlander-form.fluentform .ff-el-input--label label {
+	color: var(--wp--preset--color--contrast-strongest);
+}
+
+form.contact-form.fluentform .ff-el-input--label.ff-el-is-required label:after,
+form.powerlander-form.fluentform .ff-el-input--label.ff-el-is-required label:after {
+	content: none !important;
+}
+
+form.powerlander-form.fluentform .ff-el-input--label label {
+	font-family: "Source Code Pro", ui-monospace, monospace;
+	font-size: var(--wp--preset--font-size--small);
+	letter-spacing: 0;
+}
+
+form.contact-form.fluentform .ff_submit_btn_wrapper,
+form.powerlander-form.fluentform .ff_submit_btn_wrapper {
+	text-align: left;
+}
+
+form.powerlander-form.fluentform .ff_submit_btn_wrapper {
+	align-self: center;
+}
+
+/* Fluent Forms' inline error/help text under each field. */
+form.contact-form.fluentform .error,
+form.powerlander-form.fluentform .error {
+	margin-top: 4px;
+	color: var(--wp--preset--color--accent-brand, #c0392b);
+	font-size: 0.8125rem;
+}
+
+/* Popup's responsive 2-column layout (name / email side by side, button
+   and privacy note spanning both columns) originally targeted
+   .powerlander-form's direct children; Fluent Forms nests everything one
+   level deeper inside <fieldset>, so the same rules move there. */
+@media (max-width: 1024px) {
+	.layout-powerlander-popup-card form.powerlander-form.fluentform fieldset {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		column-gap: var(--wp--custom--space--3);
+		row-gap: var(--wp--custom--space--3);
+		width: 100%;
+		max-width: none;
+	}
+
+	.layout-powerlander-popup-card form.powerlander-form.fluentform .ff_submit_btn_wrapper,
+	.layout-powerlander-popup-card form.powerlander-form.fluentform .powerlander-form-privacy {
+		grid-column: 1 / -1;
+		justify-self: center;
+		max-width: none;
+	}
+
+	.layout-powerlander-popup-card form.powerlander-form.fluentform .ff_submit_btn_wrapper {
+		align-self: center;
+		width: auto;
+		min-width: 19.4375rem;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.layout-powerlander-popup-card form.powerlander-form.fluentform fieldset {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.layout-powerlander-popup-card form.powerlander-form.fluentform .ff_submit_btn_wrapper {
+		align-self: stretch;
+		justify-self: stretch;
+		width: 100%;
+		min-width: 0;
+	}
+
+	.layout-powerlander-popup-card form.powerlander-form.fluentform .ff_submit_btn_wrapper .button-cta {
+		width: 100%;
+	}
+
+	.layout-powerlander-popup-card form.powerlander-form.fluentform .powerlander-form-privacy {
+		max-width: none;
+	}
+}
