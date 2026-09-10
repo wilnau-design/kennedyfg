@@ -11,17 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository Code
-        uses: ??
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Sync Files via SFTP
         uses: wangyucode/sftp-upload-action@21e59af4859e42c1d6392aa1b47a404c43393db0 # v2.0.4
         with:
-          host: ${{ secrets.WPENGINE_SERVER_IP }}
-          port: 22
+          host: ${{ secrets.WPENGINE_SERVER_HOST }}
+          port: 2222
           username: ${{ secrets.WPENGINE_SFTP_USER }}
           password: ${{ secrets.WPENGINE_SFTP_PASSWORD }}
           # '.' targets the root of your Git repository (the kennedyfg theme folder)
           localDir: './'
           # Application-credential SFTP users are chrooted into their app's own directory,
           # so this is relative to that root (not the full server path under /applications)
-          remoteDir: 'public_html/wp-content/themes/kennedyfg/'
+          remoteDir: 'wp-content/themes/kennedyfg/'
