@@ -33,9 +33,11 @@ $args = wp_parse_args(
 				<div>
 					<dt><?php esc_html_e( 'Address', 'kennedyfg' ); ?></dt>
 					<dd>
-						<?php foreach ( $args['address'] as $line ) : ?>
-							<span><?php echo esc_html( $line ); ?></span>
-						<?php endforeach; ?>
+						<a href="<?php echo esc_url( kennedy_fg_address_map_url() ); ?>" target="_blank" rel="noopener noreferrer">
+							<?php foreach ( $args['address'] as $line ) : ?>
+								<span><?php echo esc_html( $line ); ?></span>
+							<?php endforeach; ?>
+						</a>
 					</dd>
 				</div>
 			</dl>

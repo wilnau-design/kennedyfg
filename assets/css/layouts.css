@@ -792,7 +792,7 @@
 .layout-article-spotlight .article-card {
 	box-sizing: border-box;
 	width: 100%;
-	max-width: none;
+	max-width: 100%;
 	min-width: 0;
 }
 
@@ -803,6 +803,7 @@
 
 .layout-article-spotlight .article-card.is-featured {
 	width: 100%;
+	max-width: 100%;
 	container-type: inline-size;
 }
 
@@ -1116,11 +1117,12 @@
 	> * {
 		min-width: 0;
 		width: 100%;
-		max-width: none;
+		max-width: 100%;
 	}
 
 	.team-card-media {
 		width: 100%;
+		max-width: 100%;
 		height: auto;
 		aspect-ratio: 318 / 405;
 	}
@@ -1945,15 +1947,15 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: var(--wp--custom--space--4);
+		padding-block-end: var(--wp--custom--space--4);
 	}
 
 	.layout-blog-article-hero-title {
 		font-size: var(--wp--preset--font-size--heading-3);
 	}
 
-	.layout-blog-article-hero-right .button-cta {
-		width: 100%;
-		min-width: 0;
+	.layout-blog-article-hero-right {
+		display: none;
 	}
 }
 
@@ -1997,6 +1999,7 @@
 	position: sticky;
 	top: calc(var(--kennedy-header-height) + var(--wp--custom--space--4));
 	width: 100%;
+	max-width: 100%;
 }
 
 .layout-blog-post-author {

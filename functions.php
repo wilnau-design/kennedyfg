@@ -176,6 +176,15 @@ function kennedy_fg_asset( $path ) {
 }
 
 /**
+ * Google Maps URL for the firm office address.
+ *
+ * @return string
+ */
+function kennedy_fg_address_map_url() {
+	return 'https://www.google.com/maps/place/Kennedy+Financial+Group/@42.5608293,-83.1535016,17z/data=!3m1!4b1!4m6!3m5!1s0x8824c43d8607a99b:0x1227d678aed12f4b!8m2!3d42.5608293!4d-83.1535016';
+}
+
+/**
  * Dev/QC options page: lets devs toggle the light/dark theme switcher
  * that appears in the site footer, without touching code.
  */

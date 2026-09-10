@@ -40,9 +40,11 @@ $legal_copy_two = 'The LPL Financial registered representative associated with t
 					<p class="site-footer-heading"><?php esc_html_e( 'Kennedy Financial Group', 'kennedyfg' ); ?></p>
 					<?php kennedy_fg_component( 'footer-link', array( 'label' => '(248) 528-0485', 'href' => 'tel:248-528-0485' ) ); ?>
 					<p class="site-footer-address">
-						201 West Big Beaver Road,<br />
-						Suite 1001,<br />
-						Troy, MI 48084
+						<a href="<?php echo esc_url( kennedy_fg_address_map_url() ); ?>" target="_blank" rel="noopener noreferrer">
+							201 West Big Beaver Road,<br />
+							Suite 1001,<br />
+							Troy, MI 48084
+						</a>
 					</p>
 					<?php kennedy_fg_component( 'footer-link', array( 'label' => 'team@kennedyfg.com', 'href' => 'mailto:team@kennedyfg.com' ) ); ?>
 				</div>

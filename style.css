@@ -71,6 +71,11 @@ GitHub Branch: main
 	margin-inline: auto;
 }
 
+html,
+body {
+	max-width: 100%;
+}
+
 body {
 	margin: 0;
 	overflow-x: clip;

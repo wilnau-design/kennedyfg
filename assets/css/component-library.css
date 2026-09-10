@@ -104,7 +104,7 @@
 .library-surface .layout-article-spotlight .article-card,
 .library-surface .layout-article-spotlight .article-card.is-featured {
 	width: 100%;
-	max-width: none;
+	max-width: 100%;
 }
 
 .library-surface .team-card {
@@ -113,11 +113,12 @@
 
 .library-surface .layout-team-grid-list .team-card {
 	width: 100%;
-	max-width: none;
+	max-width: 100%;
 }
 
 .library-surface .team-card .team-card-media {
 	width: 100%;
+	max-width: 100%;
 }
 
 .library-surface .side-cta {

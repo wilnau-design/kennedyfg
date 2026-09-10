@@ -2,12 +2,29 @@
 /**
  * Seed team CPT members from live kennedyfg.com copy.
  *
+ * Uses ASCII placeholders for smart punctuation so deploy/migration
+ * cannot corrupt the source strings.
+ *
  * @package kennedyfg
  */
 
 require_once ABSPATH . 'wp-admin/includes/file.php';
 require_once ABSPATH . 'wp-admin/includes/media.php';
 require_once ABSPATH . 'wp-admin/includes/image.php';
+
+/**
+ * Expand ASCII-safe punctuation placeholders to UTF-8 bytes.
+ *
+ * @param string $text Text with placeholders.
+ * @return string
+ */
+function kennedy_fg_seed_text( $text ) {
+	return str_replace(
+		array( '{{ndash}}', '{{rsquo}}', '{{ldquo}}', '{{rdquo}}', '{{reg}}' ),
+		array( "\xE2\x80\x93", "\xE2\x80\x99", "\xE2\x80\x9C", "\xE2\x80\x9D", "\xC2\xAE" ),
+		$text
+	);
+}
 
 $image_dir = get_stylesheet_directory() . '/assets/images/layouts';
 
@@ -20,37 +37,37 @@ $members = array(
 		'image'      => 'team-brandon.webp',
 		'menu_order' => 1,
 		'video_link' => 'https://www.loom.com/share/0177899c54eb4d2f9fb464b9fc70bdee',
-		'bio'        => '<p>A lifelong resident of Southeastern Michigan, Brandon is a devoted husband to his high school sweetheart, Danielle. They are the proud parents of three – Logan, Henry and Juliet – and live in Lake Orion. Brandon is a die-hard baseball and Detroit Tigers fan, and is a supporter of local youth baseball organizations. You can also find him building things in his workshop, speaking in movie quotes, and working on cars.</p><p>Brandon graduated from Oakland University, earning his Bachelor’s degree in Finance. He is an active volunteer at his church and offers personal educational seminars and courses throughout the year.</p>',
+		'bio'        => '<p>A lifelong resident of Southeastern Michigan, Brandon is a devoted husband to his high school sweetheart, Danielle. They are the proud parents of three {{ndash}} Logan, Henry and Juliet {{ndash}} and live in Lake Orion. Brandon is a die-hard baseball and Detroit Tigers fan, and is a supporter of local youth baseball organizations. You can also find him building things in his workshop, speaking in movie quotes, and working on cars.</p><p>Brandon graduated from Oakland University, earning his Bachelor{{rsquo}}s degree in Finance. He is an active volunteer at his church and offers personal educational seminars and courses throughout the year.</p>',
 	),
 	array(
 		'slug'       => 'steven-fronrath',
-		'title'      => 'Steven Fronrath, CFP®',
-		'name'       => 'Steven Fronrath, CFP®',
+		'title'      => 'Steven Fronrath, CFP{{reg}}',
+		'name'       => 'Steven Fronrath, CFP{{reg}}',
 		'job_title'  => 'Vice President | Wealth Advisor',
 		'image'      => 'team-steven.webp',
 		'menu_order' => 2,
 		'video_link' => 'https://www.loom.com/share/d77dc8ae852f4559900881325f5cd86e',
-		'bio'        => '<p>Steven shares his free time with his high school sweetheart and wife, Mary, and their dog, Jonas. He has a passion for music and the arts, and when he’s not in the office, you can find him playing in his band, reading a great book or tinkering with the latest technology gadget.</p><p>He is a proud graduate of Wayne State University, earning his Bachelor’s degree in Music Business and a minor in Business Administration. While exposed to the powerful impact that arts and music can have on people, he realized he could impact a similar change through acting as a guide for personal finance. By combining his business and financial knowledge with the human aspect of arts and music, Steven is truly able to put the “personal” in personal finance.</p>',
+		'bio'        => '<p>Steven shares his free time with his high school sweetheart and wife, Mary, and their dog, Jonas. He has a passion for music and the arts, and when he{{rsquo}}s not in the office, you can find him playing in his band, reading a great book or tinkering with the latest technology gadget.</p><p>He is a proud graduate of Wayne State University, earning his Bachelor{{rsquo}}s degree in Music Business and a minor in Business Administration. While exposed to the powerful impact that arts and music can have on people, he realized he could impact a similar change through acting as a guide for personal finance. By combining his business and financial knowledge with the human aspect of arts and music, Steven is truly able to put the {{ldquo}}personal{{rdquo}} in personal finance.</p>',
 	),
 	array(
 		'slug'       => 'bob-dopke',
-		'title'      => 'Bob Dopke, ChFC®',
-		'name'       => 'Bob Dopke, ChFC®',
+		'title'      => 'Bob Dopke, ChFC{{reg}}',
+		'name'       => 'Bob Dopke, ChFC{{reg}}',
 		'job_title'  => 'Managing Partner | Wealth Advisor',
 		'image'      => 'team-bob.webp',
 		'menu_order' => 3,
 		'video_link' => 'https://www.loom.com/share/336ec6e22bd742e2884a67c4d9babcbc',
-		'bio'        => '<p>A life-long Michigan resident, Bob lives in Lake Orion with his wife, Sue. They are proud parents of two boys – Connor and Gavin. When he is not in the office, Bob can usually be found on the golf course or in the kitchen trying a new recipe.</p><p>Bob is a graduate of Central Michigan University, earning his bachelor’s degree in finance. He is a Chartered Financial Consultant (ChFC) with over 32 years of experience helping people live their best financial life.</p>',
+		'bio'        => '<p>A life-long Michigan resident, Bob lives in Lake Orion with his wife, Sue. They are proud parents of two boys {{ndash}} Connor and Gavin. When he is not in the office, Bob can usually be found on the golf course or in the kitchen trying a new recipe.</p><p>Bob is a graduate of Central Michigan University, earning his bachelor{{rsquo}}s degree in finance. He is a Chartered Financial Consultant (ChFC) with over 32 years of experience helping people live their best financial life.</p>',
 	),
 	array(
 		'slug'       => 'kelly-atkins',
-		'title'      => 'Kelly Atkins, CRPC®',
-		'name'       => 'Kelly Atkins, CRPC®',
+		'title'      => 'Kelly Atkins, CRPC{{reg}}',
+		'name'       => 'Kelly Atkins, CRPC{{reg}}',
 		'job_title'  => 'Wealth Advisor',
 		'image'      => 'team-kelly.webp',
 		'menu_order' => 4,
 		'video_link' => '',
-		'bio'        => '<p>Prior to working at Kennedy Financial Group, Kelly spent over 37 years working at General Motors in various roles, including, most recently, Manufacturing Engineering Manager. She has spent years learning the ins and outs of investing and financial planning “for fun,” and we are thrilled to welcome her as a KFG Wealth Advisor. She looks forward to working one-on-one with clients and is particularly passionate about helping those navigating divorce.</p><p>Outside of work, Kelly is a Romeo-native and the proud mom of Zoe and Alexandra. She enjoys playing hockey, stand-up paddleboarding, and rollerblading in her spare time.</p>',
+		'bio'        => '<p>Prior to working at Kennedy Financial Group, Kelly spent over 37 years working at General Motors in various roles, including, most recently, Manufacturing Engineering Manager. She has spent years learning the ins and outs of investing and financial planning {{ldquo}}for fun,{{rdquo}} and we are thrilled to welcome her as a KFG Wealth Advisor. She looks forward to working one-on-one with clients and is particularly passionate about helping those navigating divorce.</p><p>Outside of work, Kelly is a Romeo-native and the proud mom of Zoe and Alexandra. She enjoys playing hockey, stand-up paddleboarding, and rollerblading in her spare time.</p>',
 	),
 	array(
 		'slug'       => 'joe-abbott',
@@ -60,12 +77,12 @@ $members = array(
 		'image'      => 'team-joe.webp',
 		'menu_order' => 5,
 		'video_link' => '',
-		'bio'        => '<p>Joe has spent the past eight years in the financial services world, with experience that covers everything from mortgage lending to insurance, retirement planning, and long-term care. He started out as an Associate Mortgage Banker at Quicken Loans, then worked as a Financial Services Rep with the Knights of Columbus, and most recently as a Paraplanner at a financial planning firm.</p><p>That mix of roles has given him a well-rounded understanding of how to help people make smart decisions with their money, especially when it comes to protecting their families and planning for the future.</p><p>Outside the office, Joe is married to his high school sweetheart, Patricia, and they have three boys: James, Joey, and Teddy. He’s a big Detroit Tigers and Michigan Wolverines fan (Go Blue!), and when he’s not chasing the boys around, you’ll usually find him golfing, fishing, working on house projects, or spending time with family.</p>',
+		'bio'        => '<p>Joe has spent the past eight years in the financial services world, with experience that covers everything from mortgage lending to insurance, retirement planning, and long-term care. He started out as an Associate Mortgage Banker at Quicken Loans, then worked as a Financial Services Rep with the Knights of Columbus, and most recently as a Paraplanner at a financial planning firm.</p><p>That mix of roles has given him a well-rounded understanding of how to help people make smart decisions with their money, especially when it comes to protecting their families and planning for the future.</p><p>Outside the office, Joe is married to his high school sweetheart, Patricia, and they have three boys: James, Joey, and Teddy. He{{rsquo}}s a big Detroit Tigers and Michigan Wolverines fan (Go Blue!), and when he{{rsquo}}s not chasing the boys around, you{{rsquo}}ll usually find him golfing, fishing, working on house projects, or spending time with family.</p>',
 	),
 	array(
 		'slug'       => 'kristi-simonaj',
-		'title'      => 'Kristi Simonaj, FPQP®',
-		'name'       => 'Kristi Simonaj, FPQP®',
+		'title'      => 'Kristi Simonaj, FPQP{{reg}}',
+		'name'       => 'Kristi Simonaj, FPQP{{reg}}',
 		'job_title'  => 'Senior Client Service Associate',
 		'image'      => 'team-kristi.webp',
 		'menu_order' => 6,
@@ -80,7 +97,7 @@ $members = array(
 		'image'      => 'team-nancy.webp',
 		'menu_order' => 7,
 		'video_link' => '',
-		'bio'        => '<p>Nancy is thrilled to be the newest member of the KFG team. She is happily married to her high school sweetheart, and together they share a love for adventure. Nancy enjoys camping and hiking, particularly around the stunning Great Lakes. As an outdoor enthusiast, she also loves zip-lining and rock climbing. When not exploring nature, Nancy can be found trying out new recipes or working on her dream garden.</p><p>As a Client Service Associate, Nancy is dedicated to providing an exceptional experience for clients. Her passion for making people feel welcome drives her to deliver white-glove customer service every day, whether it’s over the phone or in the office. Nancy thrives on building relationships and takes pride in ensuring that every client feels valued and heard.</p>',
+		'bio'        => '<p>Nancy is thrilled to be the newest member of the KFG team. She is happily married to her high school sweetheart, and together they share a love for adventure. Nancy enjoys camping and hiking, particularly around the stunning Great Lakes. As an outdoor enthusiast, she also loves zip-lining and rock climbing. When not exploring nature, Nancy can be found trying out new recipes or working on her dream garden.</p><p>As a Client Service Associate, Nancy is dedicated to providing an exceptional experience for clients. Her passion for making people feel welcome drives her to deliver white-glove customer service every day, whether it{{rsquo}}s over the phone or in the office. Nancy thrives on building relationships and takes pride in ensuring that every client feels valued and heard.</p>',
 	),
 	array(
 		'slug'       => 'nicole-barg',
@@ -90,7 +107,7 @@ $members = array(
 		'image'      => 'team-nicole.webp',
 		'menu_order' => 8,
 		'video_link' => '',
-		'bio'        => '<p>Nicole has spent most of her life in Southeastern Michigan and now resides in Macomb with her husband, Chris, son (Griffin), and their dachshund, Franklin. When she’s not in the office, you can find Nicole working on renovations around her home or spending time with family at her parent’s lake house.</p><p>As a Client Service Associate, Nicole’s primary role is to provide service to our clients and help manage the day-to-day operations of the firm. Nicole has a heart for people and oversees the onboarding of new clients and team members for the firm.</p>',
+		'bio'        => '<p>Nicole has spent most of her life in Southeastern Michigan and now resides in Macomb with her husband, Chris, son (Griffin), and their dachshund, Franklin. When she{{rsquo}}s not in the office, you can find Nicole working on renovations around her home or spending time with family at her parent{{rsquo}}s lake house.</p><p>As a Client Service Associate, Nicole{{rsquo}}s primary role is to provide service to our clients and help manage the day-to-day operations of the firm. Nicole has a heart for people and oversees the onboarding of new clients and team members for the firm.</p>',
 	),
 );
 
@@ -110,14 +127,18 @@ function kennedy_fg_seed_sideload_image( $source, $post_id, $filename ) {
 }
 
 function kennedy_fg_seed_set_field( $key, $value, $post_id ) {
+	update_post_meta( $post_id, $key, $value );
 	if ( function_exists( 'update_field' ) ) {
 		update_field( $key, $value, $post_id );
-		return;
 	}
-	update_post_meta( $post_id, $key, $value );
 }
 
 foreach ( $members as $item ) {
+	$item['title']     = kennedy_fg_seed_text( $item['title'] );
+	$item['name']      = kennedy_fg_seed_text( $item['name'] );
+	$item['job_title'] = kennedy_fg_seed_text( $item['job_title'] );
+	$item['bio']       = kennedy_fg_seed_text( $item['bio'] );
+
 	$existing = get_page_by_path( $item['slug'], OBJECT, 'team' );
 	$post_id  = $existing ? (int) $existing->ID : 0;
 
@@ -150,6 +171,7 @@ foreach ( $members as $item ) {
 	$source = $image_dir . '/' . $item['image'];
 	if ( ! file_exists( $source ) ) {
 		WP_CLI::warning( 'Missing image ' . $source );
+		clean_post_cache( $post_id );
 		continue;
 	}
 
@@ -158,6 +180,7 @@ foreach ( $members as $item ) {
 		$media_id = kennedy_fg_seed_sideload_image( $source, $post_id, $item['image'] );
 		if ( is_wp_error( $media_id ) ) {
 			WP_CLI::warning( $item['slug'] . ' image: ' . $media_id->get_error_message() );
+			clean_post_cache( $post_id );
 			continue;
 		}
 		$avatar_id = (int) $media_id;
@@ -165,7 +188,12 @@ foreach ( $members as $item ) {
 	}
 
 	kennedy_fg_seed_set_field( 'avatar', $avatar_id, $post_id );
-	WP_CLI::log( "Team {$post_id} -> {$item['slug']}" );
+	clean_post_cache( $post_id );
+
+	$bio_snippet = wp_html_excerpt( $item['bio'], 80, '...' );
+	WP_CLI::log( "Team {$post_id} -> {$item['slug']} | bio: {$bio_snippet}" );
 }
 
-WP_CLI::success( 'Team members seeded.' );
+wp_cache_flush();
+
+WP_CLI::success( 'Team members seeded. Purge WP Engine cache if the site still looks stale.' );

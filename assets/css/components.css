@@ -782,6 +782,16 @@ button.button-cta {
 		color: var(--wp--preset--color--text-link-text);
 		font-size: 1rem;
 		line-height: 21px;
+
+		a {
+			color: inherit;
+			text-decoration: none;
+		}
+
+		a:hover {
+			color: var(--wp--preset--color--theme-text);
+			text-decoration: underline;
+		}
 	}
 
 	.site-footer-magnet {
@@ -833,8 +843,7 @@ button.button-cta {
 		flex-direction: column;
 		gap: var(--wp--custom--space--4);
 		align-items: center;
-		max-width: none;
-		width: 100%;
+		max-width: 100%;
 		padding-block: var(--wp--custom--space--4);
 		padding-inline: var(--wp--custom--space--3);
 		border-top: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast-strongest) 24%, transparent);
@@ -1199,15 +1208,19 @@ textarea.form-control {
 	flex-direction: column;
 	gap: var(--wp--custom--space--4);
 	align-items: flex-start;
-	width: 360px;
+	box-sizing: border-box;
+	width: min(360px, 100%);
+	min-width: 0;
+	max-width: 100%;
 
 	&.is-featured {
-		width: 576px;
+		width: min(576px, 100%);
 		padding-bottom: var(--wp--custom--space--7);
 	}
 
 	.article-card-media {
 		width: 100%;
+		max-width: 100%;
 		height: 220px;
 		border-radius: var(--wp--custom--radius--small);
 		background: var(--wp--preset--color--base-lighter);
@@ -1255,6 +1268,8 @@ textarea.form-control {
 		flex-direction: column;
 		gap: var(--wp--custom--space--3);
 		width: 100%;
+		max-width: 100%;
+		min-width: 0;
 	}
 
 	.article-card-tag {
@@ -1321,11 +1336,13 @@ textarea.form-control {
 	flex-direction: column;
 	gap: var(--wp--custom--space--3);
 	width: 100%;
+	max-width: 100%;
 	min-width: 0;
 
 	.team-card-media {
 		position: relative;
 		width: 100%;
+		max-width: 100%;
 		height: auto;
 		aspect-ratio: 318 / 405;
 		overflow: hidden;
@@ -1372,14 +1389,19 @@ textarea.form-control {
 	flex-direction: column;
 	gap: var(--wp--custom--space--4);
 	align-items: center;
-	width: 359px;
+	box-sizing: border-box;
+	width: min(359px, 100%);
+	min-width: 0;
+	max-width: 100%;
 	padding: var(--wp--custom--space--5) var(--wp--custom--space--4);
 	border-radius: var(--wp--custom--radius--small);
 	background: var(--wp--preset--color--base-background);
 	box-shadow: var(--wp--preset--shadow--main);
 
 	.side-cta-media {
+		align-self: stretch;
 		width: 100%;
+		max-width: 100%;
 		height: 223px;
 
 		img {
@@ -1663,10 +1685,6 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 	.contact-form {
 		width: 100%;
 		max-width: 100%;
-	}
-
-	.team-card .team-card-media {
-		width: 100%;
 	}
 }
 

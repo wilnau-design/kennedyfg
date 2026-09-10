@@ -42,8 +42,8 @@ $args = wp_parse_args(
 				'href'   => '',
 				'sample'      => '',
 				'sample_href' => '',
-				'art'    => 'graphic-discovery-meeting.webp',
-				'dark'   => 'graphic-discovery-meeting-dark.svg',
+				'art'    => 'graphic-discovery-meeting.png',
+				'dark'   => 'graphic-discovery-meeting-dark.png',
 				'class'  => 'is-two',
 			),
 			array(
