@@ -19,7 +19,7 @@ $args = wp_parse_args(
 	)
 );
 ?>
-<section class="<?php echo esc_attr( trim( 'layout-team-grid alignfull ' . $args['class'] ) ); ?>">
+<section id="team" class="<?php echo esc_attr( trim( 'layout-team-grid alignfull ' . $args['class'] ) ); ?>">
 	<div class="alignwide">
 		<?php if ( $args['title'] ) : ?>
 			<h2 class="layout-team-grid-title"><?php echo esc_html( $args['title'] ); ?></h2>

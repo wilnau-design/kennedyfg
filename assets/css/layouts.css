@@ -20,7 +20,8 @@
 .layout-cta-split,
 .layout-lead-magnet,
 .layout-team-grid,
-.layout-contact-split {
+.layout-contact-split,
+.layout-simple-page {
 	position: relative;
 	box-sizing: border-box;
 	width: 100%;
@@ -376,6 +377,29 @@
 	display: block;
 	width: 2.94rem;
 	height: auto;
+}
+
+.layout-simple-page {
+	padding-block: calc(var(--kennedy-header-height) + var(--wp--custom--section-space--main)) var(--wp--custom--section-space--main);
+}
+
+.layout-simple-page-inner {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--custom--space--6);
+	box-sizing: border-box;
+	width: 100%;
+	max-width: min(var(--wp--style--global--content-size, 50rem), calc(100% - (2 * var(--kennedy-site-gutter))));
+	margin-inline: auto;
+}
+
+.layout-simple-page-title {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--heading-1);
+	font-weight: 400;
+	line-height: 1.25;
+	color: var(--wp--preset--color--contrast-strongest);
 }
 
 .layout-pull-quote {
@@ -1459,6 +1483,10 @@
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+	body:not(.kennedyfg-library) .layout-hero-home-copy {
+		padding-top: calc(var(--kennedy-header-height) + var(--wp--custom--space--4));
+	}
+
 	.layout-hero-home-copy-inner {
 		justify-content: center;
 		text-align: center;
@@ -1849,7 +1877,8 @@
 		letter-spacing: 0;
 	}
 
-	.layout-hero-page-title {
+	.layout-hero-page-title,
+	.layout-simple-page-title {
 		font-size: var(--wp--preset--font-size--heading-3);
 	}
 }

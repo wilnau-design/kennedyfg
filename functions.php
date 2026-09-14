@@ -839,13 +839,77 @@ function kennedy_fg_find_latest_post( $opts ) {
 }
 
 /**
+ * Merge post lists, de-dupe by ID, and return the newest first.
+ *
+ * @param WP_Post[][] $groups
+ * @param int         $count
+ * @return WP_Post[]
+ */
+function kennedy_fg_merge_posts_by_date( $groups, $count ) {
+	$by_id = array();
+	foreach ( $groups as $posts ) {
+		foreach ( $posts as $post ) {
+			$by_id[ (int) $post->ID ] = $post;
+		}
+	}
+
+	$posts = array_values( $by_id );
+	usort(
+		$posts,
+		static function ( $a, $b ) {
+			return strcmp( $b->post_date, $a->post_date );
+		}
+	);
+
+	return array_slice( $posts, 0, $count );
+}
+
+/**
+ * Recent posts for the blog landing: mix "blog" and "video" so videos
+ * stay visible instead of being crowded out by newer articles.
+ *
+ * @param int[] $exclude Post IDs already shown above, plus stickies.
+ * @param int   $count
+ * @return WP_Post[]
+ */
+function kennedy_fg_find_recent_feed_posts( $exclude, $count ) {
+	$blog = kennedy_fg_find_latest_posts(
+		array(
+			'category_name' => 'blog',
+			'exclude'       => $exclude,
+		),
+		$count
+	);
+	$video = kennedy_fg_find_latest_posts(
+		array(
+			'category_name' => 'video',
+			'exclude'       => $exclude,
+		),
+		$count
+	);
+
+	if ( ! $video ) {
+		return array_slice( $blog, 0, $count );
+	}
+	if ( ! $blog ) {
+		return array_slice( $video, 0, $count );
+	}
+
+	$video_take = array_slice( $video, 0, min( count( $video ), (int) ceil( $count / 2 ) ) );
+	$blog_take  = array_slice( $blog, 0, $count - count( $video_take ) );
+
+	return kennedy_fg_merge_posts_by_date( array( $blog_take, $video_take ), $count );
+}
+
+/**
  * Blog page feed: featured video, popular posts, and recent posts.
  *
  * Featured: the latest post marked sticky in the "video" category, falling
  * back to the latest "video" post if none is sticky.
  * Popular: sticky posts (excluding the featured one), falling back to the
  * latest remaining posts if fewer than 2 are sticky.
- * Recent: the latest posts, excluding sticky posts and anything already used above.
+ * Recent: the latest posts from both the "blog" and "video" categories,
+ * excluding sticky posts and anything already used above.
  *
  * @return array{featured: ?array, popular: array, recent: array}
  */
@@ -884,8 +948,8 @@ function kennedy_fg_get_blog_feed_data() {
 	$used = array_merge( $used, wp_list_pluck( $popular, 'ID' ) );
 
 	$sticky_ids = array_map( 'intval', (array) get_option( 'sticky_posts', array() ) );
-	$recent     = kennedy_fg_find_latest_posts(
-		array( 'exclude' => array_unique( array_merge( $used, $sticky_ids ) ) ),
+	$recent     = kennedy_fg_find_recent_feed_posts(
+		array_unique( array_merge( $used, $sticky_ids ) ),
 		6
 	);
 
@@ -972,10 +1036,14 @@ function kennedy_fg_get_article_spotlight_from_posts() {
 		return array();
 	}
 
+	$without_date = static function ( $post, $overrides = array() ) {
+		return kennedy_fg_article_card_args( $post, array_merge( $overrides, array( 'date' => '' ) ) );
+	};
+
 	return array(
-		'featured' => kennedy_fg_article_card_args( $featured, array( 'variant' => 'featured' ) ),
-		'left'     => array_map( 'kennedy_fg_article_card_args', array_slice( $others, 0, 2 ) ),
-		'right'    => array_map( 'kennedy_fg_article_card_args', array_slice( $others, 2, 2 ) ),
+		'featured' => $without_date( $featured, array( 'variant' => 'featured' ) ),
+		'left'     => array_map( $without_date, array_slice( $others, 0, 2 ) ),
+		'right'    => array_map( $without_date, array_slice( $others, 2, 2 ) ),
 	);
 }
 

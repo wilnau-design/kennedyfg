@@ -1,6 +1,7 @@
 <?php
 /**
- * Generic static page fallback. Renders editor content with no extra design.
+ * Template Name: Simple Page
+ * Text-only pages (privacy policy, terms, and similar).
  *
  * @package kennedyfg
  */

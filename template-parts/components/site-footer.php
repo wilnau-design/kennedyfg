@@ -38,7 +38,7 @@ $legal_copy_two = 'The LPL Financial registered representative associated with t
 				</div>
 				<div class="site-footer-column">
 					<p class="site-footer-heading"><?php esc_html_e( 'Kennedy Financial Group', 'kennedyfg' ); ?></p>
-					<?php kennedy_fg_component( 'footer-link', array( 'label' => '(248) 528-0485', 'href' => 'tel:248-528-0485' ) ); ?>
+					<?php kennedy_fg_component( 'footer-link', array( 'label' => '(248) 528-0485', 'href' => 'tel:2485280485' ) ); ?>
 					<p class="site-footer-address">
 						<a href="<?php echo esc_url( kennedy_fg_address_map_url() ); ?>" target="_blank" rel="noopener noreferrer">
 							201 West Big Beaver Road,<br />
@@ -50,8 +50,8 @@ $legal_copy_two = 'The LPL Financial registered representative associated with t
 				</div>
 				<div class="site-footer-column">
 					<p class="site-footer-heading"><?php esc_html_e( 'Socials', 'kennedyfg' ); ?></p>
-					<?php kennedy_fg_component( 'footer-link', array( 'label' => __( 'Facebook', 'kennedyfg' ), 'href' => '#', 'icon' => 'facebook' ) ); ?>
-					<?php kennedy_fg_component( 'footer-link', array( 'label' => __( 'LinkedIn', 'kennedyfg' ), 'href' => '#', 'icon' => 'linkedin' ) ); ?>
+					<?php kennedy_fg_component( 'footer-link', array( 'label' => __( 'Facebook', 'kennedyfg' ), 'href' => 'https://www.facebook.com/kennedyfinancialgroup/', 'icon' => 'facebook', 'target' => '_blank' ) ); ?>
+					<?php kennedy_fg_component( 'footer-link', array( 'label' => __( 'LinkedIn', 'kennedyfg' ), 'href' => 'https://www.linkedin.com/company/kennedy-financial-group-llc', 'icon' => 'linkedin', 'target' => '_blank' ) ); ?>
 				</div>
 			</div>
 		</div>

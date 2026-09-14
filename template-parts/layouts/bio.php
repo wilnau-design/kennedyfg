@@ -37,7 +37,7 @@ $embed_src = $args['video_src'] ? $args['video_src'] : ( $args['video_url'] ? ke
 				<p class="layout-bio-role"><?php echo esc_html( $args['role'] ); ?></p>
 			<?php endif; ?>
 		</header>
-		<div class="layout-bio-main">
+		<div class="layout-bio-main<?php echo $has_video ? ' is-video' : ' is-photo'; ?>">
 			<figure class="layout-bio-media<?php echo $has_video ? ' is-video' : ' is-photo'; ?>">
 				<?php if ( $has_video && $embed_src ) : ?>
 					<?php

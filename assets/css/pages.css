@@ -2345,6 +2345,16 @@ body:not(.kennedyfg-library) .page-start-here > .layout-hero-start {
 	align-items: end;
 }
 
+/* Image bios: 432×550 portrait + 526px copy, centered as a pair. Video keeps the wide 1.1/0.9 split. */
+.layout-bio-main.is-photo {
+	grid-template-columns: minmax(0, 27rem) minmax(0, 32.875rem);
+	justify-content: center;
+}
+
+.layout-bio-main.is-photo .layout-bio-copy {
+	width: 100%;
+}
+
 .layout-bio-copy,
 .layout-case-study-body {
 	h1,
@@ -2377,10 +2387,20 @@ body:not(.kennedyfg-library) .page-start-here > .layout-hero-start {
 		object-fit: cover;
 	}
 
-	&.is-photo img {
+	&.is-photo {
+		width: 100%;
 		max-width: 27rem;
 		aspect-ratio: 432 / 550;
-		border-radius: var(--wp--custom--radius--small, 4px);
+		overflow: hidden;
+		border-radius: var(--wp--custom--radius--main, 8px);
+
+		img {
+			height: 100%;
+			max-width: none;
+			object-fit: cover;
+			object-position: top center;
+			border-radius: inherit;
+		}
 	}
 
 	&.is-video {
@@ -3127,8 +3147,12 @@ body.archive .site-main.layout-blog-feed {
 		align-items: start;
 	}
 
-	.layout-bio-media.is-photo img {
-		max-width: none;
+	.layout-bio-main.is-photo {
+		justify-items: center;
+	}
+
+	.layout-bio-main.is-photo .layout-bio-copy {
+		justify-self: stretch;
 	}
 
 	.layout-bio-nav-inner {

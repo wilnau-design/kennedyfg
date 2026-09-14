@@ -34,7 +34,7 @@ $range_break  = ! empty( $args['range_break'] );
 $is_button    = 'button' === $args['type'] || 'submit' === $args['type'];
 
 $render_content = static function ( $label, $range_break ) {
-	$break_at = 'Sounding';
+	$break_at = 'Sounding ';
 	$pos      = $range_break ? strpos( $label, $break_at ) : false;
 	?>
 	<span class="button-cta-content button-cta-content">

@@ -24,7 +24,7 @@ $args = wp_parse_args(
 			<dl class="layout-contact-list">
 				<div>
 					<dt><?php esc_html_e( 'Office', 'kennedyfg' ); ?></dt>
-					<dd><?php echo esc_html( $args['phone'] ); ?></dd>
+					<dd><a href="<?php echo esc_url( 'tel:2485280485' ); ?>"><?php echo esc_html( $args['phone'] ); ?></a></dd>
 				</div>
 				<div>
 					<dt><?php esc_html_e( 'Email', 'kennedyfg' ); ?></dt>
