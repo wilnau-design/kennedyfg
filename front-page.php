@@ -16,7 +16,7 @@ get_header();
 	<?php kennedy_fg_layout( 'testimonials' ); ?>
 	<?php kennedy_fg_layout( 'about-intro' ); ?>
 	<?php kennedy_fg_layout( 'client-stories' ); ?>
-	<?php kennedy_fg_layout( 'home-roadmap' ); ?>
+	<?php kennedy_fg_layout( 'journey-pins' ); ?>
 	<?php
 	if ( kennedy_fg_show_home_blog_section() ) {
 		kennedy_fg_layout( 'article-spotlight', array( 'source' => 'posts' ) );

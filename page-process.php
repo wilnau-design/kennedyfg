@@ -9,6 +9,7 @@ get_header();
 ?>
 
 <main id="primary" class="site-main page-services">
+	<div class="page-services-flow">
 	<?php
 	kennedy_fg_layout(
 		'hero-page',
@@ -18,7 +19,9 @@ get_header();
 		)
 	);
 	?>
-	<?php kennedy_fg_layout( 'services-roadmap' ); ?>
+	<?php kennedy_fg_layout( 'process-anti' ); ?>
+	<?php kennedy_fg_layout( 'services-explorer' ); ?>
+	</div>
 	<?php
 	kennedy_fg_layout(
 		'cta-split',

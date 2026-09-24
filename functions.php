@@ -171,6 +171,21 @@ function kennedy_fg_page_template_aliases( $template ) {
 }
 add_filter( 'template_include', 'kennedy_fg_page_template_aliases' );
 
+function kennedy_fg_redirect_services_page() {
+	if ( is_admin() ) {
+		return;
+	}
+
+	$path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+	if ( 'services' !== $path ) {
+		return;
+	}
+
+	wp_safe_redirect( home_url( '/process/' ), 301 );
+	exit;
+}
+add_action( 'template_redirect', 'kennedy_fg_redirect_services_page' );
+
 function kennedy_fg_asset( $path ) {
 	return get_theme_file_uri( 'assets/images/' . ltrim( $path, '/' ) );
 }

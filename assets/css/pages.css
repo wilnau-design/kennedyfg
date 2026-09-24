@@ -1398,12 +1398,24 @@
  * Homepage uses different layouts and must stay untouched.
  */
 .page-services .layout-hero-page {
+	padding-block-start: calc(var(--kennedy-header-height) + var(--wp--custom--section-space--main));
 	padding-block-end: var(--wp--custom--space--5);
-	background: linear-gradient(to bottom, var(--wp--preset--color--base-background), var(--wp--preset--color--base-lighter));
 }
 
-[data-theme="dark"] .page-services .layout-hero-page {
-	background: linear-gradient(to bottom, var(--wp--preset--color--base-lighter), var(--wp--preset--color--base-background));
+/* One fade across the hero, anti-positioning, and roadmap so the joins stay in the gradient. */
+.page-services-flow {
+	background: linear-gradient(
+		to bottom,
+		var(--wp--preset--color--base-background) 0,
+		color-mix(in srgb, var(--wp--preset--color--base-background) 42%, var(--wp--preset--color--base-lighter)) 28rem,
+		var(--wp--preset--color--base-lighter) 58rem
+	);
+}
+
+.page-services .page-services-flow > .layout-hero-page,
+.page-services .page-services-flow > .layout-process-anti,
+.page-services .page-services-flow > .layout-services-explorer {
+	background: transparent;
 }
 
 .page-services .layout-hero-page-motif {
@@ -1457,8 +1469,19 @@
  * Start Here page only. Shared layouts (cta-center, calendar) keep their
  * defaults elsewhere — homepage must stay untouched.
  */
-body:not(.kennedyfg-library) .page-start-here > .layout-hero-start {
+body:not(.kennedyfg-library) .page-start-here > .layout-hero-start,
+body:not(.kennedyfg-library) .page-start-here > .layout-hero-start-path {
 	padding-top: 0;
+}
+
+.page-start-here .layout-hero-start-path-band {
+	padding-block-start: calc(var(--kennedy-header-height) + var(--wp--custom--section-space--large));
+}
+
+@media (max-width: 1024px) {
+	.page-start-here .layout-hero-start-path-band {
+		padding-block-start: calc(var(--kennedy-header-height) + var(--wp--custom--space--6));
+	}
 }
 
 .page-start-here .layout-hero-start {

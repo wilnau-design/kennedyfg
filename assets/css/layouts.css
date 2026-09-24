@@ -2764,6 +2764,7 @@
 	gap: var(--wp--custom--space--5);
 	align-items: center;
 	padding: var(--wp--custom--space--5) var(--wp--custom--space--5) var(--wp--custom--space--8);
+	background: var(--wp--preset--color--base-lighter);
 	text-align: center;
 }
 

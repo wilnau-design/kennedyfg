@@ -9,7 +9,7 @@ get_header();
 ?>
 
 <main id="primary" class="site-main page-start-here">
-	<?php kennedy_fg_layout( 'hero-start' ); ?>
+	<?php kennedy_fg_layout( 'hero-start-path' ); ?>
 	<?php kennedy_fg_layout( 'start-qualifiers' ); ?>
 	<?php kennedy_fg_layout( 'start-steps' ); ?>
 	<?php
