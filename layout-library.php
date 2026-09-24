@@ -190,7 +190,7 @@ get_header();
 
 	<section class="library-section library-fullbleed">
 		<h2 class="library-section-title"><?php esc_html_e( 'Journey pins / interactive', 'kennedyfg' ); ?></h2>
-		<p class="library-note"><?php esc_html_e( 'Homepage roadmap pins. Hover for the read-more state, click to open one overview.', 'kennedyfg' ); ?></p>
+		<p class="library-note"><?php esc_html_e( 'Homepage “Where do I stand and what comes next?” section. Hover a pin for the read-more state, click to open one overview. Pins are desktop and tablet; mobile keeps the card stack and the How it works button.', 'kennedyfg' ); ?></p>
 		<div class="library-surface is-light" data-theme="light">
 			<p class="library-caption"><?php esc_html_e( 'Light', 'kennedyfg' ); ?></p>
 			<?php kennedy_fg_layout( 'journey-pins' ); ?>

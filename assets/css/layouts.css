@@ -2929,35 +2929,39 @@
 .layout-hero-start-path {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
-	overflow: visible;
+	overflow-x: clip;
+	overflow-y: visible;
+	background: var(--wp--preset--color--base-background);
 }
 
 .layout-hero-start-path-band {
 	position: relative;
-	z-index: 1;
 	display: flex;
 	align-items: flex-end;
 	grid-column: 1;
 	grid-row: 1;
 	box-sizing: border-box;
-	padding: var(--wp--custom--section-space--large) var(--wp--custom--space--7) var(--wp--custom--space--7);
+	padding: var(--wp--custom--section-space--large) 0 var(--wp--custom--space--7);
 	background: linear-gradient(to bottom, var(--wp--preset--color--base-lighter), var(--wp--preset--color--hero-fade));
 }
 
 .layout-hero-start-path-copy {
 	position: relative;
-	z-index: 2;
+	z-index: 3;
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
+	gap: var(--wp--custom--space--5);
 	width: 100%;
 }
 
 .layout-hero-start-path-left {
 	display: flex;
+	flex: 1 1 auto;
 	flex-direction: column;
 	gap: var(--wp--custom--space--2);
-	max-width: 48.5rem;
+	min-width: 0;
+	max-width: 48.9375rem;
 
 	h1 {
 		margin: 0;
@@ -2988,12 +2992,13 @@
 	position: relative;
 	z-index: 1;
 	font-weight: 600;
+	white-space: nowrap;
 }
 
 .layout-hero-start-path-underline {
 	position: absolute;
 	left: 50%;
-	bottom: -0.15rem;
+	bottom: -1.05rem;
 	z-index: -1;
 	width: 6.65rem;
 	height: 0.7rem;
@@ -3005,7 +3010,16 @@
 
 .layout-hero-start-path-cta {
 	position: relative;
-	z-index: 2;
+	z-index: 3;
+	flex-shrink: 0;
+
+	.button-cta,
+	.library-surface & .button-cta,
+	.library-surface & .button-cta.is-short {
+		width: 182px;
+		min-width: 182px;
+		max-width: 182px;
+	}
 }
 
 .layout-hero-start-path-media {
@@ -3013,9 +3027,12 @@
 	z-index: 0;
 	grid-column: 1;
 	grid-row: 2;
+	width: 100%;
+	max-width: 1920px;
 	height: 34.1875rem;
-	margin: 0;
+	margin: 0 auto;
 	overflow: hidden;
+	background: var(--wp--preset--color--base-lighter);
 
 	img {
 		display: block;
@@ -3029,36 +3046,47 @@
 .layout-hero-start-path-art {
 	position: absolute;
 	inset: 0;
-	z-index: 2;
 	pointer-events: none;
 }
 
 .layout-hero-start-path-line {
 	position: absolute;
+	z-index: 1;
 	display: block;
 	overflow: visible;
 	color: #7a9da0;
 
+	svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+		overflow: visible;
+		transform: scaleY(-1);
+	}
+
 	&.is-copy {
-		clip-path: inset(0 0 calc(100% - var(--hero-path-clip-copy, 70%)) 0);
+		clip-path: inset(0 0 calc(100% - var(--hero-path-clip-copy, 0px)) 0);
 	}
 
 	&.is-media {
 		color: #fff;
-		clip-path: inset(var(--hero-path-clip-copy, 70%) 0 0 0);
+		clip-path: inset(var(--hero-path-clip-copy, 0px) 0 0 0);
 	}
 }
 
 .layout-hero-start-path-end {
 	position: absolute;
+	z-index: 2;
 	display: block;
-	width: 5.5625rem;
-	height: auto;
+	width: 5.625rem;
+	height: 5.5625rem;
+	object-fit: fill;
 	transform: scaleY(-1) rotate(-90deg);
 }
 
 .layout-hero-start-path-pin {
 	position: absolute;
+	z-index: 4;
 	display: flex;
 	flex-direction: column;
 	gap: var(--wp--custom--space--2);
@@ -3093,8 +3121,13 @@
 	}
 }
 
-[data-theme="dark"] .layout-hero-start-path-line.is-copy {
+[data-theme="dark"] .layout-hero-start-path-line.is-copy,
+[data-theme="dark"] .layout-hero-start-path-end {
 	color: #fff;
+}
+
+[data-theme="dark"] .layout-hero-start-path-end {
+	filter: brightness(0) invert(1);
 }
 
 [data-theme="dark"] .layout-hero-start-path-line.is-media {
@@ -3102,16 +3135,208 @@
 }
 
 [data-theme="dark"] .layout-hero-start-path-underline {
-	filter: brightness(0.72);
+	background: #fff;
+	filter: none;
 }
 
-.layout-journey-pins {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--wp--custom--space--6);
-	align-items: flex-end;
-	justify-content: center;
-	padding: var(--wp--custom--space--7) var(--wp--custom--space--5);
+[data-theme="dark"] .layout-hero-start-path-pin span {
+	padding: var(--wp--custom--space--1) var(--wp--custom--space--3);
+	border-radius: var(--wp--custom--radius--main);
+	font-weight: 600;
+	line-height: 1.35;
+	letter-spacing: 0.02em;
+	color: var(--wp--preset--color--contrast-strongest);
+}
+
+[data-theme="dark"] .layout-hero-start-path-pin.is-pin-1 span {
+	background: var(--wp--preset--color--illustration-milestone-blue, #1f5782);
+}
+
+[data-theme="dark"] .layout-hero-start-path-pin.is-pin-2 span {
+	background: var(--wp--preset--color--contrast-medium);
+}
+
+[data-theme="dark"] .layout-hero-start-path-pin.is-pin-3 span {
+	background: var(--wp--preset--color--illustration-milestone-sky, #63a5d9);
+}
+
+.layout-journey-pins-stops {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none;
+}
+
+@media (min-width: 834px) {
+	.layout-home-roadmap.layout-journey-pins {
+		overflow-x: clip;
+		overflow-y: visible;
+		margin-bottom: 70px;
+	}
+
+	.layout-journey-pins .layout-home-roadmap-scene,
+	.layout-journey-pins-stops {
+		top: 70px;
+		bottom: -70px;
+	}
+}
+
+.layout-journey-pins .journey-pin {
+	position: absolute;
+	z-index: 1;
+	width: min(15.375rem, 18%);
+	pointer-events: auto;
+	transform: translate(-50%, calc(-100% + 1.78125rem));
+}
+
+.layout-journey-pins .journey-pin.is-income {
+	top: 65.234%;
+	left: 22.917%;
+}
+
+.layout-journey-pins .journey-pin.is-investments {
+	top: 66.166%;
+	left: 43.681%;
+}
+
+.layout-journey-pins .journey-pin.is-taxes {
+	top: 84.696%;
+	left: 63.542%;
+}
+
+.layout-journey-pins .journey-pin.is-family {
+	top: 82.109%;
+	left: 85.903%;
+}
+
+.layout-journey-pins .journey-pin:hover,
+.layout-journey-pins .journey-pin.is-hover,
+.layout-journey-pins .journey-pin.is-open {
+	z-index: 4;
+}
+
+@media (min-width: 834px) and (max-width: 1024px) {
+	.layout-home-roadmap.layout-journey-pins {
+		/* Drop the road and pins together. Change only this value. */
+		--journey-pin-shift: 150px;
+		margin-bottom: var(--journey-pin-shift);
+	}
+
+	.layout-journey-pins .layout-home-roadmap-scene,
+	.layout-journey-pins-stops {
+		top: var(--journey-pin-shift);
+		bottom: calc(var(--journey-pin-shift) * -1);
+	}
+
+	.layout-journey-pins .journey-pin {
+		width: min(15.375rem, 22%);
+	}
+
+	.layout-journey-pins .journey-pin-title {
+		font-size: 1.125rem;
+	}
+
+	.layout-journey-pins .journey-pin.is-income {
+		top: 64.923%;
+		left: 20.743%;
+	}
+
+	.layout-journey-pins .journey-pin.is-investments {
+		top: 66.58%;
+		left: 41.847%;
+	}
+
+	.layout-journey-pins .journey-pin.is-taxes {
+		top: 85.006%;
+		left: 62.47%;
+	}
+
+	.layout-journey-pins .journey-pin.is-family {
+		top: 82.418%;
+		left: 85.492%;
+	}
+}
+
+@media (max-width: 833px) {
+	.layout-journey-pins-stops {
+		display: none;
+	}
+
+	.layout-journey-pins.layout-home-roadmap {
+		overflow: visible;
+	}
+
+	.layout-journey-pins .layout-home-roadmap-cards,
+	.layout-journey-pins .layout-home-roadmap-mobile-card {
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+	}
+
+	.layout-journey-pins .layout-home-roadmap-mobile-card {
+		display: block;
+		overflow: hidden;
+	}
+
+	.layout-journey-pins .layout-home-roadmap-mobile-inner,
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-family .layout-home-roadmap-mobile-inner {
+		display: grid;
+		grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
+		gap: var(--wp--custom--space--4);
+		align-items: center;
+		width: 100%;
+		max-width: 412px;
+		margin-inline: auto;
+	}
+
+	.layout-journey-pins .layout-home-roadmap-mobile-inner > img,
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-map .layout-home-roadmap-mobile-inner > img,
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-align .layout-home-roadmap-mobile-inner > img,
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-taxes .layout-home-roadmap-mobile-inner > img,
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-family .layout-home-roadmap-mobile-inner > img {
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+	}
+
+	.layout-journey-pins .layout-home-roadmap-mobile-inner > div,
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-family .layout-home-roadmap-mobile-inner > div {
+		width: auto;
+		min-width: 0;
+		max-width: none;
+	}
+
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-map .layout-home-roadmap-stop-title,
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-align .layout-home-roadmap-stop-title,
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-taxes .layout-home-roadmap-stop-title,
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-family .layout-home-roadmap-stop-title,
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-map p:not(.layout-home-roadmap-stop-title),
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-align p:not(.layout-home-roadmap-stop-title),
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-taxes p:not(.layout-home-roadmap-stop-title),
+	.layout-journey-pins .layout-home-roadmap-mobile-card.is-family p:not(.layout-home-roadmap-stop-title) {
+		width: auto;
+		max-width: 100%;
+	}
+
+	.layout-journey-pins .layout-home-roadmap-more {
+		display: inline-flex;
+		gap: var(--wp--custom--space--2);
+		align-items: center;
+		margin-top: var(--wp--custom--space--1);
+		color: inherit;
+		font-family: "Source Code Pro", ui-monospace, "Source Sans Pro", sans-serif;
+		font-size: 0.75rem;
+		line-height: 1.6;
+		letter-spacing: 0.08em;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+
+	.layout-journey-pins .layout-home-roadmap-more .service-pin-arrow {
+		width: 0.25rem;
+		height: 0.45rem;
+		transform: none;
+	}
 }
 
 @media (max-width: 1024px) {
@@ -3166,25 +3391,37 @@
 
 	.layout-hero-start-path-band {
 		min-height: 0;
-		padding: var(--wp--custom--space--6) var(--wp--custom--space--4);
-	}
-
-	.layout-hero-start-path-copy {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: var(--wp--custom--space--5);
-	}
-
-	.layout-hero-start-path-art {
-		display: none;
+		padding: var(--wp--custom--space--6) 0;
 	}
 
 	.layout-hero-start-path-media {
-		height: 16rem;
+		height: auto;
+		aspect-ratio: 1440 / 547;
+	}
+
+	.layout-hero-start-path-line,
+	.layout-hero-start-path-pin,
+	.layout-hero-start-path-end {
+		display: none;
 	}
 
 	.service-detail-cta {
 		flex-direction: column;
 		align-items: flex-start;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.layout-hero-start-path-copy {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.layout-hero-start-path-left {
+		max-width: none;
+	}
+
+	.layout-hero-start-path-cta {
+		align-self: flex-end;
 	}
 }

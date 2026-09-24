@@ -1923,6 +1923,7 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 .journey-pin {
 	--pin: var(--wp--preset--color--contrast-medium);
 
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: var(--wp--custom--space--2);
@@ -1941,6 +1942,10 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 	&.is-family {
 		--pin: #12324a;
 	}
+}
+
+[data-theme="dark"] .journey-pin.is-family {
+	--pin: var(--wp--preset--color--illustration-milestone-deep, #023b66);
 }
 
 .journey-pin-toggle {
@@ -2003,6 +2008,18 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 	display: block;
 	width: 1.9375rem;
 	height: 3.5625rem;
+}
+
+.journey-pin-marker.is-dark {
+	display: none;
+}
+
+[data-theme="dark"] .journey-pin-marker.is-light {
+	display: none;
+}
+
+[data-theme="dark"] .journey-pin-marker.is-dark {
+	display: block;
 }
 
 .journey-pin:hover .journey-pin-toggle,
@@ -2090,13 +2107,19 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 }
 
 .journey-pin.is-open .journey-pin-more {
+	position: absolute;
+	top: var(--wp--custom--space--3);
+	right: var(--wp--custom--space--3);
+	z-index: 2;
 	display: inline-flex;
 	gap: var(--wp--custom--space--2);
 	align-items: center;
+	color: #f1ecdf;
 	font-family: "Source Code Pro", ui-monospace, "Source Sans Pro", sans-serif;
 	font-size: 0.75rem;
 	line-height: 1.6;
 	letter-spacing: 0.08em;
+	text-decoration: none;
 	text-transform: uppercase;
 }
 
@@ -2133,6 +2156,10 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 	width: auto;
 	height: 2.5rem;
 	filter: brightness(0) invert(1);
+}
+
+.journey-pin.is-income.is-open .journey-pin-open-head img {
+	filter: none;
 }
 
 .journey-pin-toggle:focus-visible {

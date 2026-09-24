@@ -64,9 +64,11 @@ $path = 'M1.50006 137.515C76.0001 132.515 54.2259 324.514 120.5 298.5C227.5 256.
 	</figure>
 	<div class="layout-hero-start-path-art" aria-hidden="true">
 		<?php foreach ( array( 'is-copy', 'is-media' ) as $layer ) : ?>
-			<svg class="layout-hero-start-path-line <?php echo esc_attr( $layer ); ?>" viewBox="0 0 924 373.342" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="<?php echo esc_attr( $path ); ?>" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-			</svg>
+			<div class="layout-hero-start-path-line <?php echo esc_attr( $layer ); ?>">
+				<svg viewBox="0 0 924 373.342" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="<?php echo esc_attr( $path ); ?>" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+			</div>
 		<?php endforeach; ?>
 		<img class="layout-hero-start-path-end" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/graphic-start-path-end.svg' ) ); ?>" alt="" width="89" height="90" />
 		<?php foreach ( $args['pins'] as $pin ) : ?>

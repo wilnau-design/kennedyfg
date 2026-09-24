@@ -409,42 +409,82 @@
 	function positionStartHero(hero) {
 		var art = hero.querySelector('.layout-hero-start-path-art');
 		var media = hero.querySelector('.layout-hero-start-path-media');
-		if (!art || !media) {
+		var button = hero.querySelector('.layout-hero-start-path-cta');
+		if (!art || !media || !button) {
 			return;
 		}
 
-		var scale = hero.offsetWidth / 1440;
-		var pathTop = 127 * scale;
-		var pathHeight = 370.342 * scale;
 		var heroBox = hero.getBoundingClientRect();
+		var buttonBox = button.getBoundingClientRect();
+		var circleLeft = buttonBox.left - heroBox.left + 111;
+		var circleTop = buttonBox.top - heroBox.top - 17;
+		var mark = hero.querySelector('.layout-hero-start-path-underline');
+		var markBox = mark ? mark.getBoundingClientRect() : null;
+		var startX = markBox ? markBox.right - heroBox.left : circleLeft - 918;
+		var startY = markBox ? markBox.top + markBox.height / 2 - heroBox.top : circleTop + 71;
+		var endX = circleLeft + 45;
+		var endY = circleTop + 86;
+		var startFracX = 1.50006 / 924;
+		var startFracY = 1 - (137.515 / 373.342);
+		var endFracX = 922.5 / 924;
+		var endFracY = 1 - (126 / 373.342);
+		var designSpanX = (endFracX - startFracX) * 921;
+		var scale = (endX - startX) / designSpanX;
+		if (!isFinite(scale) || scale < 0.35) {
+			scale = hero.offsetWidth / 1440;
+		}
+		var pathWidth = 921 * scale;
+		var pathHeight = 370.341 * scale;
+		var pathLeft = startX - startFracX * pathWidth;
+		var pathTop = startY - startFracY * pathHeight;
+		var scaleX = scale;
+		var scaleY = scale;
+		var pathEndX = pathLeft + endFracX * pathWidth;
+		var pathEndY = pathTop + endFracY * pathHeight;
 		var copyClip = Math.max(0, media.getBoundingClientRect().top - heroBox.top - pathTop);
 
 		art.querySelectorAll('.layout-hero-start-path-line').forEach(function (line) {
-			line.style.left = (451 * scale) + 'px';
+			line.style.left = pathLeft + 'px';
 			line.style.top = pathTop + 'px';
-			line.style.width = (921 * scale) + 'px';
+			line.style.width = pathWidth + 'px';
 			line.style.height = pathHeight + 'px';
 		});
 		art.style.setProperty('--hero-path-clip-copy', copyClip + 'px');
 
 		var end = art.querySelector('.layout-hero-start-path-end');
+		var desktop = !window.matchMedia(COMPACT_QUERY).matches;
 		if (end) {
-			end.style.left = (1321 * scale) + 'px';
-			end.style.top = (290 * scale) + 'px';
-			end.style.width = (89 * scale) + 'px';
+			end.style.left = (desktop ? pathEndX - 45 : circleLeft) + 'px';
+			end.style.top = (desktop ? pathEndY - 86 : circleTop) + 'px';
+			end.style.width = '90px';
+			end.style.height = '89px';
 		}
 
+		var pinScale = Math.max(0.7, Math.min(Math.abs(scaleX), 1.15));
+		var darkPins = !!hero.closest('[data-theme="dark"]');
 		[
-			['.is-pin-1', 618, 52],
-			['.is-pin-2', 858, 187],
-			['.is-pin-3', 1072, 343]
+			['.is-pin-1', 243.5, 20.84, 153],
+			['.is-pin-2', 470.5, 155.84, 127],
+			['.is-pin-3', 662.5, 311.84, 83]
 		].forEach(function (pin) {
 			var node = art.querySelector(pin[0]);
 			if (!node) {
 				return;
 			}
-			node.style.left = (pin[1] * scale) + 'px';
-			node.style.top = (pin[2] * scale) + 'px';
+			var label = node.querySelector('span');
+			var icon = node.querySelector('img');
+			node.style.left = (pathLeft + (pin[1] / 921) * pathWidth) + 'px';
+			node.style.top = (pathTop + (pin[2] / 370.341) * pathHeight) + 'px';
+			node.style.transform = 'translate(-50%, -100%)';
+			node.style.gap = (8 * pinScale) + 'px';
+			if (label) {
+				label.style.width = ((pin[3] + (darkPins ? 28 : 0)) * pinScale) + 'px';
+				label.style.fontSize = (16 * pinScale) + 'px';
+			}
+			if (icon) {
+				icon.style.width = (30 * pinScale) + 'px';
+				icon.style.height = (48 * pinScale) + 'px';
+			}
 		});
 	}
 
@@ -514,6 +554,49 @@
 
 			select(selected);
 		});
+	}
+
+	var PROCESS_SERVICES = ['income', 'investments', 'taxes', 'family'];
+
+	function processServiceFromHash() {
+		var service = window.location.hash.replace('#', '');
+		return PROCESS_SERVICES.indexOf(service) === -1 ? '' : service;
+	}
+
+	function initProcessDeepLink() {
+		var track = document.querySelector('.page-services .layout-services-track');
+		if (!track) {
+			return;
+		}
+
+		var stackedQuery = window.matchMedia('(max-width: 1024px)');
+
+		function apply(scroll) {
+			var service = processServiceFromHash();
+			var stacked = stackedQuery.matches;
+			var target = service ? document.getElementById(service) : null;
+
+			track.querySelectorAll('.layout-service-card').forEach(function (card) {
+				card.classList.toggle('is-active', !stacked && card === target);
+			});
+
+			if (!scroll || !target || !track.contains(target)) {
+				return;
+			}
+
+			target.scrollIntoView({ block: stacked ? 'start' : 'center', behavior: 'auto' });
+		}
+
+		window.addEventListener('hashchange', function () {
+			apply(true);
+		});
+		stackedQuery.addEventListener('change', function () {
+			apply(false);
+		});
+
+		if (processServiceFromHash()) {
+			apply(true);
+		}
 	}
 
 	function initJourneyPins() {
@@ -598,6 +681,7 @@
 			initClientStoryDetail();
 			positionStartHeroes();
 			initServicesExplorer();
+			initProcessDeepLink();
 			initJourneyPins();
 		});
 	} else {
@@ -610,7 +694,17 @@
 		initClientStoryDetail();
 		positionStartHeroes();
 		initServicesExplorer();
+		initProcessDeepLink();
 		initJourneyPins();
 	}
 	window.addEventListener('resize', positionStartHeroes);
+	window.matchMedia(COMPACT_QUERY).addEventListener('change', positionStartHeroes);
+	if (document.fonts && document.fonts.ready) {
+		document.fonts.ready.then(positionStartHeroes);
+	}
+	if (typeof ResizeObserver !== 'undefined') {
+		document.querySelectorAll('.layout-hero-start-path').forEach(function (hero) {
+			new ResizeObserver(positionStartHeroes).observe(hero);
+		});
+	}
 })();

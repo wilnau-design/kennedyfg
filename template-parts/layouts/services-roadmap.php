@@ -21,6 +21,7 @@ $args = wp_parse_args(
 					__( 'If you’re already past the finish line, you find out. A lot of people are and have no idea.', 'kennedyfg' ),
 				),
 				'icon'  => 'graphic-service-map.svg',
+				'slug'  => 'income',
 				'class' => 'is-map',
 			),
 			array(
@@ -31,6 +32,7 @@ $args = wp_parse_args(
 					__( 'We adjust your plan as laws change so your roadmap stays current and tax-smart', 'kennedyfg' ),
 				),
 				'icon'  => 'graphic-service-align.svg',
+				'slug'  => 'investments',
 				'class' => 'is-align',
 			),
 			array(
@@ -41,6 +43,7 @@ $args = wp_parse_args(
 					__( 'We plan for the down years ahead of time instead of reacting to them, so you’re not watching the market every day trying to time it.', 'kennedyfg' ),
 				),
 				'icon'  => 'graphic-service-taxes.svg',
+				'slug'  => 'taxes',
 				'class' => 'is-taxes',
 			),
 			array(
@@ -52,6 +55,7 @@ $args = wp_parse_args(
 					__( 'Coverage gaps, and estate documents get checked and kept current, so nothing important slips through.', 'kennedyfg' ),
 				),
 				'icon'  => 'graphic-service-family.svg',
+				'slug'  => 'family',
 				'class' => 'is-family',
 			),
 		),
@@ -75,7 +79,7 @@ $args = wp_parse_args(
 		<img class="layout-services-walker is-light" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/graphic-services-walker.svg' ) ); ?>" alt="" />
 		<img class="layout-services-walker is-dark" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/graphic-services-walker-dark.svg' ) ); ?>" alt="" />
 		<?php foreach ( $args['cards'] as $card ) : ?>
-			<article class="layout-service-card <?php echo esc_attr( $card['class'] ); ?>">
+			<article id="<?php echo esc_attr( $card['slug'] ); ?>" class="layout-service-card <?php echo esc_attr( $card['class'] ); ?>">
 				<img src="<?php echo esc_url( kennedy_fg_asset( 'layouts/' . $card['icon'] ) ); ?>" alt="" />
 				<div class="layout-service-card-copy">
 					<h2><?php echo esc_html( $card['title'] ); ?></h2>

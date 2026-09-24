@@ -18,7 +18,7 @@ $catalog = array(
 	'income'      => array(
 		'title'   => __( 'Map your retirement income', 'kennedyfg' ),
 		'overview'=> __( 'Create clarity around when you can retire, what it will cost, and where your income will come from.', 'kennedyfg' ),
-		'icon'    => 'layouts/graphic-service-map.svg',
+		'icon'    => 'layouts/graphic-journey-map.svg',
 		'icon_w'  => 32,
 		'icon_h'  => 32,
 		'pin'     => '1',
@@ -61,7 +61,6 @@ $classes = trim( 'journey-pin is-' . $service . ' ' . $state . ' ' . $args['clas
 			<span class="journey-pin-open-inner">
 				<span class="journey-pin-open-head">
 					<img src="<?php echo esc_url( kennedy_fg_asset( $item['icon'] ) ); ?>" alt="" width="<?php echo esc_attr( $item['icon_w'] ); ?>" height="<?php echo esc_attr( $item['icon_h'] ); ?>" />
-					<span class="journey-pin-more"><?php esc_html_e( 'Learn more', 'kennedyfg' ); ?><span class="service-pin-arrow" aria-hidden="true"></span></span>
 				</span>
 				<span class="journey-pin-kicker"><?php esc_html_e( 'Overview', 'kennedyfg' ); ?></span>
 				<span class="journey-pin-overview"><?php echo esc_html( $item['overview'] ); ?></span>
@@ -70,5 +69,7 @@ $classes = trim( 'journey-pin is-' . $service . ' ' . $state . ' ' . $args['clas
 		<span class="journey-pin-read" aria-hidden="true"><span class="journey-pin-read-inner"><?php esc_html_e( 'Read more', 'kennedyfg' ); ?><span class="service-pin-arrow" aria-hidden="true"></span></span></span>
 		<span class="journey-pin-title"><?php echo esc_html( $item['title'] ); ?></span>
 	</button>
-	<img class="journey-pin-marker" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/graphic-hero-pin-' . $item['pin'] . '.svg' ) ); ?>" alt="" width="31" height="57" />
+	<a class="journey-pin-more" href="<?php echo esc_url( home_url( '/process/#' . $service ) ); ?>"><?php esc_html_e( 'Learn more', 'kennedyfg' ); ?><span class="service-pin-arrow" aria-hidden="true"></span></a>
+	<img class="journey-pin-marker is-light" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/graphic-hero-pin-' . $item['pin'] . '.svg' ) ); ?>" alt="" width="31" height="57" />
+	<img class="journey-pin-marker is-dark" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/graphic-hero-pin-' . $item['pin'] . '-dark.svg' ) ); ?>" alt="" width="31" height="57" />
 </div>
