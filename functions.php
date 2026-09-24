@@ -265,6 +265,13 @@ function kennedy_fg_show_dev_theme_toggle() {
 	return (bool) get_option( 'kennedy_fg_show_dev_theme_toggle', true );
 }
 
+/**
+ * Whether the FINRA BrokerCheck badge is shown, fixed at the bottom left.
+ */
+function kennedy_fg_show_brokercheck() {
+	return (bool) get_option( 'kennedy_fg_show_brokercheck', true );
+}
+
 function kennedy_fg_register_theme_options_page() {
 	add_theme_page(
 		__( 'Kennedy FG Options', 'kennedyfg' ),
@@ -287,6 +294,16 @@ function kennedy_fg_register_theme_options_settings() {
 		)
 	);
 
+	register_setting(
+		'kennedy_fg_options',
+		'kennedy_fg_show_brokercheck',
+		array(
+			'type'              => 'boolean',
+			'sanitize_callback' => 'rest_sanitize_boolean',
+			'default'           => true,
+		)
+	);
+
 	add_settings_section(
 		'kennedy_fg_options_dev',
 		__( 'Dev &amp; QC', 'kennedyfg' ),
@@ -300,6 +317,21 @@ function kennedy_fg_register_theme_options_settings() {
 		'kennedy_fg_render_show_dev_theme_toggle_field',
 		'kennedy-fg-options',
 		'kennedy_fg_options_dev'
+	);
+
+	add_settings_section(
+		'kennedy_fg_options_footer',
+		__( 'Footer', 'kennedyfg' ),
+		'__return_false',
+		'kennedy-fg-options'
+	);
+
+	add_settings_field(
+		'kennedy_fg_show_brokercheck',
+		__( 'BrokerCheck', 'kennedyfg' ),
+		'kennedy_fg_render_show_brokercheck_field',
+		'kennedy-fg-options',
+		'kennedy_fg_options_footer'
 	);
 }
 add_action( 'admin_init', 'kennedy_fg_register_theme_options_settings' );
@@ -318,6 +350,25 @@ function kennedy_fg_render_show_dev_theme_toggle_field() {
 	</label>
 	<p class="description">
 		<?php esc_html_e( 'Intended for development and QC only. The site already switches between light and dark automatically based on the visitor\'s device settings; this toggle just lets testers preview both themes manually. Turn it off before launch/handoff to the client.', 'kennedyfg' ); ?>
+	</p>
+	<?php
+}
+
+function kennedy_fg_render_show_brokercheck_field() {
+	?>
+	<input type="hidden" name="kennedy_fg_show_brokercheck" value="0" />
+	<label for="kennedy_fg_show_brokercheck">
+		<input
+			type="checkbox"
+			id="kennedy_fg_show_brokercheck"
+			name="kennedy_fg_show_brokercheck"
+			value="1"
+			<?php checked( kennedy_fg_show_brokercheck() ); ?>
+		/>
+		<?php esc_html_e( 'Show the BrokerCheck badge on the site', 'kennedyfg' ); ?>
+	</label>
+	<p class="description">
+		<?php esc_html_e( 'Fixed at the bottom left of every page. Links to FINRA BrokerCheck.', 'kennedyfg' ); ?>
 	</p>
 	<?php
 }

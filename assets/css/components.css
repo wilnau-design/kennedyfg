@@ -1621,6 +1621,20 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 	padding-top: var(--kennedy-header-height);
 }
 
+.brokercheck-badge {
+	position: fixed;
+	bottom: 0;
+	left: 5%;
+	z-index: 1000;
+	display: block;
+	line-height: 0;
+}
+
+.brokercheck-badge img {
+	height: 50px;
+	width: auto;
+}
+
 .theme-toggle-dev {
 	position: fixed;
 	right: var(--wp--custom--space--4, 16px);
