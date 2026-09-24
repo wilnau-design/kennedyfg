@@ -28,15 +28,25 @@ $show_media = ! $args['is_video'] && $args['image'];
 				<p class="layout-blog-article-hero-eyebrow"><?php echo esc_html( $args['eyebrow'] ); ?></p>
 			<?php endif; ?>
 			<h1 class="layout-blog-article-hero-title"><?php echo esc_html( $args['title'] ); ?></h1>
-			<div class="layout-blog-article-hero-meta">
-				<span><?php echo esc_html( $args['byline'] ); ?></span>
-				<span aria-hidden="true">|</span>
-				<span><?php echo esc_html( $args['date'] ); ?></span>
+			<?php if ( $args['byline'] || $args['date'] ) : ?>
+				<div class="layout-blog-article-hero-meta">
+					<?php if ( $args['byline'] ) : ?>
+						<span><?php echo esc_html( $args['byline'] ); ?></span>
+					<?php endif; ?>
+					<?php if ( $args['byline'] && $args['date'] ) : ?>
+						<span aria-hidden="true">|</span>
+					<?php endif; ?>
+					<?php if ( $args['date'] ) : ?>
+						<span><?php echo esc_html( $args['date'] ); ?></span>
+					<?php endif; ?>
+				</div>
+			<?php endif; ?>
+		</div>
+		<?php if ( $args['cta'] ) : ?>
+			<div class="layout-blog-article-hero-right">
+				<?php kennedy_fg_component( 'button-cta', array( 'label' => $args['cta'], 'href' => $args['target'], 'variant' => 'short' ) ); ?>
 			</div>
-		</div>
-		<div class="layout-blog-article-hero-right">
-			<?php kennedy_fg_component( 'button-cta', array( 'label' => $args['cta'], 'href' => $args['target'], 'variant' => 'short' ) ); ?>
-		</div>
+		<?php endif; ?>
 	</div>
 	<?php if ( $show_media ) : ?>
 		<div class="layout-blog-article-hero-media">

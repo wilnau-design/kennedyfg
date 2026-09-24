@@ -186,6 +186,64 @@ function kennedy_fg_redirect_services_page() {
 }
 add_action( 'template_redirect', 'kennedy_fg_redirect_services_page' );
 
+/**
+ * Eyebrow above the title on Service Article pages.
+ */
+function kennedy_fg_service_eyebrow_meta_box( $post_type, $post ) {
+	if ( ! $post instanceof WP_Post ) {
+		return;
+	}
+	$template = get_page_template_slug( $post->ID );
+	if ( 'page-service.php' !== $template ) {
+		return;
+	}
+	add_meta_box(
+		'kennedy-service-eyebrow',
+		__( 'Service eyebrow', 'kennedyfg' ),
+		'kennedy_fg_service_eyebrow_meta_box_render',
+		'page',
+		'side',
+		'high'
+	);
+}
+add_action( 'add_meta_boxes', 'kennedy_fg_service_eyebrow_meta_box', 10, 2 );
+
+/**
+ * @param WP_Post $post Current page.
+ */
+function kennedy_fg_service_eyebrow_meta_box_render( $post ) {
+	wp_nonce_field( 'kennedy_fg_service_eyebrow', 'kennedy_fg_service_eyebrow_nonce' );
+	$value = get_post_meta( $post->ID, 'service_eyebrow', true );
+	?>
+	<p>
+		<label for="kennedy-service-eyebrow-field"><?php esc_html_e( 'Shown above the headline, in small caps.', 'kennedyfg' ); ?></label>
+	</p>
+	<input id="kennedy-service-eyebrow-field" class="widefat" type="text" name="service_eyebrow" value="<?php echo esc_attr( $value ); ?>" />
+	<?php
+}
+
+/**
+ * @param int $post_id Page ID.
+ */
+function kennedy_fg_save_service_eyebrow( $post_id ) {
+	if ( ! isset( $_POST['kennedy_fg_service_eyebrow_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['kennedy_fg_service_eyebrow_nonce'] ) ), 'kennedy_fg_service_eyebrow' ) ) {
+		return;
+	}
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+	if ( ! current_user_can( 'edit_page', $post_id ) ) {
+		return;
+	}
+	$eyebrow = isset( $_POST['service_eyebrow'] ) ? sanitize_text_field( wp_unslash( $_POST['service_eyebrow'] ) ) : '';
+	if ( '' === $eyebrow ) {
+		delete_post_meta( $post_id, 'service_eyebrow' );
+		return;
+	}
+	update_post_meta( $post_id, 'service_eyebrow', $eyebrow );
+}
+add_action( 'save_post_page', 'kennedy_fg_save_service_eyebrow' );
+
 function kennedy_fg_asset( $path ) {
 	return get_theme_file_uri( 'assets/images/' . ltrim( $path, '/' ) );
 }

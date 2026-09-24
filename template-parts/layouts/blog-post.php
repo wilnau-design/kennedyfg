@@ -8,15 +8,23 @@
 $args = wp_parse_args(
 	$args ?? array(),
 	array(
-		'class' => '',
+		'class'          => '',
+		'author_name'    => '',
+		'author_role'    => '',
+		'author_company' => '',
+		'author_image'   => '',
+		'custom_nav'     => false,
+		'nav_prev'       => null,
+		'nav_next'       => null,
 	)
 );
 
-$author_bio  = get_the_author_meta( 'description' );
+$author_bio  = $args['author_role'] ? $args['author_role'] : get_the_author_meta( 'description' );
+$author_name = $args['author_name'] ? $args['author_name'] : get_the_author();
 $permalink   = get_permalink();
 $share_title = get_the_title();
-$prev_post   = get_previous_post();
-$next_post   = get_next_post();
+$prev_post   = $args['custom_nav'] ? $args['nav_prev'] : get_previous_post();
+$next_post   = $args['custom_nav'] ? $args['nav_next'] : get_next_post();
 ?>
 <section class="<?php echo esc_attr( trim( 'layout-blog-post alignfull ' . $args['class'] ) ); ?>">
 	<div class="alignwide layout-blog-post-grid">
@@ -25,15 +33,19 @@ $next_post   = get_next_post();
 				<?php the_content(); ?>
 			</div>
 
-			<?php if ( $author_bio || get_the_author() ) : ?>
+			<?php if ( $author_bio || $author_name ) : ?>
 				<div class="layout-blog-post-author">
-					<?php echo get_avatar( get_the_author_meta( 'ID' ), 82 ); ?>
+					<?php if ( $args['author_image'] ) : ?>
+						<img src="<?php echo esc_url( $args['author_image'] ); ?>" alt="" width="82" height="82" />
+					<?php else : ?>
+						<?php echo get_avatar( get_the_author_meta( 'ID' ), 82 ); ?>
+					<?php endif; ?>
 					<div class="layout-blog-post-author-info">
-						<p class="layout-blog-post-author-name"><?php echo esc_html( get_the_author() ); ?></p>
+						<p class="layout-blog-post-author-name"><?php echo esc_html( $author_name ); ?></p>
 						<?php if ( $author_bio ) : ?>
 							<p class="layout-blog-post-author-role"><?php echo esc_html( $author_bio ); ?></p>
 						<?php endif; ?>
-						<p class="layout-blog-post-author-company"><?php bloginfo( 'name' ); ?></p>
+						<p class="layout-blog-post-author-company"><?php echo esc_html( $args['author_company'] ? $args['author_company'] : get_bloginfo( 'name' ) ); ?></p>
 					</div>
 				</div>
 			<?php endif; ?>

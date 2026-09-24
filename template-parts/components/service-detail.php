@@ -31,6 +31,7 @@ $catalog = array(
 		'figure_w' => 49,
 		'figure_h' => 40,
 		'prompt'   => __( "Want to dive in more?\nHere's how we think through this.", 'kennedyfg' ),
+		'slug'     => 'map-your-retirement-income',
 	),
 	'investments' => array(
 		'title'    => __( 'Align Your Investments', 'kennedyfg' ),
@@ -49,6 +50,7 @@ $catalog = array(
 		'figure_w' => 50,
 		'figure_h' => 36,
 		'prompt'   => __( "Ready to sit with this?\nHere's how we think through it.", 'kennedyfg' ),
+		'slug'     => 'align-your-investments',
 	),
 	'taxes'       => array(
 		'title'    => __( 'Manage Your Taxes', 'kennedyfg' ),
@@ -67,6 +69,7 @@ $catalog = array(
 		'figure_w' => 26,
 		'figure_h' => 48,
 		'prompt'   => __( "Want to walk through this? Here's how we think through it.", 'kennedyfg' ),
+		'slug'     => 'manage-your-taxes',
 	),
 	'family'      => array(
 		'title'    => __( 'Safeguard Your Family', 'kennedyfg' ),
@@ -85,6 +88,7 @@ $catalog = array(
 		'figure_w' => 44,
 		'figure_h' => 40,
 		'prompt'   => __( "Want to dive in further?\nHere's how we think through this.", 'kennedyfg' ),
+		'slug'     => 'safeguard-your-family',
 	),
 );
 
@@ -122,7 +126,7 @@ $classes = trim( 'service-detail is-' . $service . ' ' . $args['class'] );
 			'button-nav',
 			array(
 				'label' => __( 'Learn More', 'kennedyfg' ),
-				'href'  => home_url( '/process/' ),
+				'href'  => home_url( '/process/' . $item['slug'] . '/' ),
 			)
 		);
 		?>
