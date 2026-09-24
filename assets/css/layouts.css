@@ -2965,6 +2965,30 @@
 	width: 100%;
 }
 
+@media (min-width: 1025px) {
+	.layout-services-explorer-panel:not([hidden]) {
+		animation: services-explorer-panel-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+}
+
+@keyframes services-explorer-panel-in {
+	from {
+		opacity: 0;
+		transform: translateY(0.85rem);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.layout-services-explorer-panel:not([hidden]) {
+		animation: none;
+	}
+}
+
 .layout-hero-start-path {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
