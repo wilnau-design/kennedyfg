@@ -406,6 +406,146 @@
 		activate(window.location.hash.replace('#', '') || defaultId, false);
 	}
 
+	function positionStartHero(hero) {
+		var art = hero.querySelector('.layout-hero-start-path-art');
+		var media = hero.querySelector('.layout-hero-start-path-media');
+		if (!art || !media) {
+			return;
+		}
+
+		var scale = hero.offsetWidth / 1440;
+		var pathTop = 127 * scale;
+		var pathHeight = 370.342 * scale;
+		var heroBox = hero.getBoundingClientRect();
+		var copyClip = Math.max(0, media.getBoundingClientRect().top - heroBox.top - pathTop);
+
+		art.querySelectorAll('.layout-hero-start-path-line').forEach(function (line) {
+			line.style.left = (451 * scale) + 'px';
+			line.style.top = pathTop + 'px';
+			line.style.width = (921 * scale) + 'px';
+			line.style.height = pathHeight + 'px';
+		});
+		art.style.setProperty('--hero-path-clip-copy', copyClip + 'px');
+
+		var end = art.querySelector('.layout-hero-start-path-end');
+		if (end) {
+			end.style.left = (1321 * scale) + 'px';
+			end.style.top = (290 * scale) + 'px';
+			end.style.width = (89 * scale) + 'px';
+		}
+
+		[
+			['.is-pin-1', 618, 52],
+			['.is-pin-2', 858, 187],
+			['.is-pin-3', 1072, 343]
+		].forEach(function (pin) {
+			var node = art.querySelector(pin[0]);
+			if (!node) {
+				return;
+			}
+			node.style.left = (pin[1] * scale) + 'px';
+			node.style.top = (pin[2] * scale) + 'px';
+		});
+	}
+
+	function positionStartHeroes() {
+		document.querySelectorAll('.layout-hero-start-path').forEach(positionStartHero);
+	}
+
+	function initServicesExplorer() {
+		var compactQuery = window.matchMedia(COMPACT_QUERY);
+
+		document.querySelectorAll('[data-services-explorer]').forEach(function (explorer) {
+			var pins = explorer.querySelectorAll('.service-pin');
+			var panels = explorer.querySelectorAll('.layout-services-explorer-panel');
+			var selected = 'income';
+
+			pins.forEach(function (pin) {
+				if (pin.classList.contains('is-selected')) {
+					selected = pin.getAttribute('data-service') || selected;
+				}
+			});
+
+			function select(service) {
+				selected = service || '';
+				pins.forEach(function (pin) {
+					var isSelected = selected !== '' && pin.getAttribute('data-service') === selected;
+					pin.classList.toggle('is-selected', isSelected);
+					pin.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+				});
+				panels.forEach(function (panel) {
+					var open = selected !== '' && panel.classList.contains('is-' + selected);
+					panel.hidden = !compactQuery.matches && !open;
+				});
+				explorer.classList.remove('is-income', 'is-investments', 'is-taxes', 'is-family');
+				if (selected) {
+					explorer.classList.add('is-' + selected);
+				}
+			}
+
+			function close() {
+				select('');
+			}
+
+			pins.forEach(function (pin) {
+				pin.addEventListener('click', function () {
+					select(pin.getAttribute('data-service'));
+				});
+			});
+
+			document.addEventListener('click', function (event) {
+				if (compactQuery.matches || !selected) {
+					return;
+				}
+				var panel = event.target.closest('.layout-services-explorer-panel');
+				var pin = event.target.closest('.service-pin');
+				if (panel && explorer.contains(panel)) {
+					return;
+				}
+				if (pin && explorer.contains(pin)) {
+					return;
+				}
+				close();
+			});
+
+			compactQuery.addEventListener('change', function () {
+				select(selected);
+			});
+
+			select(selected);
+		});
+	}
+
+	function initJourneyPins() {
+		document.querySelectorAll('[data-journey-pins]').forEach(function (group) {
+			group.querySelectorAll('.journey-pin-toggle').forEach(function (toggle) {
+				toggle.addEventListener('click', function () {
+					var pin = toggle.closest('.journey-pin');
+					var open = pin.classList.contains('is-open');
+					group.querySelectorAll('.journey-pin').forEach(function (item) {
+						item.classList.remove('is-open');
+						var button = item.querySelector('.journey-pin-toggle');
+						var panel = item.querySelector('.journey-pin-open');
+						if (button) {
+							button.setAttribute('aria-expanded', 'false');
+						}
+						if (panel) {
+							panel.setAttribute('aria-hidden', 'true');
+						}
+					});
+					if (!open) {
+						pin.classList.add('is-open');
+						toggle.setAttribute('aria-expanded', 'true');
+						var panel = pin.querySelector('.journey-pin-open');
+						if (panel) {
+							panel.setAttribute('aria-hidden', 'false');
+						}
+					}
+				});
+			});
+		});
+	}
+
 	function initBioNav() {
 		document.querySelectorAll('.layout-bio-nav').forEach(function (nav) {
 			var track = nav.querySelector('.layout-bio-nav-track');
@@ -456,6 +596,9 @@
 			initBioNav();
 			initClientStorySiblingsNav();
 			initClientStoryDetail();
+			positionStartHeroes();
+			initServicesExplorer();
+			initJourneyPins();
 		});
 	} else {
 		init();
@@ -465,5 +608,9 @@
 		initBioNav();
 		initClientStorySiblingsNav();
 		initClientStoryDetail();
+		positionStartHeroes();
+		initServicesExplorer();
+		initJourneyPins();
 	}
+	window.addEventListener('resize', positionStartHeroes);
 })();

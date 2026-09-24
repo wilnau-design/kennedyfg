@@ -1696,3 +1696,458 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 		transition: none;
 	}
 }
+
+.service-pin-arrow {
+	display: block;
+	flex: none;
+	width: 0.75rem;
+	height: 1.5rem;
+	background: currentColor;
+	-webkit-mask: url("../images/icons/icon-navbar-arrow.svg") center / contain no-repeat;
+	mask: url("../images/icons/icon-navbar-arrow.svg") center / contain no-repeat;
+}
+
+.service-pin {
+	--pin: var(--wp--preset--color--contrast-medium);
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--custom--space--3);
+	align-items: center;
+	justify-content: flex-end;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--pin);
+	font: inherit;
+	cursor: pointer;
+
+	&.is-investments {
+		--pin: var(--wp--preset--color--illustration-milestone-sky);
+	}
+
+	&.is-taxes {
+		--pin: var(--wp--preset--color--illustration-milestone-blue);
+	}
+
+	&.is-family {
+		--pin: #12324a;
+	}
+}
+
+.service-pin-label {
+	display: flex;
+	gap: var(--wp--custom--space--4);
+	align-items: center;
+	padding: var(--wp--custom--space--3);
+	border-radius: var(--wp--custom--radius--small);
+	font-size: 1.125rem;
+	font-weight: 600;
+	line-height: 1.35;
+	letter-spacing: 0.02em;
+	white-space: nowrap;
+}
+
+.service-pin-marker {
+	display: block;
+	width: 1.9375rem;
+	height: 3.5625rem;
+}
+
+.service-pin.is-investments .service-pin-label,
+.service-pin.is-family .service-pin-label {
+	flex-direction: row-reverse;
+}
+
+.service-pin.is-investments .service-pin-arrow,
+.service-pin.is-family .service-pin-arrow {
+	transform: rotate(180deg);
+}
+
+.service-pin:hover .service-pin-label,
+.service-pin.is-hover .service-pin-label {
+	background: var(--wp--preset--color--base-background);
+	color: var(--wp--preset--color--contrast-strongest);
+}
+
+.service-pin.is-selected .service-pin-label,
+.service-pin.is-selected:hover .service-pin-label {
+	background: var(--pin);
+	color: #faf7f1;
+}
+
+[data-theme="dark"] .service-pin.is-family {
+	--pin: var(--wp--preset--color--illustration-milestone-deep, #023b66);
+}
+
+[data-theme="dark"] .service-pin .service-pin-label {
+	background: var(--pin);
+	color: var(--wp--preset--color--contrast-strongest);
+}
+
+[data-theme="dark"] .service-pin:hover .service-pin-label,
+[data-theme="dark"] .service-pin.is-hover .service-pin-label {
+	background: #faf7f1;
+	color: var(--wp--preset--color--illustration-milestone-deep, #023b66);
+}
+
+[data-theme="dark"] .service-pin.is-selected .service-pin-label,
+[data-theme="dark"] .service-pin.is-selected:hover .service-pin-label {
+	background: var(--pin);
+	color: var(--wp--preset--color--contrast-strongest);
+}
+
+.service-pin:focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent-hover);
+	outline-offset: 4px;
+	border-radius: var(--wp--custom--radius--small);
+}
+
+.service-detail {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--custom--space--4);
+	box-sizing: border-box;
+	width: min(46rem, 100%);
+	padding: var(--wp--custom--space--5);
+	border-radius: var(--wp--custom--radius--small);
+	background: var(--wp--preset--color--base-background);
+	color: var(--wp--preset--color--contrast-strongest);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+
+	hr {
+		width: 100%;
+		height: 0.75px;
+		margin: 0;
+		border: 0;
+		background: var(--wp--preset--color--base-subtle);
+	}
+}
+
+.service-detail-content,
+.service-detail-means {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--custom--space--4);
+}
+
+.service-detail-heading {
+	display: flex;
+	gap: var(--wp--custom--space--4);
+	align-items: flex-end;
+
+	img {
+		display: block;
+		width: auto;
+		height: 3.25rem;
+	}
+
+	h2 {
+		margin: 0;
+		font-family: var(--wp--preset--font-family--heading);
+		font-size: var(--wp--preset--font-size--heading-5);
+		font-weight: 600;
+		line-height: 1.35;
+	}
+}
+
+.service-detail-lead,
+.service-detail-means > p {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--heading-6);
+	font-weight: 400;
+	line-height: 1.25;
+}
+
+.service-detail-lead strong {
+	font-weight: 600;
+}
+
+.service-detail-means ul {
+	margin: 0;
+	padding-left: 1.35rem;
+	font-size: 1.125rem;
+	line-height: 1.6;
+}
+
+.service-detail-means li + li {
+	margin-top: 0.35rem;
+}
+
+.service-detail-cta {
+	display: flex;
+	gap: var(--wp--custom--space--4);
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--wp--custom--space--3);
+	border-radius: var(--wp--custom--radius--small);
+	background: var(--wp--preset--color--base-lighter);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+.service-detail-prompt {
+	display: flex;
+	gap: var(--wp--custom--space--4);
+	align-items: center;
+
+	img {
+		display: block;
+		width: auto;
+		height: 2.5rem;
+	}
+
+	img.is-dark {
+		display: none;
+	}
+
+	p {
+		margin: 0;
+		max-width: 20rem;
+		font-family: "Source Code Pro", ui-monospace, "Source Sans Pro", sans-serif;
+		font-size: 1rem;
+		line-height: 1.25;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+	}
+}
+
+[data-theme="dark"] .service-detail-prompt img.is-light {
+	display: none;
+}
+
+[data-theme="dark"] .service-detail-prompt img.is-dark {
+	display: block;
+}
+
+.journey-pin {
+	--pin: var(--wp--preset--color--contrast-medium);
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--custom--space--2);
+	align-items: center;
+	justify-content: flex-end;
+	width: 15.375rem;
+
+	&.is-investments {
+		--pin: var(--wp--preset--color--illustration-milestone-sky);
+	}
+
+	&.is-taxes {
+		--pin: var(--wp--preset--color--illustration-milestone-blue);
+	}
+
+	&.is-family {
+		--pin: #12324a;
+	}
+}
+
+.journey-pin-toggle {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-sizing: border-box;
+	width: 100%;
+	padding: var(--wp--custom--space--2) var(--wp--custom--space--3);
+	border: 0;
+	border-radius: var(--wp--custom--radius--small);
+	background: transparent;
+	color: var(--pin);
+	font: inherit;
+	gap: 0;
+	text-align: center;
+	cursor: pointer;
+	transition:
+		padding 1.05s cubic-bezier(0.4, 0, 0.2, 1),
+		background-color 0.9s ease,
+		color 0.7s ease;
+}
+
+.journey-pin-title {
+	width: 100%;
+	font-size: 1.375rem;
+	font-weight: 600;
+	line-height: 1.4;
+	letter-spacing: 0.01em;
+	text-align: center;
+}
+
+.journey-pin-read,
+.journey-pin-open {
+	display: grid;
+	grid-template-rows: 0fr;
+	width: 100%;
+	margin-bottom: 0;
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		grid-template-rows 1.05s cubic-bezier(0.4, 0, 0.2, 1),
+		margin-bottom 1.05s cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 0.4s ease,
+		visibility 0s linear 1.05s;
+}
+
+.journey-pin-read-inner,
+.journey-pin-open-inner {
+	min-height: 0;
+	overflow: hidden;
+}
+
+.journey-pin-more,
+.journey-pin-kicker {
+	display: none;
+}
+
+.journey-pin-marker {
+	display: block;
+	width: 1.9375rem;
+	height: 3.5625rem;
+}
+
+.journey-pin:hover .journey-pin-toggle,
+.journey-pin.is-hover .journey-pin-toggle {
+	background: var(--pin);
+	color: #faf7f1;
+}
+
+.journey-pin:hover .journey-pin-read,
+.journey-pin.is-hover .journey-pin-read {
+	grid-template-rows: 1fr;
+	margin-bottom: var(--wp--custom--space--1);
+	opacity: 1;
+	visibility: visible;
+	transition:
+		grid-template-rows 1.05s cubic-bezier(0.4, 0, 0.2, 1),
+		margin-bottom 1.05s cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 0.7s ease 0.15s,
+		visibility 0s;
+}
+
+.journey-pin-read-inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: "Source Code Pro", ui-monospace, "Source Sans Pro", sans-serif;
+	font-size: 0.75rem;
+	line-height: 1.6;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.journey-pin:hover .journey-pin-read .service-pin-arrow,
+.journey-pin.is-hover .journey-pin-read .service-pin-arrow {
+	width: 0.45rem;
+	height: 0.7rem;
+	transform: rotate(-90deg);
+}
+
+.journey-pin.is-open .journey-pin-toggle,
+.journey-pin.is-open:hover .journey-pin-toggle {
+	align-items: stretch;
+	padding: var(--wp--custom--space--3);
+	background: var(--pin);
+	color: #f1ecdf;
+	text-align: left;
+}
+
+.journey-pin.is-open .journey-pin-read,
+.journey-pin.is-open:hover .journey-pin-read {
+	grid-template-rows: 0fr;
+	margin-bottom: 0;
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		grid-template-rows 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+		margin-bottom 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 0.25s ease,
+		visibility 0s linear 0.25s;
+}
+
+.journey-pin.is-open .journey-pin-open,
+.journey-pin.is-open:hover .journey-pin-open {
+	grid-template-rows: 1fr;
+	margin-bottom: var(--wp--custom--space--3);
+	opacity: 1;
+	visibility: visible;
+	transition:
+		grid-template-rows 1.15s cubic-bezier(0.4, 0, 0.2, 1),
+		margin-bottom 1.15s cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 0.8s ease 0.2s,
+		visibility 0s;
+}
+
+.journey-pin-open-inner {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--custom--space--3);
+}
+
+.journey-pin-open-head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.journey-pin.is-open .journey-pin-more {
+	display: inline-flex;
+	gap: var(--wp--custom--space--2);
+	align-items: center;
+	font-family: "Source Code Pro", ui-monospace, "Source Sans Pro", sans-serif;
+	font-size: 0.75rem;
+	line-height: 1.6;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.journey-pin.is-open .journey-pin-more .service-pin-arrow {
+	width: 0.25rem;
+	height: 0.45rem;
+}
+
+.journey-pin.is-open .journey-pin-kicker,
+.journey-pin.is-open .journey-pin-overview {
+	display: block;
+}
+
+.journey-pin-kicker {
+	font-family: "Source Code Pro", ui-monospace, "Source Sans Pro", sans-serif;
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.journey-pin-overview {
+	font-size: 0.875rem;
+	line-height: 1.35;
+	letter-spacing: 0.02em;
+}
+
+.journey-pin.is-open .journey-pin-title {
+	text-align: center;
+}
+
+.journey-pin.is-open .journey-pin-open-head img {
+	display: block;
+	width: auto;
+	height: 2.5rem;
+	filter: brightness(0) invert(1);
+}
+
+.journey-pin-toggle:focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent-hover);
+	outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.journey-pin-toggle,
+	.journey-pin-read,
+	.journey-pin-open,
+	.journey-pin:hover .journey-pin-read,
+	.journey-pin.is-hover .journey-pin-read,
+	.journey-pin.is-open .journey-pin-read,
+	.journey-pin.is-open .journey-pin-open {
+		transition: none;
+	}
+}

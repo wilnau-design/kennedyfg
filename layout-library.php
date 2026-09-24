@@ -150,6 +150,71 @@ get_header();
 	</section>
 
 	<section class="library-section library-fullbleed">
+		<h2 class="library-section-title"><?php esc_html_e( 'Hero / process', 'kennedyfg' ); ?></h2>
+		<p class="library-note"><?php esc_html_e( 'New process-page intro. Not yet applied to the live process page.', 'kennedyfg' ); ?></p>
+		<div class="library-surface is-light" data-theme="light">
+			<p class="library-caption"><?php esc_html_e( 'Light', 'kennedyfg' ); ?></p>
+			<?php kennedy_fg_layout( 'hero-process' ); ?>
+		</div>
+		<div class="library-surface is-dark" data-theme="dark">
+			<p class="library-caption"><?php esc_html_e( 'Dark', 'kennedyfg' ); ?></p>
+			<?php kennedy_fg_layout( 'hero-process' ); ?>
+		</div>
+	</section>
+
+	<section class="library-section library-fullbleed">
+		<h2 class="library-section-title"><?php esc_html_e( 'Process anti-positioning', 'kennedyfg' ); ?></h2>
+		<p class="library-note"><?php esc_html_e( 'The line that sits between the process hero and the roadmap explorer.', 'kennedyfg' ); ?></p>
+		<div class="library-surface is-light" data-theme="light">
+			<p class="library-caption"><?php esc_html_e( 'Light', 'kennedyfg' ); ?></p>
+			<?php kennedy_fg_layout( 'process-anti' ); ?>
+		</div>
+		<div class="library-surface is-dark" data-theme="dark">
+			<p class="library-caption"><?php esc_html_e( 'Dark', 'kennedyfg' ); ?></p>
+			<?php kennedy_fg_layout( 'process-anti' ); ?>
+		</div>
+	</section>
+
+	<section class="library-section library-fullbleed">
+		<h2 class="library-section-title"><?php esc_html_e( 'Services explorer', 'kennedyfg' ); ?></h2>
+		<p class="library-note"><?php esc_html_e( 'Click a pin to open its detail panel. Income starts selected.', 'kennedyfg' ); ?></p>
+		<div class="library-surface is-light" data-theme="light">
+			<p class="library-caption"><?php esc_html_e( 'Light', 'kennedyfg' ); ?></p>
+			<?php kennedy_fg_layout( 'services-explorer' ); ?>
+		</div>
+		<div class="library-surface is-dark" data-theme="dark">
+			<p class="library-caption"><?php esc_html_e( 'Dark', 'kennedyfg' ); ?></p>
+			<?php kennedy_fg_layout( 'services-explorer' ); ?>
+		</div>
+	</section>
+
+	<section class="library-section library-fullbleed">
+		<h2 class="library-section-title"><?php esc_html_e( 'Journey pins / interactive', 'kennedyfg' ); ?></h2>
+		<p class="library-note"><?php esc_html_e( 'Homepage roadmap pins. Hover for the read-more state, click to open one overview.', 'kennedyfg' ); ?></p>
+		<div class="library-surface is-light" data-theme="light">
+			<p class="library-caption"><?php esc_html_e( 'Light', 'kennedyfg' ); ?></p>
+			<?php kennedy_fg_layout( 'journey-pins' ); ?>
+		</div>
+		<div class="library-surface is-dark" data-theme="dark">
+			<p class="library-caption"><?php esc_html_e( 'Dark', 'kennedyfg' ); ?></p>
+			<?php kennedy_fg_layout( 'journey-pins' ); ?>
+		</div>
+	</section>
+
+	<section class="library-section library-fullbleed">
+		<h2 class="library-section-title"><?php esc_html_e( 'Hero / start here path', 'kennedyfg' ); ?></h2>
+		<p class="library-note"><?php esc_html_e( 'Redesigned Start Here hero. Preview only; the live start-here template is unchanged.', 'kennedyfg' ); ?></p>
+		<div class="library-surface is-light" data-theme="light">
+			<p class="library-caption"><?php esc_html_e( 'Light', 'kennedyfg' ); ?></p>
+			<?php kennedy_fg_layout( 'hero-start-path' ); ?>
+		</div>
+		<div class="library-surface is-dark" data-theme="dark">
+			<p class="library-caption"><?php esc_html_e( 'Dark', 'kennedyfg' ); ?></p>
+			<?php kennedy_fg_layout( 'hero-start-path' ); ?>
+		</div>
+	</section>
+
+	<section class="library-section library-fullbleed">
 		<h2 class="library-section-title"><?php esc_html_e( 'Contact split', 'kennedyfg' ); ?></h2>
 		<p class="library-note"><?php esc_html_e( 'Raised contact card: firm details plus the contact form.', 'kennedyfg' ); ?></p>
 		<div class="library-surface is-light" data-theme="light">

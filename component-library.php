@@ -214,6 +214,71 @@ $login_items = array(
 	</section>
 
 	<section class="library-section">
+		<h2 class="library-section-title"><?php esc_html_e( 'Service pins', 'kennedyfg' ); ?></h2>
+		<p class="library-note"><?php esc_html_e( 'Process-page stops. Default, forced hover, and selected. Click behavior is in the services explorer layout.', 'kennedyfg' ); ?></p>
+		<div class="library-pair">
+			<div class="library-surface is-light library-row" data-theme="light">
+				<?php kennedy_fg_component( 'service-pin', array( 'service' => 'income' ) ); ?>
+				<?php kennedy_fg_component( 'service-pin', array( 'service' => 'income', 'state' => 'is-hover' ) ); ?>
+				<?php kennedy_fg_component( 'service-pin', array( 'service' => 'income', 'state' => 'is-selected' ) ); ?>
+				<?php kennedy_fg_component( 'service-pin', array( 'service' => 'investments' ) ); ?>
+				<?php kennedy_fg_component( 'service-pin', array( 'service' => 'taxes' ) ); ?>
+				<?php kennedy_fg_component( 'service-pin', array( 'service' => 'family' ) ); ?>
+			</div>
+			<div class="library-surface is-dark library-row" data-theme="dark">
+				<?php kennedy_fg_component( 'service-pin', array( 'service' => 'income' ) ); ?>
+				<?php kennedy_fg_component( 'service-pin', array( 'service' => 'income', 'state' => 'is-hover' ) ); ?>
+				<?php kennedy_fg_component( 'service-pin', array( 'service' => 'income', 'state' => 'is-selected' ) ); ?>
+				<?php kennedy_fg_component( 'service-pin', array( 'service' => 'investments' ) ); ?>
+				<?php kennedy_fg_component( 'service-pin', array( 'service' => 'taxes' ) ); ?>
+				<?php kennedy_fg_component( 'service-pin', array( 'service' => 'family' ) ); ?>
+			</div>
+		</div>
+	</section>
+
+	<section class="library-section">
+		<h2 class="library-section-title"><?php esc_html_e( 'Journey pins', 'kennedyfg' ); ?></h2>
+		<p class="library-note"><?php esc_html_e( 'Homepage “Where do I stand” stops. Default, hover, and open for income, then the other three closed.', 'kennedyfg' ); ?></p>
+		<div class="library-pair">
+			<div class="library-surface is-light library-row" data-theme="light">
+				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'income' ) ); ?>
+				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'income', 'state' => 'is-hover' ) ); ?>
+				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'income', 'state' => 'is-open' ) ); ?>
+				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'investments' ) ); ?>
+				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'taxes' ) ); ?>
+				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'family' ) ); ?>
+			</div>
+			<div class="library-surface is-dark library-row" data-theme="dark">
+				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'income' ) ); ?>
+				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'income', 'state' => 'is-hover' ) ); ?>
+				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'income', 'state' => 'is-open' ) ); ?>
+				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'investments' ) ); ?>
+				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'taxes' ) ); ?>
+				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'family' ) ); ?>
+			</div>
+		</div>
+	</section>
+
+	<section class="library-section">
+		<h2 class="library-section-title"><?php esc_html_e( 'Service detail panels', 'kennedyfg' ); ?></h2>
+		<p class="library-note"><?php esc_html_e( 'The panel that opens beside the selected process-page pin.', 'kennedyfg' ); ?></p>
+		<div class="library-pair">
+			<div class="library-surface is-light library-stack" data-theme="light">
+				<?php kennedy_fg_component( 'service-detail', array( 'service' => 'income' ) ); ?>
+				<?php kennedy_fg_component( 'service-detail', array( 'service' => 'investments' ) ); ?>
+				<?php kennedy_fg_component( 'service-detail', array( 'service' => 'taxes' ) ); ?>
+				<?php kennedy_fg_component( 'service-detail', array( 'service' => 'family' ) ); ?>
+			</div>
+			<div class="library-surface is-dark library-stack" data-theme="dark">
+				<?php kennedy_fg_component( 'service-detail', array( 'service' => 'income' ) ); ?>
+				<?php kennedy_fg_component( 'service-detail', array( 'service' => 'investments' ) ); ?>
+				<?php kennedy_fg_component( 'service-detail', array( 'service' => 'taxes' ) ); ?>
+				<?php kennedy_fg_component( 'service-detail', array( 'service' => 'family' ) ); ?>
+			</div>
+		</div>
+	</section>
+
+	<section class="library-section">
 		<h2 class="library-section-title"><?php esc_html_e( 'Footer links', 'kennedyfg' ); ?></h2>
 		<div class="library-pair">
 			<div class="library-surface is-light library-row" data-theme="light">
