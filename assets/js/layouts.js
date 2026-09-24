@@ -533,16 +533,11 @@
 				});
 			});
 
-			document.addEventListener('click', function (event) {
+			explorer.addEventListener('click', function (event) {
 				if (compactQuery.matches || !selected) {
 					return;
 				}
-				var panel = event.target.closest('.layout-services-explorer-panel');
-				var pin = event.target.closest('.service-pin');
-				if (panel && explorer.contains(panel)) {
-					return;
-				}
-				if (pin && explorer.contains(pin)) {
+				if (event.target.closest('.layout-services-explorer-panel, .service-pin')) {
 					return;
 				}
 				close();
