@@ -3422,6 +3422,6 @@
 	}
 
 	.layout-hero-start-path-cta {
-		align-self: flex-end;
+		align-self: flex-start;
 	}
 }

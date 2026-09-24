@@ -1904,9 +1904,11 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 	p {
 		margin: 0;
 		max-width: 20rem;
-		font-family: "Source Code Pro", ui-monospace, "Source Sans Pro", sans-serif;
+		font-family: "Source Code Pro", ui-monospace, monospace;
 		font-size: 1rem;
-		line-height: 1.25;
+		font-weight: 400;
+		font-style: normal;
+		line-height: normal;
 		letter-spacing: 0.02em;
 		text-transform: uppercase;
 	}
@@ -1946,6 +1948,10 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 
 [data-theme="dark"] .journey-pin.is-family {
 	--pin: var(--wp--preset--color--illustration-milestone-deep, #023b66);
+}
+
+[data-theme="dark"] .journey-pin.is-family:not(:hover):not(.is-hover):not(.is-open) .journey-pin-title {
+	color: #d3dee8;
 }
 
 .journey-pin-toggle {

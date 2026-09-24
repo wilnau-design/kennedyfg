@@ -501,6 +501,14 @@
 	aspect-ratio: 1440 / 966;
 }
 
+/* Wider than a 1920 desktop, keep this section at that desktop height. */
+@media (min-width: 1920px) {
+	.layout-home-roadmap {
+		height: calc(1920px * 966 / 1440);
+		aspect-ratio: auto;
+	}
+}
+
 .layout-home-roadmap-copy {
 	position: absolute;
 	top: 8.2816%;
