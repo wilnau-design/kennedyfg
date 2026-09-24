@@ -1771,6 +1771,7 @@ body:not(.kennedyfg-library) .page-start-here > .layout-hero-start-path {
 
 .page-start-here .layout-start-steps {
 	padding-block: var(--wp--custom--section-space--main);
+	border-top: var(--wp--custom--border-width--x-small, 0.75px) solid var(--wp--preset--color--theme-border);
 	background: linear-gradient(to bottom, var(--wp--preset--color--base-background), var(--wp--preset--color--base-lighter));
 }
 
@@ -1789,15 +1790,28 @@ body:not(.kennedyfg-library) .page-start-here > .layout-hero-start-path {
 }
 
 .page-start-here .layout-start-steps-path {
-	inset: auto auto auto 7.17%;
-	top: 52%;
+	top: 3.173rem;
+	right: auto;
+	bottom: auto;
+	left: 17.395%;
 	z-index: 0;
-	width: 82%;
-	transform: translateY(-42%) rotate(22.07deg) skewX(-3.73deg);
+	width: 82.105%;
+	height: auto;
+	transform: rotate(22.07deg) skewX(-3.73deg);
 	transform-origin: center;
 }
 
+@media (max-width: 1199.98px) {
+	.page-start-here .layout-start-steps-path,
+	[data-theme="dark"] .page-start-here .layout-start-steps-path.is-light,
+	[data-theme="dark"] .page-start-here .layout-start-steps-path.is-dark {
+		display: none;
+	}
+}
+
 .page-start-here .layout-start-step {
+	--step-art-slot: 12rem;
+
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -1805,45 +1819,49 @@ body:not(.kennedyfg-library) .page-start-here > .layout-hero-start-path {
 	box-sizing: border-box;
 	width: 65.5%;
 	padding: var(--wp--custom--space--7);
-	overflow: visible;
+	overflow: hidden;
 	box-shadow: var(--wp--preset--shadow--main);
 
-	img {
-		width: auto;
-		height: auto;
-	}
-
 	&.is-one {
+		--step-art-slot: 12rem;
+
 		position: absolute;
 		top: 0;
 		left: 17.25%;
 	}
 
 	&.is-two {
+		--step-art-slot: 7rem;
+
 		position: absolute;
 		top: 25.5rem;
 		left: 6.32%;
 		margin-inline-end: 0;
 		max-width: none;
-		overflow: clip;
 	}
 
 	&.is-three {
+		--step-art-slot: 6rem;
+
 		position: absolute;
 		top: 45.5625rem;
 		left: 28.19%;
 		margin-inline-start: 0;
 		max-width: none;
-		overflow: clip;
 	}
 }
 
 .page-start-here .layout-start-step-copy {
 	display: flex;
 	flex-direction: column;
-	gap: var(--wp--custom--space--3);
+	gap: var(--wp--custom--space--4);
 	width: 100%;
-	max-width: 40.8rem;
+	max-width: 100%;
+}
+
+.page-start-here .layout-start-step.is-two .layout-start-step-copy,
+.page-start-here .layout-start-step.is-three .layout-start-step-copy {
+	max-width: calc(100% - var(--step-art-slot));
 }
 
 .page-start-here .layout-start-step-top {
@@ -1853,24 +1871,75 @@ body:not(.kennedyfg-library) .page-start-here > .layout-hero-start-path {
 }
 
 .page-start-here .layout-start-step-num {
+	position: relative;
+	display: flex;
 	flex-shrink: 0;
-	background: var(--wp--preset--color--illustration-quote-card);
-	color: var(--wp--preset--color--accent-brand);
+	align-items: flex-start;
+	justify-content: center;
+	box-sizing: border-box;
+	width: 30px;
+	height: 48px;
+	margin: 0;
+	padding: 6px 7px 0;
+	border-radius: 0;
+	background: none;
+	box-shadow: none;
+	color: #c0dcdd;
 	font-family: var(--wp--preset--font-family--body);
-	font-size: var(--wp--preset--font-size--medium);
-	font-weight: 400;
-	letter-spacing: 0.02em;
-	box-shadow: var(--wp--preset--shadow--small);
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1.4;
+	letter-spacing: 0.18px;
+	text-align: center;
+}
+
+.page-start-here .layout-start-step-num span {
+	position: relative;
+	z-index: 1;
+}
+
+.page-start-here .layout-start-step-pin,
+.page-start-here .layout-start-step-pin-shadow {
+	position: absolute;
+	display: block;
+	width: 30px;
+	max-width: none;
+	height: auto;
+	pointer-events: none;
+}
+
+.page-start-here .layout-start-step-pin {
+	top: 0;
+	left: 0;
+}
+
+.page-start-here .layout-start-step.is-two .layout-start-step-pin {
+	top: 0.32px;
+}
+
+.page-start-here .layout-start-step-pin-shadow {
+	top: 52px;
+	left: 0;
 }
 
 .page-start-here .layout-start-step.is-two .layout-start-step-num {
-	background: var(--wp--preset--color--illustration-soft-green);
-	color: #228a2b;
+	color: #faf7f1;
 }
 
 .page-start-here .layout-start-step.is-three .layout-start-step-num {
-	background: #eac484;
-	color: #7a5310;
+	color: #eac484;
+}
+
+.page-start-here .layout-start-step.is-one h3 {
+	color: var(--wp--preset--color--accent-brand);
+}
+
+.page-start-here .layout-start-step.is-two h3 {
+	color: var(--wp--preset--color--contrast-medium);
+}
+
+.page-start-here .layout-start-step.is-three h3 {
+	color: #745112;
 }
 
 .page-start-here .layout-start-step h3,
@@ -1885,10 +1954,21 @@ body:not(.kennedyfg-library) .page-start-here > .layout-hero-start-path {
 }
 
 .page-start-here .layout-start-step-copy > p {
-	max-width: 32.9rem;
 	font-family: var(--wp--preset--font-family--body);
 	font-size: var(--wp--preset--font-size--medium);
 	line-height: 1.6;
+}
+
+.page-start-here .layout-start-step.is-one .layout-start-step-copy > p:not(.layout-start-step-sample) {
+	max-width: min(32.875rem, calc(100% - var(--step-art-slot)));
+}
+
+.page-start-here .layout-start-step.is-two .layout-start-step-copy > p:not(.layout-start-step-sample) {
+	max-width: min(38.25rem, 100%);
+}
+
+.page-start-here .layout-start-step.is-three .layout-start-step-copy > p:not(.layout-start-step-sample) {
+	max-width: min(40.8125rem, 100%);
 }
 
 .page-start-here .layout-start-step-sample {
@@ -1903,35 +1983,47 @@ body:not(.kennedyfg-library) .page-start-here > .layout-hero-start-path {
 .page-start-here .layout-start-step-art {
 	position: absolute;
 	z-index: 1;
+	overflow: hidden;
 	pointer-events: none;
 }
 
 .page-start-here .layout-start-step.is-one .layout-start-step-art {
-	right: 2.26%;
-	bottom: 11.6%;
-	width: 10.02rem;
-	height: 10.75rem;
+	right: var(--wp--custom--space--7);
+	bottom: var(--wp--custom--space--5);
+	width: min(10.02rem, 28%);
+	height: min(10.75rem, calc(100% - 7.5rem));
 }
 
 .page-start-here .layout-start-step.is-two .layout-start-step-art {
-	top: 2.17rem;
-	right: 9.1%;
-	width: 4.5625rem;
-	height: 13.75rem;
+	right: var(--wp--custom--space--6);
+	bottom: 0;
+	width: min(4.5625rem, 16%);
+	height: min(13.75rem, 100%);
 }
 
 .page-start-here .layout-start-step.is-three .layout-start-step-art {
-	top: 2.17rem;
-	right: 9%;
-	width: 3.625rem;
-	height: 13.75rem;
+	right: var(--wp--custom--space--6);
+	bottom: 0;
+	width: min(3.625rem, 14%);
+	height: min(13.75rem, 100%);
 }
 
 .page-start-here .layout-start-step-art img {
 	display: block;
 	width: 100%;
 	height: 100%;
+	max-width: 100%;
 	object-fit: contain;
+	object-position: center bottom;
+}
+
+.page-start-here .layout-start-step.is-two .layout-start-step-art img {
+	position: absolute;
+	top: 0;
+	left: -147.97%;
+	width: 372.78%;
+	height: 100%;
+	max-width: none;
 }
 
 .page-start-here .layout-cta-center.is-start-mid {
@@ -1962,10 +2054,14 @@ body:not(.kennedyfg-library) .page-start-here > .layout-hero-start-path {
 }
 
 .page-start-here .layout-hero-start-cta .button-cta,
-.page-start-here .layout-cta-center.is-start-mid .button-cta,
-.page-start-here .layout-start-step .button-cta {
+.page-start-here .layout-cta-center.is-start-mid .button-cta {
 	width: 11.375rem;
 	min-width: 11.375rem;
+}
+
+.page-start-here .layout-start-step .button-cta {
+	width: min(311px, 100%);
+	min-width: 0;
 }
 
 .page-start-here .layout-cta-center-people {
@@ -3369,6 +3465,8 @@ body.archive .site-main.layout-blog-feed {
 	.page-start-here .layout-start-step.is-one,
 	.page-start-here .layout-start-step.is-two,
 	.page-start-here .layout-start-step.is-three {
+		--step-art-slot: 0px;
+
 		position: relative;
 		top: auto;
 		left: auto;
@@ -3377,6 +3475,11 @@ body.archive .site-main.layout-blog-feed {
 		padding: var(--wp--custom--space--5);
 		margin-inline: auto;
 		margin-block-end: var(--wp--custom--space--5);
+		overflow: hidden;
+	}
+
+	.page-start-here .layout-start-step-copy {
+		max-width: 100%;
 	}
 
 	.page-start-here .layout-start-step-art,
@@ -3388,8 +3491,20 @@ body.archive .site-main.layout-blog-feed {
 		right: auto;
 		bottom: auto;
 		width: auto;
+		max-width: 100%;
 		height: 8rem;
+		max-height: 8rem;
 		margin-inline-start: auto;
+		overflow: hidden;
+	}
+
+	.page-start-here .layout-start-step.is-two .layout-start-step-art {
+		width: 2.6545rem;
+	}
+
+	.page-start-here .layout-start-step.is-two .layout-start-step-art img {
+		max-height: none;
+		object-fit: fill;
 	}
 
 	.page-start-here .layout-cta-center-people {

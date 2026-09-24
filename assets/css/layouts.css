@@ -2901,6 +2901,7 @@
 .layout-services-explorer-panel {
 	z-index: 5;
 	width: 50.1389%;
+	scroll-margin-block: 1rem;
 }
 
 .layout-services-explorer-panel.is-income {
@@ -2914,12 +2915,13 @@
 }
 
 .layout-services-explorer-panel.is-taxes {
-	top: 55.17%;
+	top: calc(55.17% - 40px);
 	left: 43.19%;
 }
 
 .layout-services-explorer-panel.is-family {
-	top: 81.88%;
+	top: auto;
+	bottom: 0;
 	left: 3.47%;
 }
 

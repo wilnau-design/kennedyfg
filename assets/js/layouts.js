@@ -523,12 +523,17 @@
 				}
 			}
 
+			var dismissed = '';
+			var scrollFrame = 0;
+
 			function close() {
+				dismissed = selected;
 				select('');
 			}
 
 			pins.forEach(function (pin) {
 				pin.addEventListener('click', function () {
+					dismissed = '';
 					select(pin.getAttribute('data-service'));
 				});
 			});
@@ -543,55 +548,180 @@
 				close();
 			});
 
+			var ignoreScroll = false;
+			var holdSelection = false;
+
+			function headerClearance() {
+				var header = document.querySelector('.site-header, .site-header-mobile');
+				var covered = 0;
+				if (header) {
+					covered = header.getBoundingClientRect().bottom;
+				}
+				return Math.max(16, covered + 16);
+			}
+
+			function scrollCardIntoView(panel) {
+				if (!panel) {
+					return;
+				}
+				var rect = panel.getBoundingClientRect();
+				if (!rect.height) {
+					return;
+				}
+				var topLimit = headerClearance();
+				var bottomLimit = window.innerHeight - 16;
+				var available = Math.max(0, bottomLimit - topLimit);
+				var delta = 0;
+
+				if (rect.height <= available) {
+					if (rect.top < topLimit) {
+						delta = rect.top - topLimit;
+					} else if (rect.bottom > bottomLimit) {
+						delta = rect.bottom - bottomLimit;
+					}
+				} else {
+					delta = rect.top - topLimit;
+				}
+
+				if (Math.abs(delta) < 2) {
+					return;
+				}
+
+				ignoreScroll = true;
+				window.scrollBy({ top: delta, left: 0, behavior: 'auto' });
+				window.requestAnimationFrame(function () {
+					window.requestAnimationFrame(function () {
+						ignoreScroll = false;
+					});
+				});
+			}
+
+			function holdForDeepLink() {
+				if (holdSelection) {
+					return;
+				}
+				holdSelection = true;
+				var events = ['wheel', 'touchmove', 'keydown'];
+				function release() {
+					holdSelection = false;
+					events.forEach(function (name) {
+						window.removeEventListener(name, release);
+					});
+				}
+				events.forEach(function (name) {
+					window.addEventListener(name, release, { passive: true });
+				});
+			}
+
+			var scrollQueued = false;
+
+			function queueCardScroll(panel) {
+				if (!panel || scrollQueued) {
+					return;
+				}
+				scrollQueued = true;
+				window.requestAnimationFrame(function () {
+					scrollQueued = false;
+					scrollCardIntoView(panel);
+				});
+			}
+
+			function revealService(service) {
+				if (!service) {
+					return;
+				}
+				holdForDeepLink();
+				select(service);
+				queueCardScroll(explorer.querySelector('.layout-services-explorer-panel.is-' + service));
+			}
+
+			function syncFromScroll() {
+				if (compactQuery.matches || ignoreScroll || holdSelection) {
+					return;
+				}
+
+				var mid = window.innerHeight / 2;
+				var limit = window.innerHeight * 0.25;
+				var closest = null;
+				var closestDist = Infinity;
+
+				pins.forEach(function (pin) {
+					var rect = pin.getBoundingClientRect();
+					if (!rect.height) {
+						return;
+					}
+					var dist = Math.abs(rect.top + rect.height / 2 - mid);
+					if (dist < closestDist) {
+						closestDist = dist;
+						closest = pin;
+					}
+				});
+
+				if (!closest || closestDist > limit) {
+					dismissed = '';
+					return;
+				}
+
+				var service = closest.getAttribute('data-service') || '';
+				if (!service || service === dismissed || service === selected) {
+					return;
+				}
+
+				select(service);
+			}
+
+			function requestScrollSync() {
+				if (scrollFrame) {
+					return;
+				}
+				scrollFrame = window.requestAnimationFrame(function () {
+					scrollFrame = 0;
+					syncFromScroll();
+				});
+			}
+
+			window.addEventListener('scroll', requestScrollSync, { passive: true });
+			window.addEventListener('resize', requestScrollSync);
+
 			compactQuery.addEventListener('change', function () {
 				select(selected);
+				if (processServiceFromHash() === selected) {
+					revealService(selected);
+					return;
+				}
+				requestScrollSync();
 			});
 
-			select(selected);
+			var hashed = processServiceFromHash();
+			if (hashed) {
+				revealService(hashed);
+				window.addEventListener('load', function () {
+					queueCardScroll(explorer.querySelector('.layout-services-explorer-panel.is-' + hashed));
+				});
+			} else {
+				select(selected);
+			}
+			requestScrollSync();
+
+			window.addEventListener('hashchange', function () {
+				var service = processServiceFromHash();
+				if (service) {
+					revealService(service);
+				}
+			});
 		});
 	}
 
 	var PROCESS_SERVICES = ['income', 'investments', 'taxes', 'family'];
 
 	function processServiceFromHash() {
-		var service = window.location.hash.replace('#', '');
+		var service = window.location.hash.replace('#', '').split('&')[0];
+		try {
+			service = decodeURIComponent(service);
+		} catch (error) {
+			service = '';
+		}
 		return PROCESS_SERVICES.indexOf(service) === -1 ? '' : service;
-	}
-
-	function initProcessDeepLink() {
-		var track = document.querySelector('.page-services .layout-services-track');
-		if (!track) {
-			return;
-		}
-
-		var stackedQuery = window.matchMedia('(max-width: 1024px)');
-
-		function apply(scroll) {
-			var service = processServiceFromHash();
-			var stacked = stackedQuery.matches;
-			var target = service ? document.getElementById(service) : null;
-
-			track.querySelectorAll('.layout-service-card').forEach(function (card) {
-				card.classList.toggle('is-active', !stacked && card === target);
-			});
-
-			if (!scroll || !target || !track.contains(target)) {
-				return;
-			}
-
-			target.scrollIntoView({ block: stacked ? 'start' : 'center', behavior: 'auto' });
-		}
-
-		window.addEventListener('hashchange', function () {
-			apply(true);
-		});
-		stackedQuery.addEventListener('change', function () {
-			apply(false);
-		});
-
-		if (processServiceFromHash()) {
-			apply(true);
-		}
 	}
 
 	function initJourneyPins() {
@@ -676,7 +806,6 @@
 			initClientStoryDetail();
 			positionStartHeroes();
 			initServicesExplorer();
-			initProcessDeepLink();
 			initJourneyPins();
 		});
 	} else {
@@ -689,7 +818,6 @@
 		initClientStoryDetail();
 		positionStartHeroes();
 		initServicesExplorer();
-		initProcessDeepLink();
 		initJourneyPins();
 	}
 	window.addEventListener('resize', positionStartHeroes);

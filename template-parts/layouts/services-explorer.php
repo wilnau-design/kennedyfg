@@ -36,7 +36,7 @@ $active = in_array( $args['active'], $args['services'], true ) ? $args['active']
 				);
 				?>
 			</div>
-			<div class="layout-services-explorer-panel is-<?php echo esc_attr( $service ); ?>" <?php echo $service === $active ? '' : 'hidden'; ?>>
+			<div id="<?php echo esc_attr( $service ); ?>" class="layout-services-explorer-panel is-<?php echo esc_attr( $service ); ?>" <?php echo $service === $active ? '' : 'hidden'; ?>>
 				<?php kennedy_fg_component( 'service-detail', array( 'service' => $service ) ); ?>
 			</div>
 		<?php endforeach; ?>

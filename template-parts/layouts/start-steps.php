@@ -32,6 +32,8 @@ $args = wp_parse_args(
 				'sample_href' => '',
 				'art'    => 'graphic-sounding-board.svg',
 				'dark'   => 'graphic-sounding-board-dark.svg',
+				'pin'    => 'graphic-start-step-pin-1.svg',
+				'shadow' => 'graphic-start-step-pin-1-shadow.svg',
 				'class'  => 'is-one',
 			),
 			array(
@@ -44,6 +46,8 @@ $args = wp_parse_args(
 				'sample_href' => '',
 				'art'    => 'graphic-discovery-meeting.png',
 				'dark'   => 'graphic-discovery-meeting-dark.png',
+				'pin'    => 'graphic-start-step-pin-2.svg',
+				'shadow' => 'graphic-start-step-pin-2-shadow.svg',
 				'class'  => 'is-two',
 			),
 			array(
@@ -56,6 +60,8 @@ $args = wp_parse_args(
 				'sample_href' => $sample_href,
 				'art'    => 'graphic-personal-assessment.svg',
 				'dark'   => 'graphic-personal-assessment-dark.svg',
+				'pin'    => 'graphic-start-step-pin-3.svg',
+				'shadow' => 'graphic-start-step-pin-3-shadow.svg',
 				'class'  => 'is-three',
 			),
 		),
@@ -72,19 +78,23 @@ $args = wp_parse_args(
 			<article class="layout-start-step <?php echo esc_attr( $step['class'] ); ?>">
 				<div class="layout-start-step-copy">
 					<div class="layout-start-step-top">
-						<p class="layout-start-step-num"><?php echo esc_html( $step['num'] ); ?></p>
+						<p class="layout-start-step-num">
+							<img class="layout-start-step-pin" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/' . $step['pin'] ) ); ?>" alt="" />
+							<span><?php echo esc_html( $step['num'] ); ?></span>
+							<img class="layout-start-step-pin-shadow" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/' . $step['shadow'] ) ); ?>" alt="" />
+						</p>
 						<h3><?php echo esc_html( $step['title'] ); ?></h3>
 					</div>
 					<p><?php echo esc_html( $step['text'] ); ?></p>
-					<?php if ( ! empty( $step['cta'] ) ) : ?>
-						<?php kennedy_fg_component( 'button-cta', array( 'label' => $step['cta'], 'href' => $step['href'], 'variant' => 'short', 'class' => 'calendar-trigger' ) ); ?>
-					<?php endif; ?>
 					<?php if ( ! empty( $step['sample'] ) && ! empty( $step['sample_href'] ) ) : ?>
 						<p class="layout-start-step-sample">
 							<a href="<?php echo kennedy_fg_esc_href( $step['sample_href'] ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $step['sample'] ); ?></a>
 						</p>
 					<?php endif; ?>
 				</div>
+				<?php if ( ! empty( $step['cta'] ) ) : ?>
+					<?php kennedy_fg_component( 'button-cta', array( 'label' => $step['cta'], 'href' => $step['href'], 'variant' => 'short', 'class' => 'calendar-trigger' ) ); ?>
+				<?php endif; ?>
 				<div class="layout-start-step-art">
 					<img class="is-light" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/' . $step['art'] ) ); ?>" alt="" />
 					<img class="is-dark" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/' . $step['dark'] ) ); ?>" alt="" />
