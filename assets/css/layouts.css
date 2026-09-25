@@ -565,6 +565,15 @@
 	gap: var(--wp--custom--space--5);
 }
 
+.layout-client-stories-disclaimer {
+	max-width: 42rem;
+	margin: 0;
+	font-size: 1rem;
+	line-height: 1.375;
+	text-align: center;
+	color: #736b61;
+}
+
 .layout-client-stories-title {
 	margin: 0;
 	width: 100%;
@@ -2630,7 +2639,7 @@
 	padding: var(--wp--custom--space--7) var(--wp--custom--space--7);
 
 	p {
-		max-width: 33.5rem;
+		max-width: 42rem;
 		margin: 0;
 		font-size: 1rem;
 		line-height: 1.375;

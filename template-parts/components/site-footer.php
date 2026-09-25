@@ -16,7 +16,7 @@ $is_mobile = 'mobile' === $args['variant'];
 $classes   = trim( 'site-footer ' . ( $is_mobile ? 'is-mobile' : 'is-desktop' ) . ' ' . $args['class'] );
 
 $legal_copy_one = 'Advisors associated with Kennedy Financial Group may be either (1) registered representatives with, and securities offered through LPL Financial, Member <a href="https://www.finra.org/" target="_blank" rel="noopener noreferrer">FINRA</a> / <a href="https://www.sipc.org/" target="_blank" rel="noopener noreferrer">SIPC</a>, and investment advisor representatives of HighPoint Advisor Group; or (2) solely investment advisor representatives of HighPoint Advisor Group, and not affiliated with LPL Financial. Investment advice offered through HighPoint Advisor Group, a registered investment advisor. HighPoint Advisor Group and Kennedy Financial Group are separate entities from LPL Financial.';
-$legal_copy_two = 'The LPL Financial registered representative associated with this site may only discuss and/or transact business in the states of AZ, CA, CO, FL, IL, MI, NC, OH, and TX. Dave Ramsey and the SmartVestor Pro program are not affiliated with LPL Financial or Kennedy Financial Group.';
+$legal_copy_two = 'The LPL Financial registered representative associated with this site may only discuss and/or transact business in the states of AZ, CA, CO, FL, IL, MI, NC, OH, and TX. Dave Ramsey and the SmartVestor Pro program are not affiliated with LPL Financial or Kennedy Financial Group. SmartVestor is an advertising and referral service for investment professionals operated by The Lampo Group, LLC, d/b/a Ramsey Solutions. SmartVestor provides referrals to financial professionals of LPL Financial, LLC (LPL). SmartVestor is not a current client of LPL for brokerage or advisory services. Financial professionals of LPL pay SmartVestor cash compensation for these referrals, which creates the incentive for SmartVestor to make these referrals, resulting in a conflict of interest. Please visit <a href="https://www.ramseysolutions.com/smartvestor/documents/form_adv_2/SABL31835B174B87/fa412bad-2929-4e89-9bd9-14dcb2c44304.pdf" target="_blank" rel="noopener noreferrer">SmartVestor investing professionals | RamseySolutions.com</a> to learn more.';
 ?>
 <footer class="<?php echo esc_attr( $classes ); ?>">
 	<div class="site-footer-main">
@@ -78,7 +78,7 @@ $legal_copy_two = 'The LPL Financial registered representative associated with t
 	<div class="site-footer-legal">
 		<div class="site-footer-legal-copy">
 			<p><?php echo wp_kses_post( $legal_copy_one ); ?></p>
-			<p><?php echo esc_html( $legal_copy_two ); ?></p>
+			<p><?php echo wp_kses_post( $legal_copy_two ); ?></p>
 		</div>
 		<div class="site-footer-legal-links">
 			<?php kennedy_fg_component( 'footer-link', array( 'label' => __( 'LPL Financial Form CRS', 'kennedyfg' ), 'href' => 'https://www.lpl.com/content/dam/lpl-www/documents/disclosures/lpl-financial-relationship-summary.pdf', 'target' => '_blank' ) ); ?>

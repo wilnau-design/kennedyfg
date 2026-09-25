@@ -113,8 +113,7 @@ if ( ! $stories ) {
 
 			<div class="layout-client-story-detail-disclaimer">
 				<p>
-					<?php esc_html_e( 'Note: Details have been adjusted to protect client privacy.', 'kennedyfg' ); ?>
-					<?php esc_html_e( 'No portion of this content should be construed as a guarantee of specific results.', 'kennedyfg' ); ?>
+					<?php esc_html_e( 'This is a hypothetical situation based on real life examples. Names and circumstances have been changed. The opinions voiced in this material are for general information only and are not intended to provide specific advice or recommendations for any individual. To determine which investments or strategies may be appropriate for you, consult your advisor prior to investing.', 'kennedyfg' ); ?>
 				</p>
 			</div>
 

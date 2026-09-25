@@ -10,9 +10,10 @@ $from_json = kennedy_fg_get_client_stories();
 $args = wp_parse_args(
 	$args ?? array(),
 	array(
-		'title'   => $from_json['title'],
-		'stories' => $from_json['stories'],
-		'class'   => '',
+		'title'      => $from_json['title'],
+		'stories'    => $from_json['stories'],
+		'class'      => '',
+		'disclaimer' => '',
 	)
 );
 
@@ -79,5 +80,8 @@ $stories = array_values( (array) $args['stories'] );
 				<?php endforeach; ?>
 			</div>
 		</div>
+		<?php if ( $args['disclaimer'] ) : ?>
+			<p class="layout-client-stories-disclaimer"><?php echo esc_html( $args['disclaimer'] ); ?></p>
+		<?php endif; ?>
 	</div>
 </section>
