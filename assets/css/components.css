@@ -990,8 +990,26 @@ button.button-cta {
 					width: 374px;
 				}
 
-				.site-footer-legal-copy {
-					grid-template-columns: minmax(0, 674px) minmax(0, 464px);
+				.site-footer-legal-copy,
+				.site-footer-legal-links {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+					column-gap: var(--wp--custom--space--8);
+				}
+
+				.site-footer-legal-links {
+					display: grid;
+					width: 100%;
+					max-width: min(var(--wp--style--global--wide-size), calc(100% - (2 * var(--kennedy-site-gutter))));
+					margin-inline: auto;
+					justify-content: stretch;
+
+					> :first-child {
+						justify-self: end;
+					}
+
+					> :last-child {
+						justify-self: start;
+					}
 				}
 			}
 
