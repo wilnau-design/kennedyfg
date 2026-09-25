@@ -202,55 +202,6 @@
 		dialog.addEventListener('close', unlockPage);
 	}
 
-	function initReferralLightbox() {
-		var dialog = document.getElementById('referral-review-lightbox');
-		if (!dialog) {
-			return;
-		}
-
-		var image = dialog.querySelector('.layout-referral-lightbox-image');
-		var title = dialog.querySelector('#referral-review-lightbox-title');
-
-		function openLightbox(src, alt) {
-			if (image) {
-				image.src = src;
-				image.alt = alt || '';
-			}
-			if (title) {
-				title.textContent = alt || title.textContent;
-			}
-			if (typeof dialog.showModal === 'function') {
-				dialog.showModal();
-			} else {
-				dialog.setAttribute('open', '');
-			}
-		}
-
-		function closeLightbox() {
-			if (typeof dialog.close === 'function') {
-				dialog.close();
-			} else {
-				dialog.removeAttribute('open');
-			}
-		}
-
-		document.querySelectorAll('.layout-referral-proof-review').forEach(function (trigger) {
-			trigger.addEventListener('click', function () {
-				openLightbox(trigger.getAttribute('data-review-src'), trigger.getAttribute('data-review-alt'));
-			});
-		});
-
-		dialog.querySelectorAll('.js-referral-lightbox-close').forEach(function (button) {
-			button.addEventListener('click', closeLightbox);
-		});
-
-		dialog.addEventListener('click', function (event) {
-			if (event.target === dialog) {
-				closeLightbox();
-			}
-		});
-	}
-
 	function initClientStories() {
 		document.querySelectorAll('[data-client-stories]').forEach(function (section) {
 			var tablist = section.querySelector('[role="tablist"]');
@@ -800,7 +751,6 @@
 			init();
 			initClientStories();
 			initPowerlanderPopup();
-			initReferralLightbox();
 			initBioNav();
 			initClientStorySiblingsNav();
 			initClientStoryDetail();
@@ -812,7 +762,6 @@
 		init();
 		initClientStories();
 		initPowerlanderPopup();
-		initReferralLightbox();
 		initBioNav();
 		initClientStorySiblingsNav();
 		initClientStoryDetail();
