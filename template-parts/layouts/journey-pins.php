@@ -90,16 +90,16 @@ $args = wp_parse_args(
 	</div>
 	<div class="layout-home-roadmap-cards">
 		<?php foreach ( $args['stops'] as $stop ) : ?>
-			<article class="layout-home-roadmap-mobile-card <?php echo esc_attr( $stop['class'] ); ?>">
+			<a class="layout-home-roadmap-mobile-card <?php echo esc_attr( $stop['class'] ); ?>" href="<?php echo esc_url( home_url( '/process/#' . $stop['slug'] ) ); ?>">
 				<div class="layout-home-roadmap-mobile-inner">
 					<img src="<?php echo esc_url( kennedy_fg_asset( 'layouts/' . $stop['mobile'] ) ); ?>" alt="" width="<?php echo (int) $stop['mw']; ?>" height="<?php echo (int) $stop['mh']; ?>" />
 					<div>
 						<p class="layout-home-roadmap-stop-title"><?php echo esc_html( $stop['title'] ); ?></p>
 						<p><?php echo esc_html( $stop['blurb'] ); ?></p>
-						<a class="layout-home-roadmap-more" href="<?php echo esc_url( home_url( '/process/#' . $stop['slug'] ) ); ?>"><?php esc_html_e( 'Learn more', 'kennedyfg' ); ?><span class="service-pin-arrow" aria-hidden="true"></span></a>
+						<span class="layout-home-roadmap-more"><?php esc_html_e( 'Learn more', 'kennedyfg' ); ?><span class="service-pin-arrow" aria-hidden="true"></span></span>
 					</div>
 				</div>
-			</article>
+			</a>
 		<?php endforeach; ?>
 	</div>
 </section>

@@ -4045,6 +4045,12 @@ body.archive .site-main.layout-blog-feed {
 		padding: var(--wp--custom--space--3) var(--wp--custom--space--4);
 		border-radius: var(--wp--custom--radius--main, 8px);
 		color: var(--wp--preset--color--base-background);
+		text-decoration: none;
+
+		&:focus-visible {
+			outline: 2px solid var(--wp--preset--color--accent-hover);
+			outline-offset: 3px;
+		}
 
 		img {
 			display: block;
