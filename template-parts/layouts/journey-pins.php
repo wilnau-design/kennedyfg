@@ -77,13 +77,12 @@ $args = wp_parse_args(
 		<img class="layout-home-roadmap-walker is-dark" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/graphic-person-walking-dark.svg' ) ); ?>" alt="" width="56" height="77" />
 	</div>
 	<div class="layout-journey-pins-stops">
-		<?php foreach ( $args['services'] as $index => $service ) : ?>
+		<?php foreach ( $args['services'] as $service ) : ?>
 			<?php
 			kennedy_fg_component(
 				'journey-pin',
 				array(
 					'service' => $service,
-					'state'   => 0 === $index ? 'is-open' : '',
 				)
 			);
 			?>

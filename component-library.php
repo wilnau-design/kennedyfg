@@ -238,7 +238,7 @@ $login_items = array(
 
 	<section class="library-section">
 		<h2 class="library-section-title"><?php esc_html_e( 'Journey pins', 'kennedyfg' ); ?></h2>
-		<p class="library-note"><?php esc_html_e( 'Homepage “Where do I stand” stops. Default, hover, and open for income, then the other three closed.', 'kennedyfg' ); ?></p>
+		<p class="library-note"><?php esc_html_e( 'Homepage “Where do I stand” stops. Closed, then hover and open for income — the same centered card — then the other three closed.', 'kennedyfg' ); ?></p>
 		<div class="library-pair">
 			<div class="library-surface is-light library-row" data-theme="light">
 				<?php kennedy_fg_component( 'journey-pin', array( 'service' => 'income' ) ); ?>

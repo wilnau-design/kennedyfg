@@ -675,36 +675,6 @@
 		return PROCESS_SERVICES.indexOf(service) === -1 ? '' : service;
 	}
 
-	function initJourneyPins() {
-		document.querySelectorAll('[data-journey-pins]').forEach(function (group) {
-			group.querySelectorAll('.journey-pin-toggle').forEach(function (toggle) {
-				toggle.addEventListener('click', function () {
-					var pin = toggle.closest('.journey-pin');
-					var open = pin.classList.contains('is-open');
-					group.querySelectorAll('.journey-pin').forEach(function (item) {
-						item.classList.remove('is-open');
-						var button = item.querySelector('.journey-pin-toggle');
-						var panel = item.querySelector('.journey-pin-open');
-						if (button) {
-							button.setAttribute('aria-expanded', 'false');
-						}
-						if (panel) {
-							panel.setAttribute('aria-hidden', 'true');
-						}
-					});
-					if (!open) {
-						pin.classList.add('is-open');
-						toggle.setAttribute('aria-expanded', 'true');
-						var panel = pin.querySelector('.journey-pin-open');
-						if (panel) {
-							panel.setAttribute('aria-hidden', 'false');
-						}
-					}
-				});
-			});
-		});
-	}
-
 	function initBioNav() {
 		document.querySelectorAll('.layout-bio-nav').forEach(function (nav) {
 			var track = nav.querySelector('.layout-bio-nav-track');
@@ -756,7 +726,6 @@
 			initClientStoryDetail();
 			positionStartHeroes();
 			initServicesExplorer();
-			initJourneyPins();
 		});
 	} else {
 		init();
@@ -767,7 +736,6 @@
 		initClientStoryDetail();
 		positionStartHeroes();
 		initServicesExplorer();
-		initJourneyPins();
 	}
 	window.addEventListener('resize', positionStartHeroes);
 	window.matchMedia(COMPACT_QUERY).addEventListener('change', positionStartHeroes);
