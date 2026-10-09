@@ -26,6 +26,9 @@ $catalog = array(
 		'icon'     => 'layouts/graphic-service-map.svg',
 		'icon_w'   => 52,
 		'icon_h'   => 52,
+		'edge'     => 'layouts/graphic-service-map-edge-income.svg',
+		'edge_w'   => 780,
+		'edge_h'   => 639,
 		'figure'   => 'layouts/graphic-person-diving.svg',
 		'figure_dark' => 'layouts/graphic-person-diving-dark.svg',
 		'figure_w' => 49,
@@ -45,6 +48,9 @@ $catalog = array(
 		'icon'     => 'layouts/graphic-align-investments.svg',
 		'icon_w'   => 43,
 		'icon_h'   => 64,
+		'edge'     => 'layouts/graphic-service-map-edge-investments.svg',
+		'edge_w'   => 780,
+		'edge_h'   => 689,
 		'figure'   => 'layouts/graphic-person-sitting.svg',
 		'figure_dark' => 'layouts/graphic-person-sitting-dark.svg',
 		'figure_w' => 50,
@@ -64,6 +70,9 @@ $catalog = array(
 		'icon'     => 'layouts/graphic-manage-taxes.svg',
 		'icon_w'   => 67,
 		'icon_h'   => 52,
+		'edge'     => 'layouts/graphic-service-map-edge-taxes.svg',
+		'edge_w'   => 780,
+		'edge_h'   => 651,
 		'figure'   => 'layouts/graphic-human-icon.svg',
 		'figure_dark' => 'layouts/graphic-human-icon-dark.svg',
 		'figure_w' => 26,
@@ -83,6 +92,9 @@ $catalog = array(
 		'icon'     => 'layouts/graphic-safeguard-family.svg',
 		'icon_w'   => 64,
 		'icon_h'   => 52,
+		'edge'     => 'layouts/graphic-service-map-edge-income.svg',
+		'edge_w'   => 780,
+		'edge_h'   => 639,
 		'figure'   => 'layouts/graphic-kids-playing.svg',
 		'figure_dark' => 'layouts/graphic-kids-playing-dark.svg',
 		'figure_w' => 44,
@@ -97,6 +109,7 @@ $item    = $catalog[ $service ];
 $classes = trim( 'service-detail is-' . $service . ' ' . $args['class'] );
 ?>
 <article class="<?php echo esc_attr( $classes ); ?>" data-service="<?php echo esc_attr( $service ); ?>">
+	<img class="service-detail-edge" src="<?php echo esc_url( kennedy_fg_asset( $item['edge'] ) ); ?>" alt="" width="<?php echo esc_attr( $item['edge_w'] ); ?>" height="<?php echo esc_attr( $item['edge_h'] ); ?>" />
 	<div class="service-detail-content">
 		<div class="service-detail-heading">
 			<img src="<?php echo esc_url( kennedy_fg_asset( $item['icon'] ) ); ?>" alt="" width="<?php echo esc_attr( $item['icon_w'] ); ?>" height="<?php echo esc_attr( $item['icon_h'] ); ?>" />

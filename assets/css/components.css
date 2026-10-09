@@ -1836,6 +1836,7 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 }
 
 .service-detail {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: var(--wp--custom--space--4);
@@ -1856,11 +1857,54 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 	}
 }
 
+.service-detail-edge {
+	display: none;
+}
+
+@media (min-width: 1025px) {
+	.service-detail {
+		border-radius: 0;
+		background: transparent;
+		box-shadow: none;
+	}
+
+	.service-detail-edge {
+		position: absolute;
+		z-index: 0;
+		top: -22px;
+		left: -22px;
+		display: block;
+		width: calc(100% + 44px);
+		height: calc(100% + 44px);
+		pointer-events: none;
+	}
+}
+
+.service-detail-content,
+.service-detail-means,
+.service-detail-cta,
+.service-detail > hr {
+	position: relative;
+	z-index: 1;
+}
+
 .service-detail-content,
 .service-detail-means {
 	display: flex;
 	flex-direction: column;
 	gap: var(--wp--custom--space--4);
+}
+
+.service-detail-means {
+	gap: var(--wp--custom--space--3);
+}
+
+.service-detail.is-investments .service-detail-heading {
+	align-items: center;
+}
+
+.service-detail.is-investments .service-detail-heading img {
+	height: 4rem;
 }
 
 .service-detail-heading {
@@ -1944,6 +1988,16 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 		letter-spacing: 0.02em;
 		text-transform: uppercase;
 	}
+}
+
+[data-theme="dark"] .service-detail {
+	border-radius: var(--wp--custom--radius--small);
+	background: var(--wp--preset--color--base-background);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .service-detail-edge {
+	display: none;
 }
 
 [data-theme="dark"] .service-detail-prompt img.is-light {

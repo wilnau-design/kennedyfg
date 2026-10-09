@@ -194,6 +194,13 @@
 	gap: var(--wp--custom--space--3);
 }
 
+@media (min-width: 1025px) {
+	.library-stack:has(.service-detail) {
+		gap: 4.5rem;
+		padding: 1.5rem 1.75rem;
+	}
+}
+
 .library-row {
 	display: flex;
 	flex-wrap: wrap;
