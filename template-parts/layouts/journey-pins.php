@@ -24,7 +24,7 @@ $args = wp_parse_args(
 			array(
 				'slug'   => 'income',
 				'class'  => 'is-map',
-				'title'  => __( 'Map your retirement income', 'kennedyfg' ),
+				'title'  => __( 'Map Your Retirement Income', 'kennedyfg' ),
 				'blurb'  => __( 'Create clarity around when you can retire, what it will cost, and where your income will come from.', 'kennedyfg' ),
 				'mobile' => 'graphic-roadmap-map-mobile.svg',
 				'mw'     => 86,
@@ -33,7 +33,7 @@ $args = wp_parse_args(
 			array(
 				'slug'   => 'investments',
 				'class'  => 'is-align',
-				'title'  => __( 'Align your investments', 'kennedyfg' ),
+				'title'  => __( 'Align Your Investments', 'kennedyfg' ),
 				'blurb'  => __( 'Build an investment strategy with the right balance of safety, income, and growth to support your plan over a 30+ year retirement.', 'kennedyfg' ),
 				'mobile' => 'graphic-roadmap-align-mobile.svg',
 				'mw'     => 97,
@@ -42,7 +42,7 @@ $args = wp_parse_args(
 			array(
 				'slug'   => 'taxes',
 				'class'  => 'is-taxes',
-				'title'  => __( 'Manage your taxes', 'kennedyfg' ),
+				'title'  => __( 'Manage Your Taxes', 'kennedyfg' ),
 				'blurb'  => __( 'Build a proactive tax strategy that helps reduce how much the IRS reaches into your pocket.', 'kennedyfg' ),
 				'mobile' => 'graphic-roadmap-taxes-mobile.svg',
 				'mw'     => 97,
@@ -51,7 +51,7 @@ $args = wp_parse_args(
 			array(
 				'slug'   => 'family',
 				'class'  => 'is-family',
-				'title'  => __( 'Safeguard your family', 'kennedyfg' ),
+				'title'  => __( 'Safeguard Your Family', 'kennedyfg' ),
 				'blurb'  => __( 'An intentional strategy to plan for the unexpected, protect what you’ve built, and live out your legacy for the people and causes that matter most.', 'kennedyfg' ),
 				'mobile' => 'graphic-roadmap-family-mobile.svg',
 				'mw'     => 97,

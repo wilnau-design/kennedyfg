@@ -16,19 +16,19 @@ $args = wp_parse_args(
 
 $catalog = array(
 	'income'      => array(
-		'label' => __( 'Map your retirement income', 'kennedyfg' ),
+		'label' => __( 'Map Your Retirement Income', 'kennedyfg' ),
 		'pin'   => '1',
 	),
 	'investments' => array(
-		'label' => __( 'Align your investments', 'kennedyfg' ),
+		'label' => __( 'Align Your Investments', 'kennedyfg' ),
 		'pin'   => '2',
 	),
 	'taxes'       => array(
-		'label' => __( 'Manage your taxes', 'kennedyfg' ),
+		'label' => __( 'Manage Your Taxes', 'kennedyfg' ),
 		'pin'   => '3',
 	),
 	'family'      => array(
-		'label' => __( 'Safeguard your family', 'kennedyfg' ),
+		'label' => __( 'Safeguard Your Family', 'kennedyfg' ),
 		'pin'   => '4',
 	),
 );

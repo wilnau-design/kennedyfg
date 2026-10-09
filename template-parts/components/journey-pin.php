@@ -19,28 +19,28 @@ $args = wp_parse_args(
 
 $catalog = array(
 	'income'      => array(
-		'title'  => __( 'Map your retirement income', 'kennedyfg' ),
+		'title'  => __( 'Map Your Retirement Income', 'kennedyfg' ),
 		'icon'   => 'layouts/graphic-journey-map.svg',
 		'icon_w' => 32,
 		'icon_h' => 32,
 		'pin'    => '1',
 	),
 	'investments' => array(
-		'title'  => __( 'Align your investments', 'kennedyfg' ),
+		'title'  => __( 'Align Your Investments', 'kennedyfg' ),
 		'icon'   => 'layouts/graphic-align-investments.svg',
 		'icon_w' => 27,
 		'icon_h' => 40,
 		'pin'    => '2',
 	),
 	'taxes'       => array(
-		'title'  => __( 'Manage your taxes', 'kennedyfg' ),
+		'title'  => __( 'Manage Your Taxes', 'kennedyfg' ),
 		'icon'   => 'layouts/graphic-manage-taxes.svg',
 		'icon_w' => 52,
 		'icon_h' => 40,
 		'pin'    => '3',
 	),
 	'family'      => array(
-		'title'  => __( 'Safeguard your family', 'kennedyfg' ),
+		'title'  => __( 'Safeguard Your Family', 'kennedyfg' ),
 		'icon'   => 'layouts/graphic-safeguard-family.svg',
 		'icon_w' => 49,
 		'icon_h' => 40,

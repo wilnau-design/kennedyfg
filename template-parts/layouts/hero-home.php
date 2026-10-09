@@ -18,10 +18,10 @@ $args = wp_parse_args(
 		'href'        => home_url( '/start-here/' ),
 		'image'       => kennedy_fg_asset( 'layouts/hero-home.webp' ),
 		'pins'        => array(
-			array( 'label' => __( 'Map your income', 'kennedyfg' ), 'pin' => '1' ),
-			array( 'label' => __( 'Align investments', 'kennedyfg' ), 'pin' => '2' ),
-			array( 'label' => __( 'Manage taxes', 'kennedyfg' ), 'pin' => '3' ),
-			array( 'label' => __( 'Safeguard family', 'kennedyfg' ), 'pin' => '4' ),
+			array( 'label' => __( 'Map Your Income', 'kennedyfg' ), 'pin' => '1' ),
+			array( 'label' => __( 'Align Investments', 'kennedyfg' ), 'pin' => '2' ),
+			array( 'label' => __( 'Manage Taxes', 'kennedyfg' ), 'pin' => '3' ),
+			array( 'label' => __( 'Safeguard Family', 'kennedyfg' ), 'pin' => '4' ),
 		),
 		'class'       => '',
 	)

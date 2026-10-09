@@ -1994,7 +1994,7 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 	align-items: center;
 	box-sizing: border-box;
 	width: 100%;
-	padding: var(--wp--custom--space--2) var(--wp--custom--space--1);
+	padding: var(--wp--custom--space--2) var(--wp--custom--space--3);
 	border-radius: var(--wp--custom--radius--small);
 	background: transparent;
 	gap: 0;
@@ -2013,7 +2013,6 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 	line-height: 1.4;
 	letter-spacing: 0.01em;
 	text-align: center;
-	text-transform: capitalize;
 }
 
 .journey-pin-icon,
