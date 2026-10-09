@@ -3346,19 +3346,24 @@
 	}
 
 	.layout-journey-pins .layout-home-roadmap-mobile-card {
-		display: block;
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--custom--space--3);
+		align-items: stretch;
+		max-width: 412px;
+		margin-inline: auto;
 		overflow: hidden;
 	}
 
 	.layout-journey-pins .layout-home-roadmap-mobile-inner,
 	.layout-journey-pins .layout-home-roadmap-mobile-card.is-family .layout-home-roadmap-mobile-inner {
 		display: grid;
-		grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
+		grid-template-columns: auto minmax(0, 1fr);
 		gap: var(--wp--custom--space--4);
 		align-items: center;
 		width: 100%;
-		max-width: 412px;
-		margin-inline: auto;
+		max-width: none;
+		margin-inline: 0;
 	}
 
 	.layout-journey-pins .layout-home-roadmap-mobile-inner > img,
@@ -3366,8 +3371,8 @@
 	.layout-journey-pins .layout-home-roadmap-mobile-card.is-align .layout-home-roadmap-mobile-inner > img,
 	.layout-journey-pins .layout-home-roadmap-mobile-card.is-taxes .layout-home-roadmap-mobile-inner > img,
 	.layout-journey-pins .layout-home-roadmap-mobile-card.is-family .layout-home-roadmap-mobile-inner > img {
-		width: 100%;
-		max-width: 100%;
+		width: auto;
+		max-width: 6.0625rem;
 		height: auto;
 	}
 
@@ -3391,10 +3396,15 @@
 	}
 
 	.layout-journey-pins .layout-home-roadmap-more {
-		display: inline-flex;
+		display: flex;
 		gap: var(--wp--custom--space--2);
 		align-items: center;
-		margin-top: var(--wp--custom--space--1);
+		justify-content: center;
+		box-sizing: border-box;
+		width: 100%;
+		margin-top: 0;
+		padding: var(--wp--custom--space--1) 0;
+		border-radius: var(--wp--custom--radius--small);
 		color: inherit;
 		font-family: "Source Code Pro", ui-monospace, "Source Sans Pro", sans-serif;
 		font-size: 0.75rem;
@@ -3402,6 +3412,16 @@
 		letter-spacing: 0.08em;
 		text-decoration: none;
 		text-transform: uppercase;
+		transition:
+			background-color 0.25s ease,
+			color 0.25s ease,
+			padding 0.25s ease;
+	}
+
+	.layout-journey-pins .layout-home-roadmap-more:hover {
+		padding: 0.375rem 0.75rem;
+		background: var(--wp--preset--color--base-background);
+		color: var(--wp--preset--color--contrast-strongest);
 	}
 
 	.layout-journey-pins .layout-home-roadmap-more .service-pin-arrow {

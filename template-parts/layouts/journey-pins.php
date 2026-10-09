@@ -96,9 +96,9 @@ $args = wp_parse_args(
 					<div>
 						<p class="layout-home-roadmap-stop-title"><?php echo esc_html( $stop['title'] ); ?></p>
 						<p><?php echo esc_html( $stop['blurb'] ); ?></p>
-						<span class="layout-home-roadmap-more"><?php esc_html_e( 'Learn more', 'kennedyfg' ); ?><span class="service-pin-arrow" aria-hidden="true"></span></span>
 					</div>
 				</div>
+				<span class="layout-home-roadmap-more"><?php esc_html_e( 'Click to learn more', 'kennedyfg' ); ?><span class="service-pin-arrow" aria-hidden="true"></span></span>
 			</a>
 		<?php endforeach; ?>
 	</div>
