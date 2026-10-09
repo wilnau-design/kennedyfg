@@ -1873,10 +1873,13 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 		z-index: 0;
 		top: -22px;
 		left: -22px;
-		display: block;
 		width: calc(100% + 44px);
 		height: calc(100% + 44px);
 		pointer-events: none;
+	}
+
+	.service-detail-edge.is-light {
+		display: block;
 	}
 }
 
@@ -1998,6 +2001,18 @@ body:not(.kennedyfg-library) .site-main > .layout-referral {
 
 [data-theme="dark"] .service-detail-edge {
 	display: none;
+}
+
+@media (min-width: 1025px) {
+	[data-theme="dark"] .service-detail {
+		border-radius: 0;
+		background: transparent;
+		box-shadow: none;
+	}
+
+	[data-theme="dark"] .service-detail-edge.is-dark {
+		display: block;
+	}
 }
 
 [data-theme="dark"] .service-detail-prompt img.is-light {
