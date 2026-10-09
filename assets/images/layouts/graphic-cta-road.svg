@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="14528" height="856.491" viewBox="-4096 0 14528 856.491" fill="none">
+<path d="M0.375 856.116V310.375C791.875 263.875 1505.88 188.374 1020.87 92.5597C866.676 62.0983 635.051 -6.13968 1215.02 0.8779C1250.88 1.31175 1274.02 8.36671 1218.38 22.7471C987.875 35.9409 1050.75 54.2386 1117.17 62.0981C2023.38 169.323 22310.9 856.116 0.375 856.116Z" fill="url(#kfg-cta-road)"/>
+<path d="M-4096 551.035L0.375 310.375H32V856.116H-4096Z" fill="url(#kfg-cta-road)"/>
+<path class="layout-road-stroke" d="M-4096 551.035L0.375 310.375C791.875 263.875 1505.88 188.374 1020.87 92.5597C866.676 62.0983 635.051 -6.13968 1215.02 0.8779C1250.88 1.31175 1274.02 8.36671 1218.38 22.7471C987.875 35.9409 1050.75 54.2386 1117.17 62.0981" fill="none" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+<defs>
+<linearGradient id="kfg-cta-road" x1="1155.75" y1="395.6" x2="1155.75" y2="-60.67" gradientUnits="userSpaceOnUse">
+<stop class="layout-road-stop-base" offset="0"/>
+<stop class="layout-road-stop-edge" offset="1"/>
+</linearGradient>
+</defs>
+</svg>

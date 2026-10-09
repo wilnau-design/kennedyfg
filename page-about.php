@@ -11,8 +11,11 @@ get_header();
 <main id="primary" class="site-main page-about">
 	<?php kennedy_fg_layout( 'about-concerns' ); ?>
 	<?php kennedy_fg_layout( 'about-vision' ); ?>
-	<?php kennedy_fg_layout( 'cta-split' ); ?>
-	<?php kennedy_fg_layout( 'team-grid' ); ?>
+	<div class="layout-road-join">
+		<?php kennedy_fg_layout( 'cta-road' ); ?>
+		<?php kennedy_fg_layout( 'cta-split', array( 'wave' => false ) ); ?>
+		<?php kennedy_fg_layout( 'team-grid' ); ?>
+	</div>
 	<?php
 	kennedy_fg_layout(
 		'cta-center',

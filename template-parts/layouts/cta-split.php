@@ -14,14 +14,17 @@ $args = wp_parse_args(
 		'note'        => __( 'A 30-min Sounding Board Session to see if we fit', 'kennedyfg' ),
 		'href'        => home_url( '/start-here/' ),
 		'class'       => '',
+		'wave'        => true,
 		'people'      => kennedy_fg_asset( 'layouts/graphic-couple-silhouette.svg' ),
 		'people_dark' => kennedy_fg_asset( 'layouts/graphic-couple-silhouette-dark.svg' ),
 	)
 );
 ?>
 <section class="<?php echo esc_attr( trim( 'layout-cta-split alignfull ' . $args['class'] ) ); ?>">
-	<img class="layout-cta-split-wave is-light" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/graphic-cta-wave.svg' ) ); ?>" alt="" />
-	<img class="layout-cta-split-wave is-dark" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/graphic-cta-wave-dark.svg' ) ); ?>" alt="" />
+	<?php if ( $args['wave'] ) : ?>
+		<img class="layout-cta-split-wave is-light" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/graphic-cta-wave.svg' ) ); ?>" alt="" />
+		<img class="layout-cta-split-wave is-dark" src="<?php echo esc_url( kennedy_fg_asset( 'layouts/graphic-cta-wave-dark.svg' ) ); ?>" alt="" />
+	<?php endif; ?>
 	<div class="layout-cta-split-frame">
 		<div class="alignwide layout-cta-split-inner">
 			<div class="layout-cta-split-copy">

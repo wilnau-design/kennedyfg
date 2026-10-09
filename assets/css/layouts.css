@@ -1093,7 +1093,7 @@
 	display: flex;
 	flex: 1 1 16rem;
 	flex-direction: column;
-	gap: var(--wp--custom--space--5);
+	gap: var(--wp--custom--space--4);
 	min-width: 0;
 	max-width: 32.75rem;
 
@@ -1158,6 +1158,144 @@
 		max-width: 100%;
 		height: auto;
 		aspect-ratio: 318 / 405;
+	}
+}
+
+/*
+ * Organic CTA road (homepage guide + about team).
+ * The curve is the Figma path at its real size, pinned to the 1440 frame
+ * so it stays with the copy on 2K and 4K. A same-color fill continues
+ * the road to the viewport edges and through the next section.
+ */
+.layout-road-join {
+	position: relative;
+	background: var(--wp--preset--color--base-background);
+}
+
+.layout-road {
+	position: absolute;
+	z-index: 0;
+	top: 202px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.layout-road-fill {
+	position: absolute;
+	top: 640px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: var(--wp--preset--color--base-lighter);
+}
+
+.layout-road-wave {
+	position: absolute;
+	top: 0;
+	left: calc(50% - 720px - 4096px);
+	display: block;
+	width: 14528px;
+	max-width: none;
+	height: 856.491px;
+}
+
+/* Styled in CSS so the road follows the active theme. Attribute colors on
+   SVG stops do not switch with [data-theme]. */
+.layout-road-stop-base {
+	stop-color: var(--wp--preset--color--base-lighter);
+}
+
+.layout-road-stop-edge,
+.layout-road-stroke {
+	stop-color: var(--wp--preset--color--base-subtle);
+	stroke: var(--wp--preset--color--base-subtle);
+}
+
+/* Couple stands on the road. Figma x/y are from the 1440 section; the
+   frame starts below the section's top padding. */
+.layout-road-join .layout-cta-split-people {
+	/* Figures sit on the left of the asset. Flip, then shift so they
+	   stay on the road instead of landing past the right edge. */
+	transform: scaleX(-1) translateX(76%);
+}
+
+@media (min-width: 1440px) {
+	.layout-road-join .layout-cta-split-people {
+		right: auto;
+		bottom: auto;
+		left: 1311px;
+		top: calc(267.667px - var(--wp--custom--section-space--main));
+		width: 213px;
+	}
+
+	.page-about .layout-road-join .layout-cta-split-people {
+		left: 1273px;
+		top: calc(257px - var(--wp--custom--section-space--main));
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1439.98px) {
+	.layout-road-join .layout-cta-split-people {
+		right: 152px;
+		bottom: auto;
+		left: auto;
+		top: calc(267.667px - var(--wp--custom--section-space--main));
+		width: 213px;
+	}
+
+	.page-about .layout-road-join .layout-cta-split-people {
+		right: 190px;
+		top: calc(257px - var(--wp--custom--section-space--main));
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	.layout-road-join .layout-cta-split-people {
+		bottom: auto !important;
+	}
+}
+
+.layout-road-join > .layout-cta-split,
+.layout-road-join > .layout-lead-magnet,
+.layout-road-join > .layout-team-grid {
+	position: relative;
+	z-index: 1;
+	background: transparent;
+}
+
+.layout-road-join > .layout-cta-split {
+	overflow: visible;
+}
+
+.layout-road-join .layout-cta-split-wave {
+	display: none;
+}
+
+@media (max-width: 1439.98px) {
+	.layout-road-wave {
+		left: calc(100% - 1676px - 4096px);
+	}
+}
+
+@media (max-width: 767.98px) {
+	.layout-road {
+		display: none;
+	}
+
+	.layout-road-join {
+		background: transparent;
+	}
+
+	.layout-road-join > .layout-cta-split {
+		background: var(--wp--preset--color--base-background);
+	}
+
+	.layout-road-join > .layout-lead-magnet,
+	.layout-road-join > .layout-team-grid {
+		background: var(--wp--preset--color--base-lighter);
 	}
 }
 

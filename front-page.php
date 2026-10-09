@@ -30,8 +30,11 @@ get_header();
 	}
 	?>
 	<?php kennedy_fg_layout( 'smartvestor' ); ?>
-	<?php kennedy_fg_layout( 'cta-split' ); ?>
-	<?php kennedy_fg_layout( 'lead-magnet' ); ?>
+	<div class="layout-road-join">
+		<?php kennedy_fg_layout( 'cta-road' ); ?>
+		<?php kennedy_fg_layout( 'cta-split', array( 'wave' => false ) ); ?>
+		<?php kennedy_fg_layout( 'lead-magnet' ); ?>
+	</div>
 </main>
 
 <?php
