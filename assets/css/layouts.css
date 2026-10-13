@@ -2983,6 +2983,10 @@
 .layout-services-explorer {
 	position: relative;
 	z-index: 2;
+	/* Clip the ribbon where it runs past the window, but let the map cards'
+	   torn edges hang out of the top and bottom. */
+	overflow-x: clip;
+	overflow-y: visible;
 	background: var(--wp--preset--color--base-lighter);
 }
 
@@ -2996,11 +3000,15 @@
 	overflow: visible;
 }
 
+/* Ribbon is wider than the 1440 frame. Clip it to the stage vertically so it
+   does not cover the next section, and let the extra curves paint into the
+   side margins. Pin offsets stay percentages of the stage. */
 .layout-services-explorer-road {
 	position: absolute;
 	z-index: 0;
 	inset: 0;
-	overflow: hidden;
+	overflow: visible;
+	clip-path: inset(0 -100vw 0 -100vw);
 	pointer-events: none;
 }
 
