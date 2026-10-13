@@ -3093,26 +3093,27 @@
 	z-index: 5;
 	width: 50.1389%;
 	scroll-margin-block: 1rem;
+	/* Center the card on the pin tip, matching the income stop. */
+	transform: translateY(-50%);
 }
 
 .layout-services-explorer-panel.is-income {
-	top: 0.05%;
+	top: 13.4554%;
 	left: 43.19%;
 }
 
 .layout-services-explorer-panel.is-investments {
-	top: 28.46%;
+	top: 37.5706%;
 	left: 3.47%;
 }
 
 .layout-services-explorer-panel.is-taxes {
-	top: calc(55.17% - 40px);
+	top: 59.4147%;
 	left: 43.19%;
 }
 
 .layout-services-explorer-panel.is-family {
-	top: auto;
-	bottom: 0;
+	top: 83.1524%;
 	left: 3.47%;
 }
 
@@ -3121,7 +3122,7 @@
 }
 
 @media (min-width: 1025px) {
-	.layout-services-explorer-panel:not([hidden]) {
+	.layout-services-explorer-panel:not([hidden]) .service-detail {
 		animation: services-explorer-panel-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 	}
 }
@@ -3139,7 +3140,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.layout-services-explorer-panel:not([hidden]) {
+	.layout-services-explorer-panel:not([hidden]) .service-detail {
 		animation: none;
 	}
 }
@@ -3613,6 +3614,7 @@
 		width: 100%;
 		min-width: 0;
 		max-width: 100%;
+		transform: none;
 	}
 
 	.layout-services-explorer-panel .service-detail {

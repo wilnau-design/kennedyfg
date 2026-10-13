@@ -472,6 +472,43 @@
 				if (selected) {
 					explorer.classList.add('is-' + selected);
 				}
+				alignExplorerCard();
+			}
+
+			// Keep each card centered on its pin, and nudge it back inside the
+			// map when a taller card would cover the sections above or below.
+			function alignExplorerCard() {
+				var stage = explorer.querySelector('.layout-services-explorer-stage');
+				if (!stage) {
+					return;
+				}
+				if (compactQuery.matches) {
+					panels.forEach(function (panel) {
+						panel.style.transform = '';
+					});
+					return;
+				}
+
+				var stageRect = stage.getBoundingClientRect();
+				var hang = 22;
+
+				panels.forEach(function (panel) {
+					if (panel.hidden) {
+						panel.style.transform = '';
+						return;
+					}
+					panel.style.transform = 'translateY(-50%)';
+					var rect = panel.getBoundingClientRect();
+					var shift = 0;
+					if (rect.top < stageRect.top - hang) {
+						shift = (stageRect.top - hang) - rect.top;
+					} else if (rect.bottom > stageRect.bottom + hang) {
+						shift = (stageRect.bottom + hang) - rect.bottom;
+					}
+					if (shift) {
+						panel.style.transform = 'translateY(calc(-50% + ' + shift.toFixed(2) + 'px))';
+					}
+				});
 			}
 
 			var dismissed = '';
@@ -632,7 +669,10 @@
 			}
 
 			window.addEventListener('scroll', requestScrollSync, { passive: true });
-			window.addEventListener('resize', requestScrollSync);
+			window.addEventListener('resize', function () {
+				alignExplorerCard();
+				requestScrollSync();
+			});
 
 			compactQuery.addEventListener('change', function () {
 				select(selected);
