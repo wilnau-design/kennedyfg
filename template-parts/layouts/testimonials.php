@@ -38,14 +38,14 @@ $args = wp_parse_args(
 				<img src="<?php echo esc_url( $args['image'] ); ?>" alt="" />
 			</figure>
 			<blockquote class="layout-quote-card is-featured">
-				<p><?php echo esc_html( $args['featured']['quote'] ); ?></p>
+				<p><?php echo esc_html( '“' . $args['featured']['quote'] . '”' ); ?></p>
 				<cite><?php echo esc_html( $args['featured']['cite'] ); ?></cite>
 			</blockquote>
 		</div>
 		<div class="layout-testimonials-grid">
 			<?php foreach ( $args['quotes'] as $quote ) : ?>
 				<blockquote class="layout-quote-card">
-					<p><?php echo esc_html( $quote['quote'] ); ?></p>
+					<p><?php echo esc_html( '“' . $quote['quote'] . '”' ); ?></p>
 					<cite><?php echo esc_html( $quote['cite'] ); ?></cite>
 				</blockquote>
 			<?php endforeach; ?>

@@ -64,7 +64,7 @@ $stories = array_values( (array) $args['stories'] );
 							<img src="<?php echo esc_url( $story['image'] ); ?>" alt="<?php echo esc_attr( $story['name'] ); ?>" />
 						</figure>
 						<div class="layout-client-stories-card" data-card="<?php echo esc_attr( $story['card'] ?? 'quote-card' ); ?>">
-							<p class="layout-client-stories-quote"><?php echo esc_html( $story['quote'] ); ?></p>
+							<p class="layout-client-stories-quote"><?php echo esc_html( '“' . $story['quote'] . '”' ); ?></p>
 							<?php
 							kennedy_fg_component(
 								'button-cta',
