@@ -40,8 +40,6 @@ $nav_prev = null !== $index && isset( $siblings[ $index - 1 ] ) ? $siblings[ $in
 $nav_next = null !== $index && isset( $siblings[ $index + 1 ] ) ? $siblings[ $index + 1 ] : null;
 
 $eyebrow = get_post_meta( get_the_ID(), 'service_eyebrow', true );
-$steven  = get_page_by_path( 'steven-fronrath', OBJECT, 'team' );
-$photo   = $steven ? get_the_post_thumbnail_url( $steven->ID, 'medium' ) : '';
 ?>
 
 <main id="primary" class="site-main">
@@ -61,14 +59,10 @@ $photo   = $steven ? get_the_post_thumbnail_url( $steven->ID, 'medium' ) : '';
 	kennedy_fg_layout(
 		'blog-post',
 		array(
-			'class'          => 'is-service',
-			'author_name'    => __( 'Steven Fronrath', 'kennedyfg' ),
-			'author_role'    => __( 'Vice President | Wealth Advisor', 'kennedyfg' ),
-			'author_company' => __( 'Kennedy Financial Group', 'kennedyfg' ),
-			'author_image'   => $photo ? $photo : '',
-			'custom_nav'     => true,
-			'nav_prev'       => $nav_prev,
-			'nav_next'       => $nav_next,
+			'class'      => 'is-service',
+			'custom_nav' => true,
+			'nav_prev'   => $nav_prev,
+			'nav_next'   => $nav_next,
 		)
 	);
 	kennedy_fg_layout( 'cta-split' );

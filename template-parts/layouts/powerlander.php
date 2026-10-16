@@ -23,7 +23,6 @@ $args = wp_parse_args(
 			__( 'Why $100,000 in “safe” cash can quietly add $5,000 to your taxable income', 'kennedyfg' ),
 			__( 'How to fund your church straight from your IRA and owe nothing on the gift', 'kennedyfg' ),
 		),
-		'image'        => kennedy_fg_asset( 'layouts/graphic-powerlander-background.webp' ),
 		'magnet'       => kennedy_fg_asset( 'content/graphic-footer-magnet.webp' ),
 		'class'        => '',
 	)
@@ -52,9 +51,6 @@ $args = wp_parse_args(
 					?>
 				</div>
 			</div>
-		</div>
-		<div class="layout-powerlander-hero-media">
-			<img src="<?php echo esc_url( $args['image'] ); ?>" alt="" width="1440" height="547" />
 		</div>
 	</div>
 

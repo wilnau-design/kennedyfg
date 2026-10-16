@@ -786,6 +786,60 @@ function kennedy_fg_get_team_role( $post = null ) {
 	return is_string( $role ) ? trim( $role ) : '';
 }
 
+/**
+ * Read an ACF field stored on a user. Returns empty when ACF or the field is absent.
+ *
+ * @param string $key     Field name.
+ * @param int    $user_id User ID.
+ * @return mixed
+ */
+function kennedy_fg_get_user_acf( $key, $user_id ) {
+	$user_id = (int) $user_id;
+	if ( $user_id < 1 || ! function_exists( 'get_field' ) ) {
+		return '';
+	}
+
+	$value = get_field( $key, 'user_' . $user_id );
+
+	return $value ? $value : '';
+}
+
+/**
+ * Author avatar URL from the user profile image field.
+ *
+ * The field is configured to return a URL. Attachment arrays and IDs are accepted too.
+ *
+ * @param int $user_id User ID.
+ * @return string
+ */
+function kennedy_fg_get_user_avatar_url( $user_id ) {
+	$value = kennedy_fg_get_user_acf( 'avatar', $user_id );
+
+	if ( is_array( $value ) && ! empty( $value['url'] ) && is_string( $value['url'] ) ) {
+		return esc_url_raw( $value['url'] );
+	}
+	if ( is_numeric( $value ) ) {
+		$url = wp_get_attachment_image_url( (int) $value, 'medium' );
+		return $url ? $url : '';
+	}
+	if ( is_string( $value ) && $value ) {
+		return esc_url_raw( $value );
+	}
+
+	return '';
+}
+
+/**
+ * Author job title from the user profile. Empty when the field is missing.
+ *
+ * @param int $user_id User ID.
+ * @return string
+ */
+function kennedy_fg_get_user_job_title( $user_id ) {
+	$value = kennedy_fg_get_user_acf( 'job_title', $user_id );
+	return is_string( $value ) ? trim( $value ) : '';
+}
+
 function kennedy_fg_get_team_avatar( $post = null ) {
 	$post = get_post( $post );
 	if ( ! $post ) {

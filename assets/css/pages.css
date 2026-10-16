@@ -4203,7 +4203,8 @@ body.archive .site-main.layout-blog-feed {
 
 .layout-powerlander-hero-bar {
 	box-sizing: border-box;
-	padding-block: var(--wp--custom--section-space--large) var(--wp--custom--space--7);
+	padding-block: var(--wp--custom--section-space--main);
+	border-bottom: var(--wp--custom--border-width--small) solid var(--wp--preset--color--base-subtle);
 	background: linear-gradient(
 		180deg,
 		var(--wp--preset--color--base-lighter) 0%,
@@ -4244,19 +4245,6 @@ body.archive .site-main.layout-blog-feed {
 		font-size: var(--wp--preset--font-size--large);
 		line-height: 1.5;
 		letter-spacing: 0.02em;
-	}
-}
-
-.layout-powerlander-hero-media {
-	height: 547px;
-	overflow: hidden;
-
-	img {
-		display: block;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: center 28%;
 	}
 }
 
@@ -5007,10 +4995,6 @@ body.has-no-footer .site-footer {
 	.layout-powerlander-hero-cta,
 	.layout-powerlander-popup-intro {
 		align-items: center;
-	}
-
-	.layout-powerlander-hero-media {
-		height: 320px;
 	}
 
 	.layout-powerlander-copy,

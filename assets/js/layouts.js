@@ -521,8 +521,13 @@
 
 			pins.forEach(function (pin) {
 				pin.addEventListener('click', function () {
+					var service = pin.getAttribute('data-service');
+					if (selected === service) {
+						close();
+						return;
+					}
 					dismissed = '';
-					select(pin.getAttribute('data-service'));
+					select(service);
 				});
 			});
 

@@ -19,8 +19,10 @@ $args = wp_parse_args(
 	)
 );
 
-$author_bio  = $args['author_role'] ? $args['author_role'] : get_the_author_meta( 'description' );
-$author_name = $args['author_name'] ? $args['author_name'] : get_the_author();
+$author_id    = (int) get_the_author_meta( 'ID' );
+$author_name  = $args['author_name'] ? $args['author_name'] : get_the_author();
+$author_role  = $args['author_role'] ? $args['author_role'] : kennedy_fg_get_user_job_title( $author_id );
+$author_image = $args['author_image'] ? $args['author_image'] : kennedy_fg_get_user_avatar_url( $author_id );
 $permalink   = get_permalink();
 $share_title = get_the_title();
 $prev_post   = $args['custom_nav'] ? $args['nav_prev'] : get_previous_post();
@@ -33,17 +35,17 @@ $next_post   = $args['custom_nav'] ? $args['nav_next'] : get_next_post();
 				<?php the_content(); ?>
 			</div>
 
-			<?php if ( $author_bio || $author_name ) : ?>
+			<?php if ( $author_name ) : ?>
 				<div class="layout-blog-post-author">
-					<?php if ( $args['author_image'] ) : ?>
-						<img src="<?php echo esc_url( $args['author_image'] ); ?>" alt="" width="82" height="82" />
+					<?php if ( $author_image ) : ?>
+						<img src="<?php echo esc_url( $author_image ); ?>" alt="" width="82" height="82" />
 					<?php else : ?>
-						<?php echo get_avatar( get_the_author_meta( 'ID' ), 82 ); ?>
+						<?php echo get_avatar( $author_id, 82, 'mp' ); ?>
 					<?php endif; ?>
 					<div class="layout-blog-post-author-info">
 						<p class="layout-blog-post-author-name"><?php echo esc_html( $author_name ); ?></p>
-						<?php if ( $author_bio ) : ?>
-							<p class="layout-blog-post-author-role"><?php echo esc_html( $author_bio ); ?></p>
+						<?php if ( $author_role ) : ?>
+							<p class="layout-blog-post-author-role"><?php echo esc_html( $author_role ); ?></p>
 						<?php endif; ?>
 						<p class="layout-blog-post-author-company"><?php echo esc_html( $args['author_company'] ? $args['author_company'] : get_bloginfo( 'name' ) ); ?></p>
 					</div>
