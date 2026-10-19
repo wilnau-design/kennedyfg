@@ -3741,7 +3741,7 @@ body.archive .site-main.layout-blog-feed {
  */
 @media (max-width: 833px) {
 	.layout-pain-points {
-		padding-block-start: var(--wp--custom--space--7);
+		padding-block: var(--wp--custom--space--7);
 		background: var(--wp--preset--color--base-lighter);
 		border-bottom-width: var(--wp--custom--border-width--x-small, 0.75px);
 	}
@@ -3885,7 +3885,7 @@ body.archive .site-main.layout-blog-feed {
 
 	.layout-pin-journey-intro {
 		gap: var(--wp--custom--space--4);
-		padding-block: var(--wp--custom--space--4) var(--wp--custom--space--7);
+		padding-block: var(--wp--custom--space--7);
 		border-bottom: 0;
 
 		h2 {

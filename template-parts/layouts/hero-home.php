@@ -65,7 +65,7 @@ $path_variants = array(
 		</div>
 	</div>
 	<div class="layout-hero-home-media">
-		<img src="<?php echo esc_url( $args['image'] ); ?>" alt="" />
+		<img src="<?php echo esc_url( $args['image'] ); ?>" alt="" width="1536" height="583" fetchpriority="high" loading="eager" />
 	</div>
 	<div class="layout-hero-home-cta">
 		<div class="alignwide layout-hero-home-cta-inner">

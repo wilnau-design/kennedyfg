@@ -122,6 +122,162 @@ function kennedy_fg_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'kennedy_fg_enqueue_assets' );
 
+/**
+ * Drop emoji detection and a few discovery tags that are not used on the front end.
+ * Editor emoji support is left in place.
+ */
+function kennedy_fg_cleanup_head() {
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'wp_head', 'wp_generator' );
+	remove_action( 'wp_head', 'rsd_link' );
+	remove_action( 'wp_head', 'wlwmanifest_link' );
+	remove_action( 'wp_head', 'wp_shortlink_wp_head', 10 );
+	add_filter( 'emoji_svg_url', '__return_false' );
+}
+add_action( 'init', 'kennedy_fg_cleanup_head' );
+
+/**
+ * Preload the fonts that paint body copy and headings, plus the homepage hero.
+ */
+function kennedy_fg_resource_hints() {
+	if ( is_admin() ) {
+		return;
+	}
+
+	$fonts = array(
+		'assets/fonts/newsreader/Newsreader-variable.woff2',
+		'assets/fonts/source-sans-pro/SourceSans3-variable.woff2',
+	);
+
+	foreach ( $fonts as $font ) {
+		printf(
+			'<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
+			esc_url( get_theme_file_uri( $font ) )
+		);
+	}
+
+	if ( is_front_page() ) {
+		printf(
+			'<link rel="preload" href="%s" as="image" fetchpriority="high">' . "\n",
+			esc_url( kennedy_fg_asset( 'layouts/hero-home.webp' ) )
+		);
+	}
+}
+add_action( 'wp_head', 'kennedy_fg_resource_hints', 2 );
+
+/**
+ * Lazy-load below-the-fold photos without delaying the hero, header, icons,
+ * or light/dark pairs (those must already be decoded when the theme toggles).
+ *
+ * @param string $html Full document.
+ * @return string
+ */
+function kennedy_fg_optimize_document_images( $html ) {
+	if ( ! is_string( $html ) || false === stripos( $html, '<img' ) ) {
+		return $html;
+	}
+
+	$main = stripos( $html, 'id="primary"' );
+	if ( false === $main ) {
+		return $html;
+	}
+
+	$dialogs = array();
+	if ( preg_match_all( '/<dialog\b/i', $html, $opens, PREG_OFFSET_CAPTURE ) ) {
+		foreach ( $opens[0] as $open ) {
+			$start = $open[1];
+			$end   = stripos( $html, '</dialog>', $start );
+			$dialogs[] = array( $start, false === $end ? strlen( $html ) : $end );
+		}
+	}
+
+	$hero_end  = stripos( $html, '</section>', $main );
+	$hero_end  = false === $hero_end ? $main : $hero_end;
+	$gave_high = false;
+	$count     = 0;
+
+	$result = preg_replace_callback(
+		'/<img\b[^>]*>/i',
+		static function ( $matches ) use ( $main, $hero_end, $dialogs, &$gave_high ) {
+			$tag = $matches[0][0];
+			$pos = $matches[0][1];
+
+			if ( $pos < $main ) {
+				return $tag;
+			}
+
+			foreach ( $dialogs as $range ) {
+				if ( $pos >= $range[0] && $pos <= $range[1] ) {
+					return $tag;
+				}
+			}
+
+			if ( preg_match( '/fetchpriority\s*=\s*["\']high/i', $tag ) ) {
+				$gave_high = true;
+			}
+
+			// First section is the hero or the top illustration. Keep those images eager.
+			if ( $pos < $hero_end ) {
+				if ( $gave_high || kennedy_fg_img_tag_stays_eager( $tag ) || preg_match( '/\bfetchpriority\s*=/i', $tag ) ) {
+					return $tag;
+				}
+				$gave_high = true;
+				return kennedy_fg_img_tag_add_attrs( $tag, 'fetchpriority="high" loading="eager"' );
+			}
+
+			if ( preg_match( '/\bloading\s*=/i', $tag ) || kennedy_fg_img_tag_stays_eager( $tag ) ) {
+				return $tag;
+			}
+
+			return kennedy_fg_img_tag_add_attrs( $tag, 'loading="lazy" decoding="async" fetchpriority="low"' );
+		},
+		$html,
+		-1,
+		$count,
+		PREG_OFFSET_CAPTURE
+	);
+
+	return is_string( $result ) ? $result : $html;
+}
+
+/**
+ * Images that must not wait for lazy-load: UI icons and theme-swapped artwork.
+ *
+ * @param string $tag Image tag.
+ * @return bool
+ */
+function kennedy_fg_img_tag_stays_eager( $tag ) {
+	if ( preg_match( '/\bclass\s*=\s*["\'][^"\']*\b(?:site-logo|is-light|is-dark|is-hover|is-default|menu-toggle|nav-dropdown|theme-toggle|button-nav|brokercheck|video-placeholder-play)\b/i', $tag ) ) {
+		return true;
+	}
+
+	return (bool) preg_match( '/\bsrc\s*=\s*["\'][^"\']*(?:\/icons\/|icon-|BrokerCheck)/i', $tag );
+}
+
+/**
+ * Insert attributes before the end of an image tag.
+ *
+ * @param string $tag   Image tag.
+ * @param string $attrs Attributes without a leading space.
+ * @return string
+ */
+function kennedy_fg_img_tag_add_attrs( $tag, $attrs ) {
+	$updated = preg_replace( '/\s*\/?>$/', ' ' . $attrs . '$0', $tag, 1 );
+	return is_string( $updated ) ? $updated : $tag;
+}
+
+/**
+ * Buffer the front-end document so template images can be marked lazy.
+ */
+function kennedy_fg_buffer_document_images() {
+	if ( is_admin() || wp_doing_ajax() || is_feed() || wp_is_json_request() ) {
+		return;
+	}
+	ob_start( 'kennedy_fg_optimize_document_images' );
+}
+add_action( 'template_redirect', 'kennedy_fg_buffer_document_images', 0 );
+
 function kennedy_fg_is_component_library() {
 	return is_page_template( 'component-library.php' ) || is_page( 'component-library' );
 }
