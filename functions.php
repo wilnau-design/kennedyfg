@@ -135,7 +135,7 @@ function kennedy_fg_is_guide_page() {
 }
 
 function kennedy_fg_is_thank_you_page() {
-	return is_page( array( 'guide-thank-you', 'start-here-thank-you' ) )
+	return is_page( array( 'thank-you', 'schedule-success' ) )
 		|| is_page_template( array( 'page-guide-thank-you.php', 'page-start-here-thank-you.php' ) );
 }
 
@@ -162,8 +162,15 @@ function kennedy_fg_body_class( $classes ) {
 add_filter( 'body_class', 'kennedy_fg_body_class' );
 
 function kennedy_fg_page_template_aliases( $template ) {
-	if ( is_page( 'retirement-guide' ) ) {
-		$found = locate_template( 'page-guide.php' );
+	$aliases = array(
+		'retirement-guide' => 'page-guide.php',
+		'thank-you'        => 'page-guide-thank-you.php',
+		'schedule-success' => 'page-start-here-thank-you.php',
+	);
+
+	$slug = get_queried_object_id() ? (string) get_post_field( 'post_name', get_queried_object_id() ) : '';
+	if ( is_page() && isset( $aliases[ $slug ] ) ) {
+		$found = locate_template( $aliases[ $slug ] );
 		return $found ? $found : $template;
 	}
 
