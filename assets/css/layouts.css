@@ -165,6 +165,13 @@
 	transform: none;
 	overflow: visible;
 	pointer-events: none;
+	/* Hidden until layouts.js anchors them to the “day” mark. A visible move of this layer is the desktop CLS. */
+	visibility: hidden;
+}
+
+.layout-hero-home-path-wrap.is-placed,
+.layout-hero-home-pins.is-placed {
+	visibility: visible;
 }
 
 .layout-hero-home-path-wrap {
@@ -3272,6 +3279,12 @@
 	position: absolute;
 	inset: 0;
 	pointer-events: none;
+	/* Hidden until layouts.js anchors the path, end mark, and pins. */
+	visibility: hidden;
+}
+
+.layout-hero-start-path-art.is-placed {
+	visibility: visible;
 }
 
 .layout-hero-start-path-line {

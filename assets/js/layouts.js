@@ -101,10 +101,26 @@
 		document.querySelectorAll('.layout-hero-home').forEach(positionHero);
 	}
 
+	var heroesPlaced = false;
+
+	function revealHeroes() {
+		positionAll();
+		if (heroesPlaced) {
+			return;
+		}
+		document.querySelectorAll('.layout-hero-home-path-wrap, .layout-hero-home-pins').forEach(function (layer) {
+			layer.classList.add('is-placed');
+		});
+		heroesPlaced = true;
+	}
+
 	function init() {
 		positionAll();
-		if (document.fonts && document.fonts.ready) {
-			document.fonts.ready.then(positionAll);
+		if (document.fonts && document.fonts.status !== 'loaded') {
+			document.fonts.ready.then(revealHeroes);
+			window.setTimeout(revealHeroes, 2000);
+		} else {
+			revealHeroes();
 		}
 		window.addEventListener('resize', positionAll);
 		window.matchMedia(COMPACT_QUERY).addEventListener('change', positionAll);
@@ -443,6 +459,29 @@
 		document.querySelectorAll('.layout-hero-start-path').forEach(positionStartHero);
 	}
 
+	var startHeroesPlaced = false;
+
+	function revealStartHeroes() {
+		positionStartHeroes();
+		if (startHeroesPlaced) {
+			return;
+		}
+		document.querySelectorAll('.layout-hero-start-path-art').forEach(function (art) {
+			art.classList.add('is-placed');
+		});
+		startHeroesPlaced = true;
+	}
+
+	function scheduleStartHeroes() {
+		positionStartHeroes();
+		if (document.fonts && document.fonts.status !== 'loaded') {
+			document.fonts.ready.then(revealStartHeroes);
+			window.setTimeout(revealStartHeroes, 2000);
+		} else {
+			revealStartHeroes();
+		}
+	}
+
 	function initServicesExplorer() {
 		var compactQuery = window.matchMedia(COMPACT_QUERY);
 
@@ -769,7 +808,7 @@
 			initBioNav();
 			initClientStorySiblingsNav();
 			initClientStoryDetail();
-			positionStartHeroes();
+			scheduleStartHeroes();
 			initServicesExplorer();
 		});
 	} else {
@@ -779,14 +818,11 @@
 		initBioNav();
 		initClientStorySiblingsNav();
 		initClientStoryDetail();
-		positionStartHeroes();
+		scheduleStartHeroes();
 		initServicesExplorer();
 	}
 	window.addEventListener('resize', positionStartHeroes);
 	window.matchMedia(COMPACT_QUERY).addEventListener('change', positionStartHeroes);
-	if (document.fonts && document.fonts.ready) {
-		document.fonts.ready.then(positionStartHeroes);
-	}
 	if (typeof ResizeObserver !== 'undefined') {
 		document.querySelectorAll('.layout-hero-start-path').forEach(function (hero) {
 			new ResizeObserver(positionStartHeroes).observe(hero);
