@@ -1411,3 +1411,8 @@ function kennedy_fg_scroll_animations() {
 	<?php
 }
 add_action( 'wp_footer', 'kennedy_fg_scroll_animations' );
+
+add_filter(‘wp-meteor-frontend-adjust-wpmeteor’, function ($wpmeteor, $settings) {
+$wpmeteor[‘rdelay’] = 4000; // number of milliseconds to delay
+return $wpmeteor;
+}, 100, 2);
