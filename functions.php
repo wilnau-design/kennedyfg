@@ -313,6 +313,9 @@ function kennedy_fg_body_class( $classes ) {
 	if ( kennedy_fg_hide_site_footer() ) {
 		$classes[] = 'has-no-footer';
 	}
+	if ( ! kennedy_fg_show_home_mobile_decor() ) {
+		$classes[] = 'kennedyfg-hide-home-mobile-decor';
+	}
 	return $classes;
 }
 add_filter( 'body_class', 'kennedy_fg_body_class' );
@@ -435,6 +438,14 @@ function kennedy_fg_show_brokercheck() {
 	return (bool) get_option( 'kennedy_fg_show_brokercheck', true );
 }
 
+/**
+ * Whether the homepage hero path, pins, and “day” mark show on phones.
+ * Desktop and tablet always keep these decorations.
+ */
+function kennedy_fg_show_home_mobile_decor() {
+	return (bool) get_option( 'kennedy_fg_show_home_mobile_decor', true );
+}
+
 function kennedy_fg_register_theme_options_page() {
 	add_theme_page(
 		__( 'Kennedy FG Options', 'kennedyfg' ),
@@ -467,6 +478,16 @@ function kennedy_fg_register_theme_options_settings() {
 		)
 	);
 
+	register_setting(
+		'kennedy_fg_options',
+		'kennedy_fg_show_home_mobile_decor',
+		array(
+			'type'              => 'boolean',
+			'sanitize_callback' => 'rest_sanitize_boolean',
+			'default'           => true,
+		)
+	);
+
 	add_settings_section(
 		'kennedy_fg_options_dev',
 		__( 'Dev &amp; QC', 'kennedyfg' ),
@@ -480,6 +501,21 @@ function kennedy_fg_register_theme_options_settings() {
 		'kennedy_fg_render_show_dev_theme_toggle_field',
 		'kennedy-fg-options',
 		'kennedy_fg_options_dev'
+	);
+
+	add_settings_section(
+		'kennedy_fg_options_homepage',
+		__( 'Homepage', 'kennedyfg' ),
+		'__return_false',
+		'kennedy-fg-options'
+	);
+
+	add_settings_field(
+		'kennedy_fg_show_home_mobile_decor',
+		__( 'Mobile decorations', 'kennedyfg' ),
+		'kennedy_fg_render_show_home_mobile_decor_field',
+		'kennedy-fg-options',
+		'kennedy_fg_options_homepage'
 	);
 
 	add_settings_section(
@@ -513,6 +549,25 @@ function kennedy_fg_render_show_dev_theme_toggle_field() {
 	</label>
 	<p class="description">
 		<?php esc_html_e( 'Intended for development and QC only. The site already switches between light and dark automatically based on the visitor\'s device settings; this toggle just lets testers preview both themes manually. Turn it off before launch/handoff to the client.', 'kennedyfg' ); ?>
+	</p>
+	<?php
+}
+
+function kennedy_fg_render_show_home_mobile_decor_field() {
+	?>
+	<input type="hidden" name="kennedy_fg_show_home_mobile_decor" value="0" />
+	<label for="kennedy_fg_show_home_mobile_decor">
+		<input
+			type="checkbox"
+			id="kennedy_fg_show_home_mobile_decor"
+			name="kennedy_fg_show_home_mobile_decor"
+			value="1"
+			<?php checked( kennedy_fg_show_home_mobile_decor() ); ?>
+		/>
+		<?php esc_html_e( 'Show the path, pins, and “day” mark on the homepage for phones', 'kennedyfg' ); ?>
+	</label>
+	<p class="description">
+		<?php esc_html_e( 'Phones only (screens under 768px). Uncheck to hide the winding path, the four milestone pins, and the circle around “day.” Desktop and tablet always keep these decorations.', 'kennedyfg' ); ?>
 	</p>
 	<?php
 }

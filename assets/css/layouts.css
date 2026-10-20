@@ -1713,6 +1713,12 @@
 }
 
 @media (max-width: 767.98px) {
+	body.kennedyfg-hide-home-mobile-decor .layout-hero-home-path-wrap,
+	body.kennedyfg-hide-home-mobile-decor .layout-hero-home-pins,
+	body.kennedyfg-hide-home-mobile-decor .layout-hero-home-day-mark {
+		display: none;
+	}
+
 	.layout-hero-home-copy-inner,
 	.layout-hero-page-inner,
 	.layout-pull-quote-inner,
